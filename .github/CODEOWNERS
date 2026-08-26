@@ -1,0 +1,3 @@
+# Default owner for repository review. Narrower ownership can be added with
+# implementation modules when those directories are introduced.
+* @mdesantis1984
