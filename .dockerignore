@@ -1,0 +1,13 @@
+.git
+.github
+.codegraph
+.dart_tool
+.local
+.playwright-mcp
+apps/catalog/dist
+build
+coverage
+node_modules
+packages/ui-web/dist
+tmp
+*.log
