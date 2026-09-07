@@ -2,7 +2,7 @@
 name: Bug report
 about: Report a reproducible defect
 title: ""
-labels: ""
+labels: "type:bug"
 assignees: ""
 ---
 

@@ -6,14 +6,23 @@ Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read [`A
 
 1. Create or select an issue that describes one observable outcome.
 2. Wait for the owner to apply `status:approved`.
-3. Create a branch named `type/description` from the intended parent branch.
+3. Create a branch named `type/description` from `develop`.
 4. Implement one cohesive work unit with its tests and documentation.
 5. Run the focused verification and `git diff --check`.
 6. Commit using Conventional Commits.
 7. Open a PR linking the approved issue and apply exactly one `type:*` label.
 8. Merge only after required checks and owner approval.
 
-Use chained PRs when a change cannot remain below 400 changed lines without mixing concerns. Each child targets its immediate parent and remains independently reviewable.
+Use chained PRs when a change cannot remain below 400 changed lines without mixing concerns. Each child remains independently reviewable; merge the chain into `develop` in dependency order before promotion.
+
+## Branch model
+
+- `develop` is the protected integration branch and target for normal work-unit PRs.
+- `main` is the protected production branch and accepts reviewed promotions from `develop` or bounded emergency fixes.
+- A `develop` to `main` promotion may aggregate work units that were already reviewed individually; do not add new implementation changes to that PR.
+- Squash work-unit PRs into `develop`, but merge promotion PRs into `main` with a merge commit so future promotions retain a clean common ancestor.
+- Emergency fixes branch from `main`, use `fix/description`, and must be applied back to `develop` after release.
+- Only `mdesantis1984` has repository write and merge authority. External contributors work through forks and PRs.
 
 ## Verification
 
