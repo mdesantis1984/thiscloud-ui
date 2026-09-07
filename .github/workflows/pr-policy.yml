@@ -18,20 +18,23 @@ jobs:
       - name: Validate pull request metadata
         env:
           GH_TOKEN: ${{ github.token }}
-          EVENT_PATH: ${{ github.event_path }}
           REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
 
-          pr_number="$(jq -r '.pull_request.number' "$EVENT_PATH")"
-          head_ref="$(jq -r '.pull_request.head.ref' "$EVENT_PATH")"
-          base_ref="$(jq -r '.pull_request.base.ref' "$EVENT_PATH")"
-          body="$(jq -r '.pull_request.body // ""' "$EVENT_PATH")"
-          additions="$(jq -r '.pull_request.additions' "$EVENT_PATH")"
-          deletions="$(jq -r '.pull_request.deletions' "$EVENT_PATH")"
+          pr_number="$(jq -r '.pull_request.number' "$GITHUB_EVENT_PATH")"
+          head_ref="$(jq -r '.pull_request.head.ref' "$GITHUB_EVENT_PATH")"
+          base_ref="$(jq -r '.pull_request.base.ref' "$GITHUB_EVENT_PATH")"
+          actor="$(jq -r '.sender.login' "$GITHUB_EVENT_PATH")"
+          body="$(jq -r '.pull_request.body // ""' "$GITHUB_EVENT_PATH")"
+          additions="$(jq -r '.pull_request.additions' "$GITHUB_EVENT_PATH")"
+          deletions="$(jq -r '.pull_request.deletions' "$GITHUB_EVENT_PATH")"
 
           promotion=false
-          if [[ "$base_ref" == "main" && "$head_ref" == "develop" ]]; then
+          automation=false
+          if [[ "$actor" == "dependabot[bot]" && "$base_ref" == "develop" && "$head_ref" =~ ^dependabot/ ]]; then
+            automation=true
+          elif [[ "$base_ref" == "main" && "$head_ref" == "develop" ]]; then
             promotion=true
           elif [[ "$base_ref" == "main" && "$head_ref" =~ ^fix/[a-z0-9._-]+$ ]]; then
             :
@@ -42,7 +45,7 @@ jobs:
             exit 1
           fi
 
-          if [[ "$promotion" == false && ! "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
+          if [[ "$promotion" == false && "$automation" == false && ! "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
             echo "Invalid branch name: $head_ref" >&2
             exit 1
           fi
@@ -53,16 +56,20 @@ jobs:
             exit 1
           fi
 
-          issue_number="$(printf '%s' "$body" | grep -Eio '(closes|fixes|resolves)[[:space:]]+#[0-9]+' | grep -Eo '[0-9]+' | head -n 1 || true)"
-          if [[ -z "$issue_number" ]]; then
-            echo "PR body must contain Closes, Fixes, or Resolves followed by an issue number." >&2
-            exit 1
-          fi
+          issue_reference="Dependabot automation"
+          if [[ "$automation" == false ]]; then
+            issue_number="$(printf '%s' "$body" | grep -Eio '(closes|fixes|resolves)[[:space:]]+#[0-9]+' | grep -Eo '[0-9]+' | head -n 1 || true)"
+            if [[ -z "$issue_number" ]]; then
+              echo "PR body must contain Closes, Fixes, or Resolves followed by an issue number." >&2
+              exit 1
+            fi
 
-          approved="$(gh issue view "$issue_number" --repo "$REPOSITORY" --json labels --jq 'any(.labels[]; .name == "status:approved")')"
-          if [[ "$approved" != "true" ]]; then
-            echo "Linked issue #$issue_number does not have status:approved." >&2
-            exit 1
+            approved="$(gh issue view "$issue_number" --repo "$REPOSITORY" --json labels --jq 'any(.labels[]; .name == "status:approved")')"
+            if [[ "$approved" != "true" ]]; then
+              echo "Linked issue #$issue_number does not have status:approved." >&2
+              exit 1
+            fi
+            issue_reference="issue #$issue_number"
           fi
 
           changed_lines=$((additions + deletions))
@@ -71,4 +78,4 @@ jobs:
             exit 1
           fi
 
-          echo "PR policy passed for #$pr_number ($head_ref -> $base_ref, ${type_labels[0]}, $changed_lines changed lines, issue #$issue_number)."
+          echo "PR policy passed for #$pr_number ($head_ref -> $base_ref, ${type_labels[0]}, $changed_lines changed lines, $issue_reference)."

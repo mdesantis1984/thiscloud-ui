@@ -44,4 +44,4 @@ This creates a versioned tarball and SHA-256 checksum in ignored `tmp/release/`,
 - Public API claims require executable browser or Flutter evidence in the same work unit.
 - `ui.thiscloud.com.ar` serves only the catalog and release downloads.
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), [`docs/architecture.md`](docs/architecture.md), and [`docs/governance.md`](docs/governance.md) before changing the repository.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), [`docs/architecture.md`](docs/architecture.md), [`docs/governance.md`](docs/governance.md), and [`docs/migration-from-center.md`](docs/migration-from-center.md) before changing the repository.
