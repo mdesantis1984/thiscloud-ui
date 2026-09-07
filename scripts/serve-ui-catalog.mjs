@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { resolve, extname, isAbsolute, relative, sep } from 'node:path';
 
-const root = resolve(import.meta.dirname, '../docs/prototypes/thiscloud-ui-framework/dist');
+const root = resolve(import.meta.dirname, '../apps/catalog/dist');
 const mime = { '.css': 'text/css', '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.ttf': 'font/ttf', '.woff2': 'font/woff2' };
 const port = Number(process.env.UI_CATALOG_PORT ?? 8095);
 

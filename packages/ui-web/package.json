@@ -4,6 +4,13 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdesantis1984/thiscloud-ui.git",
+    "directory": "packages/ui-web"
+  },
+  "homepage": "https://ui.thiscloud.com.ar",
+  "bugs": "https://github.com/mdesantis1984/thiscloud-ui/issues",
   "types": "./index.d.ts",
   "exports": {
     ".": { "types": "./index.d.ts", "import": "./dist/index.js" },

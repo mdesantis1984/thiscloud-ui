@@ -4,7 +4,7 @@ import { build } from 'esbuild';
 import JavaScriptObfuscator from 'javascript-obfuscator';
 
 const root = resolve(import.meta.dirname, '..');
-const catalog = resolve(root, 'docs/prototypes/thiscloud-ui-framework');
+const catalog = resolve(root, 'apps/catalog');
 const source = resolve(catalog, 'framework-preview.html');
 const css = resolve(catalog, 'catalog.css');
 const script = resolve(catalog, 'catalog.js');
