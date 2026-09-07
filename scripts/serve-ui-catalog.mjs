@@ -17,7 +17,9 @@ export function createCatalogServer() {
     try {
       const pathname = new URL(request.url ?? '/', 'http://catalog.local').pathname;
       const decodedPath = decodeURIComponent(pathname);
-      const requested = decodedPath === '/' ? 'framework-preview.html' : decodedPath.replace(/^[/\\]+/, '');
+      const requested = ['/', '/downloads', '/downloads/'].includes(decodedPath)
+        ? 'framework-preview.html'
+        : decodedPath.replace(/^[/\\]+/, '');
       file = resolve(root, requested);
     } catch {
       response.writeHead(400).end();

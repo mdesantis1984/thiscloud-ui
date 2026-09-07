@@ -29,7 +29,8 @@
     "gettingStarted": "Getting started",
     "customization": "Customization",
     "accessibility": "Accessibility & testing",
-    "buildStatus": "Build status"
+    "buildStatus": "Build status",
+    "download": "Download"
   },
   "header": {
     "openNav": "Open navigation",
@@ -39,7 +40,9 @@
     "compact": "Compact",
     "comfortable": "Comfortable",
     "toggleTheme": "Toggle theme",
-    "profile": "Profile",
+    "download": "Download",
+    "downloadPackage": "Download Thiscloud UI",
+    "guest": "Guest",
     "language": "EN",
     "switchLanguage": "Switch to Spanish"
   },
@@ -1293,6 +1296,26 @@
     "coreRule": "Core rule",
     "ruleText": "Recognition beats recall: show the component, its state, and the next action together.",
     "available": "Available"
+  },
+  "download": {
+    "eyebrow": "Thiscloud UI package",
+    "title": "Download the verified web/hybrid RC",
+    "intro": "Install the exact package used by this catalog. The package contains only Thiscloud UI; Thiscloud Center is not included.",
+    "package": "Download @thiscloud/ui-web 0.1.0-rc.1",
+    "checksum": "Download SHA-256 checksum",
+    "installTitle": "Install in four steps",
+    "step1Title": "Download both files",
+    "step1": "Keep the package and checksum in the same directory.",
+    "step2Title": "Verify the package",
+    "step2": "Compare the downloaded archive with the published checksum before installing it.",
+    "linux": "Linux",
+    "powershell": "Windows PowerShell",
+    "step3Title": "Install the local archive",
+    "step4Title": "Import registration and tokens",
+    "useTitle": "Use the verified controls",
+    "useIntro": "The RC exposes Switch, TextField, the ValidationControl type, and the native-form validation helper.",
+    "boundary": "This RC is verified in Chromium. Consumers must validate their own browser or hybrid WebView target.",
+    "back": "Return to the catalog"
   },
   "buildStatus": {
     "eyebrow": "Living delivery record",

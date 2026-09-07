@@ -32,6 +32,8 @@ try {
   assert.equal(await request(port, '/%ZZ'), 400, 'Malformed encoding must be rejected.');
    assert.equal(await request(port, '/framework-preview.html?v=1'), 200, 'Query strings must not affect file lookup.');
    assert.equal(await request(port, '/ui-web-tokens.css'), 200, 'The generated public SDK token asset must be served.');
+  assert.equal(await request(port, '/downloads'), 200, 'The extensionless download route must serve the catalog shell without redirecting.');
+  assert.equal(await request(port, '/downloads/'), 200, 'The trailing-slash download route must serve the catalog shell.');
   assert.equal(await request(port, '/missing.html'), 404, 'Missing files must return 404.');
   assert.equal(await request(port, '/%2e%2e%2fpackage.json'), 403, 'Traversal must be rejected.');
   assert.equal(await request(port, '/framework-preview.html'), 200, 'Server must remain available after invalid requests.');

@@ -546,6 +546,39 @@ try {
   const catalogPort = Number(output.match(/127\.0\.0\.1:(\d+)/)?.[1]);
   assert.ok(catalogPort > 0, 'Catalog server must use its requested ephemeral port.');
   const catalogPage = await browser.newPage();
+  await catalogPage.goto(`http://127.0.0.1:${catalogPort}/downloads`);
+  await catalogPage.waitForSelector('[data-package-download]');
+  const downloadRoute = await catalogPage.evaluate(() => ({
+    title: document.querySelector('main h1')?.textContent,
+    packageHref: document.querySelector('[data-package-download]')?.getAttribute('href'),
+    checksumHref: document.querySelector('[data-checksum-download]')?.getAttribute('href'),
+    guest: document.querySelector('#guestText')?.textContent,
+    ownerInitials: document.querySelector('#guest')?.textContent.includes('MD'),
+    navigationHref: document.querySelector('#sideNav a[href="#guidance/download"]')?.getAttribute('href'),
+    cards: document.querySelectorAll('.download-guide .card').length,
+    background: getComputedStyle(document.body).backgroundColor,
+  }));
+  assert.deepEqual(downloadRoute, {
+    title: 'Descargar la RC web/híbrida verificada',
+    packageHref: '/downloads/thiscloud-ui-web-0.1.0-rc.1.tgz',
+    checksumHref: '/downloads/thiscloud-ui-web-0.1.0-rc.1.tgz.sha256',
+    guest: 'Invitado',
+    ownerInitials: false,
+    navigationHref: '#guidance/download',
+    cards: 2,
+    background: 'rgb(18, 18, 18)',
+  }, 'The public download route must use the catalog shell, localized guest state, and immutable package links.');
+  assert.doesNotMatch(await catalogPage.content(), />MD<|:8080/, 'The public download route must not expose owner initials or an internal port.');
+  await catalogPage.setViewportSize({ width: 390, height: 844 });
+  assert.ok((await catalogPage.locator('#download').boundingBox()).width >= 40, 'The mobile download action must retain a usable target.');
+  assert.ok((await catalogPage.locator('#guest').boundingBox()).width >= 40, 'The mobile guest marker must remain visible.');
+  assert.equal(await catalogPage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, 'The mobile download route must not overflow the viewport.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'en');
+  assert.deepEqual(await catalogPage.evaluate(() => [document.querySelector('main h1')?.textContent, document.querySelector('#guestText')?.textContent]), ['Download the verified web/hybrid RC', 'Guest'], 'The download guide and guest state must switch to English together.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'es');
+  await catalogPage.setViewportSize({ width: 1280, height: 900 });
   await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#component/switch`);
   const catalogSwitches = catalogPage.locator('tc-switch');
   assert.equal(await catalogSwitches.count(), 8, 'The Switch route must render its eight SDK-backed examples.');

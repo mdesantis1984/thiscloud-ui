@@ -18,12 +18,16 @@ function paths(value, prefix = '') {
 }
 
 assert.deepEqual(paths(JSON.parse(en)).sort(), paths(JSON.parse(es)).sort(), 'Locale key paths diverge.');
-  assert.match(source, /href="\.\/catalog\.css"/);
-  assert.match(source, /href="\.\/ui-web-tokens\.css"/);
-assert.match(source, /src="\.\/ui-web\.js" defer/);
-assert.match(source, /src="\.\/catalog\.js" defer/);
+  assert.match(source, /href="\.\/catalog\.css\?v=0\.1\.0-rc\.1-hotfix\.1"/);
+  assert.match(source, /href="\.\/ui-web-tokens\.css\?v=0\.1\.0-rc\.1-hotfix\.1"/);
+assert.match(source, /src="\.\/ui-web\.js\?v=0\.1\.0-rc\.1-hotfix\.1" defer/);
+assert.match(source, /src="\.\/catalog\.js\?v=0\.1\.0-rc\.1-hotfix\.1" defer/);
 assert.doesNotMatch(source, /<style\b|<script\b(?![^>]*\bsrc=)/i);
 assert.doesNotMatch(source, /\sstyle=/i, 'The static shell must not carry inline CSS.');
+assert.match(source, /<base href="\/">/, 'Nested public routes must resolve catalog assets from the public root.');
+assert.match(source, /id="download" href="\/downloads\/"/, 'The catalog must expose a first-class download action.');
+assert.match(source, /id="guestText"/, 'The catalog must identify anonymous visitors as guests.');
+assert.doesNotMatch(source, /id="profile"|>MD<|:8080/, 'The public shell must not expose a personal profile, owner initials, or an internal port.');
 assert.ok(css.length > 0 && script.length > 0, 'Separated source files must not be empty.');
 assert.ok(outputs.includes('assets'), 'Build must copy local assets.');
   assert.match(distHtml, /catalog\.css/);

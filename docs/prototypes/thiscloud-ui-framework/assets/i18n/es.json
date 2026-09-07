@@ -29,7 +29,8 @@
     "gettingStarted": "Primeros pasos",
     "customization": "Personalización",
     "accessibility": "Accesibilidad y pruebas",
-    "buildStatus": "Estado de construcción"
+    "buildStatus": "Estado de construcción",
+    "download": "Descargar"
   },
   "header": {
     "openNav": "Abrir navegación",
@@ -39,7 +40,9 @@
     "compact": "Compacta",
     "comfortable": "Cómoda",
     "toggleTheme": "Cambiar tema",
-    "profile": "Perfil",
+    "download": "Descargar",
+    "downloadPackage": "Descargar Thiscloud UI",
+    "guest": "Invitado",
     "language": "ES",
     "switchLanguage": "Cambiar a inglés"
   },
@@ -1296,6 +1299,26 @@
     "coreRule": "Regla central",
     "ruleText": "Reconocer es mejor que recordar: mostrar el componente, su estado y la siguiente acción juntos.",
     "available": "Disponible"
+  },
+  "download": {
+    "eyebrow": "Paquete Thiscloud UI",
+    "title": "Descargar la RC web/híbrida verificada",
+    "intro": "Instale el mismo paquete que usa este catálogo. Contiene únicamente Thiscloud UI; Thiscloud Center no está incluido.",
+    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.1",
+    "checksum": "Descargar checksum SHA-256",
+    "installTitle": "Instalación en cuatro pasos",
+    "step1Title": "Descargue ambos archivos",
+    "step1": "Guarde el paquete y el checksum en el mismo directorio.",
+    "step2Title": "Verifique el paquete",
+    "step2": "Compare el archivo descargado con el checksum publicado antes de instalarlo.",
+    "linux": "Linux",
+    "powershell": "Windows PowerShell",
+    "step3Title": "Instale el archivo local",
+    "step4Title": "Importe el registro y los tokens",
+    "useTitle": "Use los controles verificados",
+    "useIntro": "La RC expone Switch, TextField, el tipo ValidationControl y el helper de validación de formularios nativos.",
+    "boundary": "Esta RC está verificada en Chromium. Cada consumidor debe validar su navegador o WebView híbrida de destino.",
+    "back": "Volver al catálogo"
   },
   "buildStatus": {
     "eyebrow": "Registro vivo de entrega",
