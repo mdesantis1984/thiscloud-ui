@@ -25,11 +25,24 @@ jobs:
 
           pr_number="$(jq -r '.pull_request.number' "$EVENT_PATH")"
           head_ref="$(jq -r '.pull_request.head.ref' "$EVENT_PATH")"
+          base_ref="$(jq -r '.pull_request.base.ref' "$EVENT_PATH")"
           body="$(jq -r '.pull_request.body // ""' "$EVENT_PATH")"
           additions="$(jq -r '.pull_request.additions' "$EVENT_PATH")"
           deletions="$(jq -r '.pull_request.deletions' "$EVENT_PATH")"
 
-          if [[ ! "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
+          promotion=false
+          if [[ "$base_ref" == "main" && "$head_ref" == "develop" ]]; then
+            promotion=true
+          elif [[ "$base_ref" == "main" && "$head_ref" =~ ^fix/[a-z0-9._-]+$ ]]; then
+            :
+          elif [[ "$base_ref" == "develop" && "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
+            :
+          else
+            echo "Invalid branch flow: $head_ref -> $base_ref" >&2
+            exit 1
+          fi
+
+          if [[ "$promotion" == false && ! "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
             echo "Invalid branch name: $head_ref" >&2
             exit 1
           fi
@@ -53,9 +66,9 @@ jobs:
           fi
 
           changed_lines=$((additions + deletions))
-          if (( changed_lines > 400 )); then
+          if [[ "$promotion" == false ]] && (( changed_lines > 400 )); then
             echo "PR has $changed_lines changed lines; the review budget is 400." >&2
             exit 1
           fi
 
-          echo "PR policy passed for #$pr_number (${type_labels[0]}, $changed_lines changed lines, issue #$issue_number)."
+          echo "PR policy passed for #$pr_number ($head_ref -> $base_ref, ${type_labels[0]}, $changed_lines changed lines, issue #$issue_number)."

@@ -20,10 +20,11 @@ Select exactly one type and apply the matching `type:*` label.
 ## Chain Context
 
 - Current branch:
-- Immediate parent branch:
-- Dependency diagram: `tracker -> parent -> [current] -> next`
+- Target branch:
+- Dependency diagram: `develop -> work unit -> develop -> main`
 - Current work unit:
 - Changed lines (additions + deletions):
+- Promotion-only PR: yes/no
 - Out of scope:
 
 ## Verification

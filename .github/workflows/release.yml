@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Check out tagged revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
         with:
@@ -37,6 +39,8 @@ jobs:
         run: |
           version="$(node -p "require('./packages/ui-web/package.json').version")"
           test "$GITHUB_REF_NAME" = "ui-web-v$version"
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
           pnpm check:web
           pnpm check:release
       - name: Create draft release
