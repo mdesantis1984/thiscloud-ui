@@ -16,7 +16,7 @@
 ## Verify this shell
 
 ```sh
-export PATH="$HOME/.cache/thiscloud-center/flutter/3.47.1/bin:$PATH"
+export PATH="$HOME/.cache/thiscloud-ui/flutter/3.47.1/bin:$PATH"
 flutter --version
 flutter pub get
 sha256sum -c assets/fonts/SHA256SUMS

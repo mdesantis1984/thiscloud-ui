@@ -1,54 +1,41 @@
 # Contributing
 
-This repository is being built in small, reviewable work units. Read the
-repository [`AGENTS.md`](AGENTS.md) and the relevant issue before changing
-files.
+Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read [`AGENTS.md`](AGENTS.md) and the relevant issue before editing the repository.
 
 ## Workflow
 
-1. Start from the current `main` or the immediate parent branch named by the
-   feature chain.
-2. Create a branch matching `type/description`, for example
-   `feat/openapi-contract` or `docs/repository-baseline`.
-3. Create a tracker issue for the work and obtain owner approval by having the
-   `status:approved` label applied before creating child work.
-4. Keep the child PR focused and at or below 400 changed lines.
-5. Target the immediate parent branch, not `main`, for every child PR.
-6. Include focused verification, or state why verification is not yet
-   applicable when adding a baseline-only change.
-7. After each completed phase, verify it, create a Conventional Commit, push
-   the branch, and open or update the applicable chained child PR. Merge only
-   after required checks pass and the owner approves; no `develop` branch is
-   used.
+1. Create or select an issue that describes one observable outcome.
+2. Wait for the owner to apply `status:approved`.
+3. Create a branch named `type/description` from the intended parent branch.
+4. Implement one cohesive work unit with its tests and documentation.
+5. Run the focused verification and `git diff --check`.
+6. Commit using Conventional Commits.
+7. Open a PR linking the approved issue and apply exactly one `type:*` label.
+8. Merge only after required checks and owner approval.
 
-The planned chain is: tracker, contracts/tooling, identity/access, client
-shell, then sync/MCP/infrastructure gate. The tracker issue is the chain's
-parent record; each child PR must target its immediate parent branch.
+Use chained PRs when a change cannot remain below 400 changed lines without mixing concerns. Each child targets its immediate parent and remains independently reviewable.
 
-## Publication Gate
+## Verification
 
-Before any push or publication:
+Web and catalog changes require:
 
-1. The repository owner must create the GitHub repository as private.
-2. The owner must verify the repository header or `Settings > General` shows
-   `Private`; do not rely on the intended repository name or local Git state.
-3. The owner must explicitly authorize publication after the visibility check.
+```bash
+pnpm install --frozen-lockfile
+pnpm check:web
+git diff --check
+```
 
-Do not add a remote, push a branch, create a PR, or publish repository content
-before all three checks pass. A tracker issue may be drafted locally, but issue
-creation and approval are owner actions once the private repository exists.
+Flutter changes additionally require the pinned SDK and package checks documented in [`packages/ui_kit/README.md`](packages/ui_kit/README.md).
 
 ## Commits
 
-Use Conventional Commits, such as `docs: add repository baseline` or
-`feat(api): add session contract`. Do not add AI attribution or
-`Co-Authored-By` trailers.
+Use `type(scope): outcome`, for example `feat(web): add select control contract` or `ci(release): publish verified package assets`. Never add AI attribution or `Co-Authored-By` trailers.
 
-## Review Checklist
+## Review checklist
 
-- [ ] The change has one clear purpose and a linked issue.
-- [ ] The diff is no larger than 400 changed lines for the child PR.
-- [ ] Tests, documentation, and configuration are included with the work they
-      verify or explain.
-- [ ] Secrets and local environment files are not included.
-- [ ] Verification results and any limitations are stated in the PR.
+- [ ] The PR links an approved issue.
+- [ ] The PR has exactly one `type:*` label.
+- [ ] The branch and commit names follow repository conventions.
+- [ ] The change stays within the 400-line review budget.
+- [ ] Verification evidence and runtime limitations are explicit.
+- [ ] No secrets, generated outputs, or unrelated product code are included.

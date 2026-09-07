@@ -8,7 +8,7 @@ List<String> toolchainIssues(String dart, String flutter, String bundledDart) {
   return [
     'Toolchain mismatch: expected Dart $_dart and Flutter $_flutter; found Dart '
         '$dart, Flutter $flutter (bundled Dart $bundledDart). '
-        r'Prepend $HOME/.cache/thiscloud-center/flutter/3.47.1/bin to PATH and retry.',
+        r'Prepend $HOME/.cache/thiscloud-ui/flutter/3.47.1/bin to PATH and retry.',
   ];
 }
 

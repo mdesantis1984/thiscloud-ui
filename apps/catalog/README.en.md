@@ -1,6 +1,6 @@
-# Thiscloud UI documentation prototype
+# Thiscloud UI Aurora catalog
 
-The live prototype provides a complete English/Spanish documentation surface for the Center Aurora UI language: four verified RC API routes and 67 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
+The live catalog provides a complete English/Spanish documentation surface for Thiscloud UI Aurora: four verified RC API routes and 67 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
 
 ## Quick review path
 
@@ -42,7 +42,7 @@ Canonical technical identifiers remain invariant. Only Switch, TextField, Field,
 
 ## Intentional invariants
 
-The `Thiscloud UI` and `Center Aurora` brands, canonical component names (`ButtonFab`, `TextField`), `Tc*` and `tc.ui.*` APIs, icon tokens, code snippets, `FILL`/`wght`/`GRAD`/`opsz` axes, file names, and numeric values are intentionally not translated. Font names and route identifiers also remain invariant.
+The `Thiscloud UI Aurora` brand, canonical component names (`ButtonFab`, `TextField`), `Tc*` and `tc.ui.*` APIs, icon tokens, code snippets, `FILL`/`wght`/`GRAD`/`opsz` axes, file names, and numeric values are intentionally not translated. Font names and route identifiers also remain invariant.
 
 ## Current stage and coverage
 
