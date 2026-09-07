@@ -1,4 +1,4 @@
-FROM node:22.22.1-bookworm-slim AS build
+FROM node:22.23.2-bookworm-slim AS build
 
 WORKDIR /workspace
 RUN npm install --global pnpm@11.13.1
