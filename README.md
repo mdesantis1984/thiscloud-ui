@@ -1,39 +1,47 @@
-# Thiscloud Center
+# Thiscloud UI Aurora
 
-This repository is the private, reviewable foundation for Thiscloud Center: a
-cross-platform Flutter client backed by a TypeScript modular-monolith API.
+Thiscloud UI Aurora is the independent design-system repository for Thiscloud products. It owns reusable web/hybrid and Flutter UI foundations, the public component catalog, and versioned release artifacts. Product applications such as Thiscloud Center consume Aurora; they are not implemented here.
 
-## Status
+## Current release
 
-The repository currently contains governance and delivery baselines only. No
-application source, package manifest, generated contract, deployment manifest,
-or runnable CI/test command has been added yet.
+The verified web/hybrid RC is `@thiscloud/ui-web` `0.1.0-rc.1`. Its public API contains `TcSwitch`, `TcTextField`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`. The other 67 catalog routes are design demonstrations, not shipped component APIs. The Flutter package remains an incubation shell.
 
-## Planned Shape
+## Quick start
 
-- `apps/client/`: Flutter web, mobile, and desktop client.
-- `services/api/`: TypeScript API organized by capability-owned modules.
-- `contracts/openapi/`: language-neutral API contract.
-- `infra/`: deployment and operational configuration, added only with fresh
-  validation evidence.
+Requirements: Node.js 22, pnpm 11.13.1, and Chrome or Chromium for browser verification.
 
-PostgreSQL is planned as the authoritative server database. Client offline
-state is planned as encrypted local storage with durable synchronization and
-explicit conflict resolution.
+```bash
+pnpm install --frozen-lockfile
+pnpm check:web
+pnpm ui-catalog:serve
+```
 
-## Delivery
+The catalog is then available at `http://127.0.0.1:8095`. Production builds are written to ignored `apps/catalog/dist/`.
 
-Changes use Conventional Commits and feature branches. The planned chain is a
-draft tracker followed by immediate-parent child PRs for contracts/tooling,
-identity/access, client shell, and sync/MCP/infrastructure. Each child PR must
-remain at or below 400 changed lines.
+## Repository map
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) before preparing a change. Before any
-push or publication, the owner must verify that the GitHub repository is
-actually private in the repository settings and explicitly authorize the
-publication. Security reports belong in [`SECURITY.md`](SECURITY.md).
+| Path | Ownership |
+| --- | --- |
+| `apps/catalog/` | Bilingual component catalog and public download experience |
+| `packages/ui-web/` | Framework-independent web/hybrid SDK |
+| `packages/ui_kit/` | Flutter UI package incubation boundary |
+| `scripts/` | Build, verification, packaging, and local serving |
+| `deploy/` | Reproducible container runtime configuration |
+| `.github/` | Issue-first contribution, CI, release, and dependency automation |
 
-## Next Step
+## Release artifacts
 
-The next implementation step is to add the first contracts/tooling work unit
-with its actual manifests and verification commands.
+```bash
+pnpm release:prepare
+```
+
+This creates a versioned tarball and SHA-256 checksum in ignored `tmp/release/`, and places the same files under the generated catalog download directory. Tagged releases publish those artifacts and a catalog container image.
+
+## Boundaries
+
+- Aurora contains no product authentication, routing, persistence, API client, or business policy.
+- Consumers use versioned artifacts; they must not depend on workspace paths or Aurora internals.
+- Public API claims require executable browser or Flutter evidence in the same work unit.
+- `ui.thiscloud.com.ar` serves only the catalog and release downloads.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), [`docs/architecture.md`](docs/architecture.md), and [`docs/governance.md`](docs/governance.md) before changing the repository.

@@ -1,6 +1,6 @@
-# Prototipo de documentación de Thiscloud UI
+# Catálogo de Thiscloud UI Aurora
 
-El prototipo en vivo ofrece una superficie completa de documentación en inglés/español para el lenguaje UI de Center Aurora: cuatro rutas de API RC verificadas y 67 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
+El catálogo en vivo ofrece una superficie completa de documentación en inglés/español para Thiscloud UI Aurora: cuatro rutas de API RC verificadas y 67 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
 
 ## Recorrido rápido de revisión
 
@@ -42,7 +42,7 @@ Los identificadores técnicos canónicos permanecen invariantes. Solo Switch, Te
 
 ## Invariantes intencionales
 
-La marca `Thiscloud UI` y `Center Aurora`, los nombres canónicos de componentes (`ButtonFab`, `TextField`), las API `Tc*` y `tc.ui.*`, los tokens de iconos, los fragmentos de código, los ejes `FILL`/`wght`/`GRAD`/`opsz`, los nombres de archivo y los valores numéricos no se traducen. También permanecen invariantes los nombres de fuentes y los identificadores de ruta.
+La marca `Thiscloud UI Aurora`, los nombres canónicos de componentes (`ButtonFab`, `TextField`), las API `Tc*` y `tc.ui.*`, los tokens de iconos, los fragmentos de código, los ejes `FILL`/`wght`/`GRAD`/`opsz`, los nombres de archivo y los valores numéricos no se traducen. También permanecen invariantes los nombres de fuentes y los identificadores de ruta.
 
 ## Etapa actual y cobertura
 

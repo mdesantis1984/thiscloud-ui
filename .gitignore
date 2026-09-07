@@ -3,6 +3,7 @@
 .packages
 .pub-cache/
 .pub/
+/packages/ui_kit/pubspec.lock
 build/
 coverage/
 
@@ -28,6 +29,7 @@ out/
 !.vscode/settings.json
 .DS_Store
 Thumbs.db
+.directory
 
 # Local runtime data
 .cache/
@@ -37,3 +39,5 @@ tmp/
 
 # Local SDD metadata
 .atl/
+.codegraph/
+.playwright-mcp/

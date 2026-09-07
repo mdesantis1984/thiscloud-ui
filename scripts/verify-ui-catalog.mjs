@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const catalog = resolve(import.meta.dirname, '../docs/prototypes/thiscloud-ui-framework');
+const catalog = resolve(import.meta.dirname, '../apps/catalog');
 const dist = resolve(catalog, 'dist');
 const [source, css, script, en, es, distHtml, distCss, distJs, webJs, tokenCss, outputs] = await Promise.all([
   readFile(resolve(catalog, 'framework-preview.html'), 'utf8'), readFile(resolve(catalog, 'catalog.css'), 'utf8'),

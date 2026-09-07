@@ -1,28 +1,20 @@
 # Security Policy
 
-This project is not yet released and has no public runtime endpoint. Do not
-publish vulnerability details, credentials, personal data, or proof-of-concept
-exploits in issues or pull requests.
+Security reports for Thiscloud UI Aurora must use GitHub private vulnerability reporting. Do not disclose vulnerabilities, credentials, personal data, or working exploits in public issues or pull requests.
+
+## Supported versions
+
+| Version | Supported |
+| --- | --- |
+| `0.1.0-rc.1` | Yes |
+| Earlier previews | No |
+
+The catalog at `ui.thiscloud.com.ar` distributes static documentation and versioned package artifacts. It does not process product credentials or application data.
 
 ## Reporting
 
-Once the private repository exists, use its GitHub `Security` tab and select
-`Report a vulnerability` to create a private vulnerability report. The
-repository owner must enable GitHub private vulnerability reporting before
-publication and verify that this path is available.
-
-If the `Report a vulnerability` path is unavailable, do not disclose the
-vulnerability in an issue, pull request, or other public channel. Ask the
-repository owner through an existing private GitHub channel to enable private
-vulnerability reporting, then submit the report through the `Security` tab.
-This policy intentionally does not publish a personal email address.
-
-Reports should describe the affected revision or file, impact, reproduction
-steps that do not expose real data, and a safe contact method. Do not create a
-public issue for an unpatched vulnerability.
+Open the repository `Security` tab and select `Report a vulnerability`. Include the affected version, impact, minimal reproduction, and a safe contact method. If private reporting is unavailable, contact the owner through an existing private GitHub channel rather than opening a public issue.
 
 ## Handling
 
-The maintainer will acknowledge receipt, validate the report, coordinate a fix
-and disclosure date, and remove secrets from repository history when needed.
-Do not assume that a report is accepted until the maintainer confirms it.
+The maintainer will acknowledge the report, validate its impact, coordinate remediation, and publish an advisory when appropriate. Compromised secrets are revoked and removed from history; a source deletion alone is not considered remediation.

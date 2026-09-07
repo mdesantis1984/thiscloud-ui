@@ -11,13 +11,13 @@
 | `ValidationControl` | TypeScript type contract |
 | `attachFormValidation(nativeForm, options)` | Native-form validation helper |
 
-Install the locally packed tarball in a consumer workspace:
+Install the verified public tarball in a consumer workspace:
 
 ```bash
-pnpm add ../Thiscloud Center/tmp/ui-web-pack/thiscloud-ui-web-0.1.0-rc.1.tgz
+pnpm add https://ui.thiscloud.com.ar/downloads/thiscloud-ui-web-0.1.0-rc.1.tgz
 ```
 
-This package remains `private: true` solely to prevent accidental registry publication; this RC neither publishes a registry package nor changes repository visibility. The tarball also contains registration and CSS-token assets required to use the four boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
+This package remains `private: true` solely to prevent accidental registry publication. Versioned release tarballs and checksums are published instead. The tarball also contains registration and CSS-token assets required to use the four boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
 
 ## Technical choice
 
@@ -34,7 +34,7 @@ pnpm ui-web:browser-test
 pnpm ui-web:pack
 ```
 
-`ui-web:pack` writes a local package tarball under ignored `tmp/ui-web-pack/`; it does not publish anything.
+`ui-web:pack` writes a local package tarball under ignored `tmp/ui-web-pack/`; it does not publish anything. `pnpm release:prepare` creates the release tarball, checksum, and catalog download assets under ignored build directories.
 
 ## Known limitations
 

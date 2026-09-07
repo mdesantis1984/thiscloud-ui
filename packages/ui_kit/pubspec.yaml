@@ -2,8 +2,8 @@ name: thiscloud_ui
 description: Private reusable Flutter UI framework for Thiscloud products.
 version: 0.1.0
 publish_to: none
-repository: https://github.com/mdesantis1984/thiscloud-center/tree/main/packages/ui_kit
-issue_tracker: https://github.com/mdesantis1984/thiscloud-center/issues
+repository: https://github.com/mdesantis1984/thiscloud-ui/tree/main/packages/ui_kit
+issue_tracker: https://github.com/mdesantis1984/thiscloud-ui/issues
 
 environment:
   sdk: '>=3.13.1 <4.0.0'
