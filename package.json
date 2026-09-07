@@ -32,6 +32,6 @@
     "@thiscloud/ui-web": "workspace:*",
     "esbuild": "0.28.2",
     "javascript-obfuscator": "4.1.1",
-    "playwright-core": "1.61.0"
+    "playwright-core": "1.62.1"
   }
 }
