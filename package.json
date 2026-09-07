@@ -9,7 +9,7 @@
     "url": "git+https://github.com/mdesantis1984/thiscloud-ui.git"
   },
   "type": "module",
-  "packageManager": "pnpm@11.12.0",
+  "packageManager": "pnpm@11.13.1",
   "engines": {
     "node": ">=22 <23"
   },

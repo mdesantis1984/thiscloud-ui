@@ -1,16 +1,18 @@
 FROM node:22.22.1-bookworm-slim AS build
 
 WORKDIR /workspace
-RUN npm install --global pnpm@11.12.0
+RUN npm install --global pnpm@11.13.1
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/ui-web/package.json packages/ui-web/package.json
 RUN pnpm install --frozen-lockfile
 
 COPY apps/catalog apps/catalog
+COPY deploy deploy
+COPY Dockerfile Dockerfile
 COPY packages/ui-web packages/ui-web
 COPY scripts scripts
-RUN pnpm check:release
+RUN pnpm release:prepare && pnpm release:verify
 
 FROM nginxinc/nginx-unprivileged:1.29.4-alpine
 

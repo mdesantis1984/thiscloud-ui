@@ -8,7 +8,7 @@ The verified web/hybrid RC is `@thiscloud/ui-web` `0.1.0-rc.1`. Its public API c
 
 ## Quick start
 
-Requirements: Node.js 22, pnpm 11.12.0, and Chrome or Chromium for browser verification.
+Requirements: Node.js 22, pnpm 11.13.1, and Chrome or Chromium for browser verification.
 
 ```bash
 pnpm install --frozen-lockfile
