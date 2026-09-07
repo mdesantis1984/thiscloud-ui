@@ -20,6 +20,7 @@ Use chained PRs when a change cannot remain below 400 changed lines without mixi
 - `develop` is the protected integration branch and target for normal work-unit PRs.
 - `main` is the protected production branch and accepts reviewed promotions from `develop` or bounded emergency fixes.
 - A `develop` to `main` promotion may aggregate work units that were already reviewed individually; do not add new implementation changes to that PR.
+- Squash work-unit PRs into `develop`, but merge promotion PRs into `main` with a merge commit so future promotions retain a clean common ancestor.
 - Emergency fixes branch from `main`, use `fix/description`, and must be applied back to `develop` after release.
 - Only `mdesantis1984` has repository write and merge authority. External contributors work through forks and PRs.
 

@@ -19,7 +19,7 @@ This repository is the independent source of truth for Thiscloud UI Aurora. It o
 - Keep each PR at or below 400 changed lines. Ask before exceeding that limit.
 - Keep tests and user-facing documentation with the behavior they verify.
 - Feature work targets protected `develop`; reviewed release promotions merge `develop` into protected `main`.
-- Merge only after required checks pass and maintainer authorization. Use squash merge for work-unit PRs.
+- Merge only after required checks pass and maintainer authorization. Squash work-unit PRs into `develop`; use a merge commit for `develop` to `main` promotions so both protected branches retain shared ancestry.
 - Direct pushes, force pushes, and branch deletion are forbidden on `main` and `develop`.
 - Do not add AI attribution or `Co-Authored-By` trailers.
 
