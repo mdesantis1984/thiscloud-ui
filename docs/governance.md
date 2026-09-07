@@ -19,7 +19,7 @@ For an external contribution, only the maintainer can merge it or provide a revi
 
 ## Automated dependency PRs
 
-Dependabot is the only issue-link exception. Its authenticated GitHub actor must target `develop`, use `type:chore`, remain under the 400-line budget, and pass every required check. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, remain under the 400-line budget, and pass every required check. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
 
 ## Promotion rule
 
