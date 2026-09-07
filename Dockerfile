@@ -14,7 +14,7 @@ COPY packages/ui-web packages/ui-web
 COPY scripts scripts
 RUN pnpm release:prepare && pnpm release:verify
 
-FROM nginxinc/nginx-unprivileged:1.29.4-alpine
+FROM nginxinc/nginx-unprivileged:1.31.5-alpine
 
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build --chown=101:101 /workspace/apps/catalog/dist/ /usr/share/nginx/html/
