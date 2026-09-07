@@ -1,0 +1,21 @@
+name: thiscloud_ui_catalog
+description: Dependency-light catalog shell for thiscloud_ui.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.13.1 <4.0.0'
+  flutter: '>=3.47.1'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  thiscloud_ui:
+    path: ../..
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

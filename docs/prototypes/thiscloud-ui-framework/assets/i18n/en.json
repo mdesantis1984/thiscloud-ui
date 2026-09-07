@@ -1,0 +1,1717 @@
+{
+  "meta": {
+    "title": "Thiscloud UI — Center Aurora documentation",
+    "skip": "Skip to main content",
+    "brandSupport": "Center Aurora",
+    "workspace": "Documentation prototype",
+    "workspaceStrong": "IA-first component map",
+    "workspaceVersion": "0.1.0-rc.1 · web/hybrid preview",
+    "footer": "Preview active",
+    "footerSupport": "Web/hybrid RC API · local assets only",
+    "rcPreview": "0.1.0-rc.1 web/hybrid preview"
+  },
+  "nav": {
+    "explore": "Explore",
+    "components": "Components",
+    "guidance": "Guidance",
+    "icons": "Icon explorer",
+    "categories": {
+      "Foundations/Layout": "Foundations/Layout",
+      "Actions": "Actions",
+      "Inputs/Forms": "Inputs/Forms",
+      "Navigation/Disclosure": "Navigation/Disclosure",
+      "Surfaces/Content": "Surfaces/Content",
+      "Feedback/Overlays": "Feedback/Overlays",
+      "Data/Visualization": "Data/Visualization"
+    },
+    "expandCategory": "Expand {category}",
+    "collapseCategory": "Collapse {category}",
+    "gettingStarted": "Getting started",
+    "customization": "Customization",
+    "accessibility": "Accessibility & testing",
+    "buildStatus": "Build status"
+  },
+  "header": {
+    "openNav": "Open navigation",
+    "closeNav": "Close navigation",
+    "searchLabel": "Search documentation",
+    "searchPlaceholder": "Search components, guidance, icons",
+    "compact": "Compact",
+    "comfortable": "Comfortable",
+    "toggleTheme": "Toggle theme",
+    "profile": "Profile",
+    "language": "EN",
+    "switchLanguage": "Switch to Spanish"
+  },
+  "status": {
+    "production": "Production",
+    "roadmap": "Roadmap",
+    "available": "Available",
+    "current": "Current",
+    "notStarted": "Not started",
+    "completed": "Completed",
+    "rcApi": "Verified RC API",
+    "demoOnly": "Design demo only"
+  },
+  "explore": {
+    "eyebrow": "Thiscloud UI · Center Aurora",
+    "title": "Build interfaces from a clear component language.",
+    "intro": "Start with purpose, compare categories, then inspect component states and accessibility contracts. Core information stays visible.",
+    "foundations": "Start with foundations",
+    "gettingStarted": "Getting started",
+    "tryDialog": "Try Dialog",
+    "browse": "Browse by category",
+    "browseIntro": "Distinct previews make each family recognizable before you read.",
+    "documented": "documented components",
+    "openCategory": "Open category",
+    "featured": "Featured components",
+    "featuredIntro": "Real patterns available immediately."
+  },
+  "category": {
+    "eyebrow": "Component category",
+    "intro": "components with purpose, truthful previews, and direct references.",
+    "openReference": "Open reference"
+  },
+  "component": {
+    "eyebrow": "Component reference",
+    "sections": {
+      "overview": "Overview and demo",
+      "variants": "Variants",
+      "states": "States and sizes",
+      "accessibility": "Accessibility & keyboard",
+      "api": "API identity",
+      "related": "Related components"
+    },
+    "accessibilityText": "Use a semantic name, visible focus, keyboard activation, and state text. This component remains operable without pointer input.",
+    "tabFocus": "Tab focus",
+    "enterSpace": "Enter / Space",
+    "escape": "Escape where applicable",
+    "stableIdentity": "Stable public identity",
+    "demoOnly": "No public SDK API: this route is a design demo.",
+    "demoCodeBoundary": "No public SDK code is provided for this design demo.",
+    "demoReference": "this design demo",
+    "relatedText": "Related references preserve compositional clarity.",
+    "showCode": "Show code",
+    "hideCode": "Hide code",
+    "categoryStatus": "Component category",
+    "anatomy": "Anatomy",
+    "usage": "Usage"
+  },
+  "componentDetails": {
+    "Button": {
+      "anatomy": "Native button, visible label, intent styling, focus ring, and optional disabled or loading state.",
+      "usage": "Use one clear action per context; choose emphasis by intent and keep its label stable while it works.",
+      "api": "TcButton exposes label, type, variant, disabled, loading, and callbacks through tc.ui.button.",
+      "accessibility": "Use type=button, name, visible focus, and disabled when unavailable; Enter and Space activate."
+    },
+    "ButtonFab": {
+      "anatomy": "Circular or extended button, meaningful icon, accessible name, focus ring, and disabled state.",
+      "usage": "Use for a high-value contextual action; prefer an extended label when the icon is unfamiliar.",
+      "api": "TcButtonFab exposes icon, label, extended, variant, disabled, and callbacks through tc.ui.button-fab.",
+      "accessibility": "Every icon-only control has a name, native target, visible focus, and real disabled state."
+    },
+    "ButtonGroup": {
+      "anatomy": "Named group, related native buttons, shared boundary, coherent tab order, and wrapped layout.",
+      "usage": "Group actions that share a context; keep each action understandable and avoid toolbar behavior.",
+      "api": "TcButtonGroup exposes group label, ordered actions, selection, orientation, and wrapping.",
+      "accessibility": "Name the group; keep native buttons in DOM order without roving focus or toolbar semantics."
+    },
+    "IconButton": {
+      "anatomy": "Native button, action icon, stable accessible name, focus ring, and 40px target.",
+      "usage": "Use for a compact, familiar action; pair unfamiliar icons with visible context.",
+      "api": "TcIconButton exposes icon, label, variant, disabled, and callbacks through tc.ui.icon-button.",
+      "accessibility": "Name every icon-only button; keep focus visible and use disabled when unavailable."
+    },
+    "ToggleIconButton": {
+      "anatomy": "Native button, stable name, aria-pressed state, focus ring, and live status.",
+      "usage": "Use when one action has two persistent states; keep its accessible label stable.",
+      "api": "TcToggleIconButton exposes icon, label, pressed, disabled, and callbacks via tc.ui.toggle-icon-button.",
+      "accessibility": "Keep the action name stable, expose aria-pressed as false or true, and announce state changes."
+    },
+    "Toolbar": {
+      "anatomy": "Named toolbar, horizontal orientation, enabled command buttons, roving tabindex, and status output.",
+      "usage": "Group frequent peer commands; let Tab enter and leave while Left and Right move within the toolbar.",
+      "api": "TcToolbar exposes label, orientation, actions, disabled items, wrapping, callbacks via tc.ui.toolbar.",
+      "accessibility": "Use role=toolbar with a name; keep one enabled child at tabindex=0 and skip disabled children."
+    },
+    "Checkbox": {
+      "anatomy": "Native checkbox, visible label, grouped options, focus ring, and checked or indeterminate state.",
+      "usage": "Use for independent choices; use a fieldset and legend when several options share one question.",
+      "api": "TcCheckbox exposes label, checked, indeterminate, disabled, and change callbacks through tc.ui.checkbox.",
+      "accessibility": "Keep the native checkbox and visible label; Space toggles it without custom keyboard handling."
+    },
+    "Switch": {
+      "anatomy": "Native checkbox with switch role, stable label, truthful state, focus ring, and disabled state.",
+      "usage": "Use for an immediate on or off setting, not a pending choice or multi-select.",
+      "api": "TcSwitch exposes label, checked, disabled, and change callbacks through tc.ui.switch.",
+      "accessibility": "Use a named native checkbox with role=switch; Space toggles it and disabled blocks interaction."
+    },
+    "Slider": {
+      "anatomy": "Native range input, visible label, min/max/step constraints, associated output, and focus ring.",
+      "usage": "Use for bounded numeric adjustment when the value can be understood from its scale and unit.",
+      "api": "TcSlider exposes label, min, max, step, value, disabled, and input callbacks through tc.ui.slider.",
+      "accessibility": "Keep the native range and label; arrows change steps while Home and End reach the bounds."
+    },
+    "BreakpointProvider": {
+      "anatomy": "Provider context, breakpoint map, and active breakpoint value.",
+      "usage": "Read the active value for layout and visibility; keep viewport detection in one boundary.",
+      "api": "TcBreakpointProvider exposes the current breakpoint value and provider scope to descendants.",
+      "accessibility": "The selector uses focused native buttons and aria-pressed. The detected viewport label is read-only."
+    },
+    "Container": {
+      "anatomy": "Available region, constrained inner surface, and centered horizontal padding.",
+      "usage": "Use a fluid width with a readable maximum; measure the constraint instead of hard-coding page offsets.",
+      "api": "TcContainer accepts responsive width constraints and centers content within the available region.",
+      "accessibility": "This is a visual layout surface. Its measured labels explain the constraint and it does not claim interaction."
+    },
+    "ScrollToTop": {
+      "anatomy": "Scrollable viewport, scroll position, and an action that returns focus to the viewport top.",
+      "usage": "Use for long content; keep the labeled keyboard action harmless at the top.",
+      "api": "TcScrollToTop exposes a scroll target, a 24px visibility threshold, and smooth return behavior.",
+      "accessibility": "Keep the target focusable; announce position changes and preserve focus after activation."
+    },
+    "SwipeArea": {
+      "anatomy": "Gesture surface, current item, previous and next controls, and a live position label.",
+      "usage": "Pair touch gestures with visible buttons and keyboard arrows; swiping is never the only content path.",
+      "api": "TcSwipeArea exposes index, item count, pointer gesture handling, and previous/next callbacks.",
+      "accessibility": "Name the surface, support ArrowLeft/Right, and announce the current item."
+    },
+    "FocusTrap": {
+      "anatomy": "Invoker, modal boundary, first and last focusable controls, escape handling, and return target.",
+      "usage": "Use only for active modal tasks; cycle Tab inside and restore focus on close.",
+      "api": "TcFocusTrap accepts an active state, focusable boundary, escape callback, and restore-focus target.",
+      "accessibility": "Use dialog, aria-modal, stable labeling, Tab cycling, Escape, and focus restoration."
+    },
+    "Element": {
+      "anatomy": "Semantic tag choice, meaningful content, and the resulting landmark or grouping semantics.",
+      "usage": "Choose the least powerful semantic element that matches meaning; avoid landmarks for decoration.",
+      "api": "TcElement renders a selected semantic HTML element while preserving children and required attributes.",
+      "accessibility": "Semantic structure must match meaning; named navigation regions require an accessible label."
+    },
+    "Typography": {
+      "anatomy": "Display scale, body measure, caption style, responsive size, and wrapping or truncation state.",
+      "usage": "Use the scale for hierarchy, keep body text readable, and let content wrap before truncating.",
+      "api": "TcTypography exposes role, scale, responsive sizing, line height, and overflow behavior.",
+      "accessibility": "Preserve heading order, contrast, zoom, and a full or alternate value for truncated text."
+    },
+    "Grid": {
+      "anatomy": "Twelve tracks, column gap, and items that occupy explicit spans.",
+      "usage": "Place related content on shared tracks and change spans at responsive boundaries.",
+      "api": "TcGrid exposes columns, gap, and child span configuration for responsive composition.",
+      "accessibility": "The layout selector uses focused native buttons and aria-pressed. Grid content is visual."
+    },
+    "Hidden": {
+      "anatomy": "Visibility condition, target content, and the state exposed by the controlling selector.",
+      "usage": "Use it for responsive presence, not for essential information that should be merely visually suppressed.",
+      "api": "TcHidden applies a visibility rule to its child content and preserves the declared breakpoint contract.",
+      "accessibility": "The visibility selector has focus and aria-pressed; hidden content leaves the rendered state."
+    },
+    "Divider": {
+      "anatomy": "Horizontal or vertical rule, inset boundary, and optional text label.",
+      "usage": "Separate related groups without using color as the only meaning; choose orientation from structure.",
+      "api": "TcDivider exposes orientation, inset, and optional label configuration while preserving separator semantics.",
+      "accessibility": "Use hr for an unlabeled horizontal rule and separator semantics with aria-orientation for vertical or labeled rules."
+    },
+    "Highlighter": {
+      "anatomy": "Safe source text, query field, marked matches, and an announced match count.",
+      "usage": "Escape source text before marking matches and keep the query visible when no result is found.",
+      "api": "TcHighlighter accepts source text and query state, producing marked matches without interpreting user text as markup.",
+      "accessibility": "The query is labeled, the result remains text, and the live match count makes highlighting understandable without color."
+    },
+    "Image": {
+      "anatomy": "Responsive frame, local image source, fit mode, loading state, and fallback message.",
+      "usage": "Provide meaningful alt text, reserve the frame, and use contain when cropping would remove essential context.",
+      "api": "TcImage exposes source, alt, object-fit, loading, and fallback state for resilient visual content.",
+      "accessibility": "Alt text describes meaningful content; loading uses status text and fallback names the unavailable image."
+    },
+    "Link": {
+      "anatomy": "Accessible link text, valid destination, external indicator, and current or unavailable state.",
+      "usage": "Keep the text as the accessible name, use a real href, and do not navigate accidentally from demonstration controls.",
+      "api": "TcLink accepts destination, external, current, and disabled state without converting passive status text into a link.",
+      "accessibility": "Focus is visible, current uses aria-current, and unavailable content uses aria-disabled without an empty href."
+    },
+    "Paper": {
+      "anatomy": "Named surface region, token-driven padding, boundary, tone, and elevation level.",
+      "usage": "Use one surface for one meaningful grouping and select outlined, elevated, or tonal treatment by hierarchy.",
+      "api": "TcPaper exposes variant and elevation while keeping content width and spacing responsive.",
+      "accessibility": "Prefer article or section only for meaningful regions with a heading; otherwise keep the surface presentational."
+    },
+    "Skeleton": {
+      "anatomy": "Text, avatar, or card placeholder shapes plus loading and loaded content states.",
+      "usage": "Reserve the final content geometry, replace placeholders when ready, and respect reduced-motion preferences.",
+      "api": "TcSkeleton exposes pattern, loading state, and motion policy without leaking decorative fragments to assistive technology.",
+      "accessibility": "The containing region uses aria-busy and status text; decorative skeleton shapes are aria-hidden."
+    },
+    "Autocomplete": {
+      "anatomy": "Text input, filtered listbox, active option, and selection status.",
+      "usage": "Filter local choices without hiding the full keyboard path.",
+      "api": "TcAutocomplete exposes value, options, filtering, and selection callbacks.",
+      "accessibility": "Use combobox/listbox relationships, active descendant state, and announced result counts."
+    },
+    "Select": {
+      "anatomy": "Label, native select control, option group, and selection status.",
+      "usage": "Prefer the native control when the platform picker is sufficient; group related choices.",
+      "api": "TcSelect exposes value, multiple selection, disabled, and validation state.",
+      "accessibility": "Associate the label programmatically and expose invalid or disabled states truthfully."
+    },
+    "Chips": {
+      "anatomy": "Editable value field, wrapped chip list, remove actions, and live status.",
+      "usage": "Use chips for reviewable values; reject empty or duplicate labels before adding them.",
+      "api": "TcChips exposes values, add, remove, readonly, disabled, and validation state.",
+      "accessibility": "Name each remove action, keep targets at least 40px, and restore focus after removal."
+    },
+    "ChipSet": {
+      "anatomy": "Named choice group, native buttons, pressed states, and selection limit feedback.",
+      "usage": "Use a chip set for a small visible choice set; choose single or multiple mode explicitly.",
+      "api": "TcChipSet exposes selection mode, pressed values, disabled items, and selection limits.",
+      "accessibility": "Use native buttons with aria-pressed and a live result; do not present fake radio semantics."
+    },
+    "NumericField": {
+      "anatomy": "Labeled number input, min/max/step constraints, step actions, and validation status.",
+      "usage": "Declare bounds and step explicitly; clamp button changes while preserving native text entry.",
+      "api": "TcNumericField exposes value, min, max, step, increment, decrement, and validation state.",
+      "accessibility": "Associate the label and status, announce invalid input, and never rely on color alone."
+    },
+    "Radio": {
+      "anatomy": "Fieldset, visible legend, native radio inputs, explicit labels, and a live selection status.",
+      "usage": "Use Radio for one choice from a small related set; keep every option labeled and mutually exclusive.",
+      "api": "TcRadio exposes value, options, common name, disabled option, and validation state through tc.ui.radio.",
+      "accessibility": "Native radios provide Tab, Space, and arrows; the legend names the group and describes errors."
+    },
+    "DropZone": {
+      "anatomy": "Visible drop target, labelled multiple file input, drag state, metadata list, and rejection status.",
+      "usage": "Use TcDropZone when dropping is convenient, while keeping browse and keyboard selection equivalent.",
+      "api": "TcDropZone exposes accept, multiple, limits, metadata, and rejection callbacks through tc.ui.drop-zone.",
+      "accessibility": "Pair drag feedback with a focusable input, visible focus, live status, and named actions."
+    },
+    "FileUpload": {
+      "anatomy": "Visible file label, native input, selected metadata list, clear action, and validation status.",
+      "usage": "Use TcFileUpload for local selection; choose single or multiple behavior and validate before upload.",
+      "api": "TcFileUpload exposes accept, multiple, limits, metadata, and rejection callbacks via tc.ui.file-upload.",
+      "accessibility": "Keep the input labelled and focusable, announce selection or errors, and name remove actions."
+     },
+    "ColorPicker": {
+      "anatomy": "Native color input, explicit label, normalized value text, accessible swatch, and focus ring.",
+      "usage": "Use for meaningful colors; keep the native picker and never communicate meaning by color alone.",
+      "api": "TcColorPicker exposes label, value, disabled, and callbacks through tc.ui.color-picker.",
+      "accessibility": "Use a visible label, native focus, and text beside the swatch."
+    },
+    "DatePicker": {
+      "anatomy": "Native date input, label, normalized yyyy-mm-dd value, constraints, feedback, and focus ring.",
+      "usage": "Use one date with stable boundaries; explain browser/OS display may differ from the normalized value.",
+      "api": "TcDatePicker exposes value, constraints, disabled, and callbacks through tc.ui.date-picker.",
+      "accessibility": "Keep the native control, visible label, persistent validity text, and keyboard behavior."
+    },
+     "TimePicker": {
+      "anatomy": "Native time input, explicit label, normalized HH:mm value, min/max/step constraints, and feedback.",
+      "usage": "Use for a time within a same-day range; keep min and max ordered to avoid cross-midnight ambiguity.",
+      "api": "TcTimePicker exposes value, constraints, disabled, and callbacks through tc.ui.time-picker.",
+       "accessibility": "Keep the native control, visible label, persistent validity text, and keyboard behavior."
+     },
+     "Breadcrumbs": {
+       "anatomy": "Labelled navigation, ordered list, linked ancestors, current page, and hidden separators.",
+       "usage": "Use for hierarchical wayfinding; keep the current location last and do not fake disabled links.",
+       "api": "TcBreadcrumbs exposes items, current item, label, separators, and links through tc.ui.breadcrumbs.",
+       "accessibility": "Use nav, ol, aria-current=page, and aria-hidden separators; preserve logical link order."
+     },
+     "Pagination": {
+       "anatomy": "Labelled navigation, ordered page list, previous/next controls, current page, and live status.",
+       "usage": "Use for bounded collections; disable only the unavailable edge control and keep feedback local.",
+       "api": "TcPagination exposes page, page count, labels, edge states, and callbacks through tc.ui.pagination.",
+       "accessibility": "Name the landmark, expose one aria-current=page, label controls, and announce updates."
+     },
+      "Tabs": {
+       "anatomy": "Tablist, tabs, selected state, roving tabindex, controlled panels, and live selection status.",
+       "usage": "Use for related preloaded views; activate on click and Left/Right while skipping disabled tabs.",
+       "api": "TcTabs exposes tabs, selected value, disabled items, panels, and callbacks through tc.ui.tabs.",
+        "accessibility": "Pair tab, tabpanel, aria-controls, and aria-labelledby; keep one selected tab and tabindex=0."
+      },
+      "AppBar": {
+        "anatomy": "Semantic header, primary context, labelled navigation, disclosure control, and local action.",
+        "usage": "Use for application identity and actions; keep navigation labelled and disclosure state truthful.",
+        "api": "TcAppBar exposes title, actions, navigation, disclosure, and callbacks through tc.ui.app-bar.",
+        "accessibility": "Use labelled header/nav, native controls and links, aria-expanded, aria-controls, and focus."
+      },
+      "Drawer": {
+        "anatomy": "Persistent panel, temporary native dialog, visible label, close control, and return focus.",
+         "usage": "Use a persistent panel when context remains; use a modal drawer for temporary navigation.",
+        "api": "TcDrawer exposes mode, label, open state, items, close behavior, and callbacks through tc.ui.drawer.",
+         "accessibility": "Keep persistent content non-modal; use dialog/showModal, Escape, and focus restoration."
+      },
+       "NavMenu": {
+        "anatomy": "Labelled nav, nested lists, native links, disclosure button, current page, and local status.",
+        "usage": "Use site navigation with links and nested groups; collapse only non-essential groups.",
+         "api": "TcNavMenu exposes label, items, groups, destination, disclosure, and callbacks via tc.ui.nav-menu.",
+           "accessibility": "Use nav, ul, li, and links rather than menu roles; expose current, expanded, controls."
+       },
+       "List": {
+         "anatomy": "Native unordered list, list items, optional secondary text, and native interactive rows.",
+         "usage": "Use for related records; keep passive rows passive and use buttons or links only for real actions.",
+         "api": "TcList exposes items, secondary content, row actions, and selection callbacks via tc.ui.list.",
+         "accessibility": "Use ul and li, keep controls in normal tab order, and announce local actions."
+       },
+       "Menu": {
+         "anatomy": "Named menu button, controlled menu, enabled menuitems, disabled item, and restored focus.",
+         "usage": "Use for a focused set of actions opened from one button; do not use it for site navigation.",
+         "api": "TcMenu exposes actions, disabled items, open state, keyboard behavior, and callbacks via tc.ui.menu.",
+         "accessibility": "Use aria-haspopup, aria-expanded, aria-controls, menuitem navigation, and Escape return."
+       },
+        "TreeView": {
+         "anatomy": "Tree, nested groups, expandable parents, visible treeitems, selection, and roving focus.",
+         "usage": "Use for nested information; recompute visible nodes after expansion; separate focus from selection.",
+         "api": "TcTreeView exposes nodes, expansion, selection, navigation, and callbacks via tc.ui.tree-view.",
+          "accessibility": "Use tree, treeitem, and group; expose expanded on parents and keep one visible tabindex=0."
+        },
+        "Carousel": {
+          "anatomy": "Named region, one visible slide group, manual controls, and polite position status.",
+          "usage": "Use for related items reviewed one at a time; keep rotation manual and wrap at both endpoints.",
+          "api": "TcCarousel exposes items, current index, labels, and previous/next callbacks through tc.ui.carousel.",
+          "accessibility": "Use a meaningful label, named slide groups, hidden inactive slides, and truthful status."
+        },
+        "ExpansionPanels": {
+          "anatomy": "Heading-level disclosure buttons, hidden content, independent state, and disabled state.",
+          "usage": "Use for secondary content that users may open independently; multiple panels can remain expanded.",
+          "api": "TcExpansionPanels exposes panels, state, disabled items, and callbacks via tc.ui.expansion-panels.",
+          "accessibility": "Use heading buttons, unique controls, synchronized expanded state, and hidden content."
+         },
+         "Avatar": {
+           "anatomy": "Named or decorative initials, optional adjacent name, and visible presence text.",
+           "usage": "Use a meaningful name for informative avatars; hide redundant decoration and group names.",
+           "api": "TcAvatar exposes initials, accessible name, decorative mode, group members, and presence.",
+            "accessibility": "Named informative avatars; aria-hidden decoration; presence is text, not color."
+         },
+         "Badge": {
+           "anatomy": "Ordinary text label, contextual count, and optional local update control with polite feedback.",
+            "usage": "Keep badges passive; name counts and use status messaging only for real updates.",
+           "api": "TcBadge exposes label, count context, tone, and optional update callbacks via tc.ui.badge.",
+           "accessibility": "Name counts in text, never rely on color, and do not make a badge an unnecessary button."
+         },
+         "Card": {
+           "anatomy": "Article, heading, logical body, native action, and truthful visual state.",
+           "usage": "Use an article for standalone content; keep actions native and never nest links or buttons.",
+           "api": "TcCard exposes heading, body, elevation, selected, disabled, and action callbacks via tc.ui.card.",
+            "accessibility": "Use a real heading and visible focus; visual states need no selection semantics."
+         },
+          "Icons": {
+            "anatomy": "Decorative glyph, informative icon, and icon used by a named control.",
+            "usage": "Use the local registry; hide redundant glyphs and expose meaning through text or a valid label.",
+            "api": "TcIcons exposes token, decorative, label, and fallback properties through tc.ui.icons.",
+            "accessibility": "Decorative icons: aria-hidden; informative icons: alternatives; controls: named actions."
+          },
+          "Rating": {
+            "anatomy": "Named fieldset, legend, same-name native radios, visible star text, and polite value output.",
+            "usage": "Use native radios for one score; label every option and keep targets large enough.",
+            "api": "TcRating exposes name, max, value, readOnly, disabled, and change callbacks through tc.ui.rating.",
+            "accessibility": "Keyboard radios select; read-only values are text; disabled options stay unavailable."
+          },
+          "Alert": {
+            "anatomy": "Visible severity, contextual message, polite status, and explicit urgent error region.",
+            "usage": "Use passive status for updates; reserve assertive alerts for urgent user-triggered failures.",
+            "api": "TcAlert exposes severity, message, priority, visibility, and update callbacks via tc.ui.alert.",
+            "accessibility": "Keep severity visible; use status for updates and alert only after urgent action."
+          },
+          "Progress": {
+            "anatomy": "Visible label, native progress, determinate value text, and optional advance control.",
+            "usage": "Use progress for completion; provide max/value when known and omit value while indeterminate.",
+            "api": "TcProgress exposes label, max, value, indeterminate, disabled, and callbacks via tc.ui.progress.",
+            "accessibility": "Use a visible label, repeat value in text, and never use meter for completion."
+          },
+          "Dialog": {
+            "anatomy": "Native dialog, visible heading, short description, actions, and focus restoration.",
+            "usage": "Use for a focused task; open with showModal and provide an explicit close action.",
+            "api": "TcDialog exposes open, title, description, actions, return value, and close callbacks.",
+            "accessibility": "Use a labelled heading, contain Tab locally, close on Escape, and restore the opener."
+          },
+          "MessageBox": {
+            "anatomy": "Native alertdialog, visible title, message, least-destructive action, and outcome status.",
+            "usage": "Reserve for interruptive decisions; confirm only the documented local action.",
+            "api": "TcMessageBox exposes severity, message, confirm, cancel, outcome, and close callbacks.",
+            "accessibility": "Use alertdialog with aria-modal, name the message, focus the least-destructive action."
+          },
+          "Overlay": {
+            "anatomy": "Bounded region, loading layer, busy/inert state, external trigger, and dismiss action.",
+            "usage": "Use for local visual or busy feedback, not as a dialog substitute; keep it bounded.",
+            "api": "TcOverlay exposes scope, active, busy, content, status, dismiss, and completion callbacks.",
+            "accessibility": "Do not claim modal semantics; expose aria-busy, make controlled content inert."
+          },
+          "Snackbar": {
+            "anatomy": "Local trigger, separate polite status, hidden message, and optional Undo and Dismiss controls.",
+            "usage": "Show after a local action; keep recovery reachable without moving focus or auto-dismissing.",
+            "api": "TcSnackbar exposes message, state, actions, reversal, and dismiss callbacks via tc.ui.snackbar.",
+            "accessibility": "Announce the message outside controls and preserve logical focus when the surface hides."
+          },
+           "Popover": {
+             "anatomy": "Native auto popover, anchored trigger, named informational region, and local status.",
+             "usage": "Use for non-modal context; keep essential content persistent and allow native light dismiss.",
+             "api": "TcPopover exposes anchor, open state, placement, content, and toggle callbacks via tc.ui.popover.",
+             "accessibility": "Use popovertarget, aria-controls, and aria-expanded; never trap focus or claim modality."
+           },
+           "Tooltip": {
+             "anatomy": "Named trigger, aria-describedby reference, noninteractive tooltip text, and hidden state.",
+             "usage": "Use only for supplementary context on hover or focus; keep the text brief and never essential.",
+             "api": "TcTooltip exposes content, visibility, and dismiss callbacks in tc.ui.tooltip.",
+             "accessibility": "Use role=tooltip and aria-describedby; keep focus; dismiss on blur or Escape."
+            },
+             "DataGrid": {
+               "anatomy": "Named grid, sortable headers, roving cell focus, single row selection, and live status.",
+               "usage": "Use for small datasets when sorting, cell navigation, and one selected row are useful.",
+               "api": "TcDataGrid exposes columns, rows, sort, selection, density, and callbacks via tc.ui.data-grid.",
+               "accessibility": "Use grid semantics, one roving tab stop, aria-sort, aria-selected, and live status."
+             },
+             "SimpleTable": {
+               "anatomy": "Native table, column headers, concise records, and local scroll focus region.",
+               "usage": "Use for passive small datasets with one header row and no widget-like keyboard behavior.",
+               "api": "TcSimpleTable exposes caption, columns, rows, density, and empty state via tc.ui.simple-table.",
+               "accessibility": "Use native table semantics, a concise caption, and scope=col for every column header."
+             },
+              "Timeline": {
+                "anatomy": "Ordered event list, headings, complete time values, textual status, and one current step.",
+                "usage": "Use for passive chronological sequences whose order and status do not rely on color.",
+                "api": "TcTimeline exposes events, dates, statuses, current step, and density via tc.ui.timeline.",
+                "accessibility": "Use native ol/li, h3 headings, time datetime values, and text for every event status."
+              },
+              "BarChart": {
+                "anatomy": "Named bar visual, localized category legend, scale, and equivalent native data table.",
+                "usage": "Use for discrete comparisons; keep labels and units in the data disclosure.",
+                "api": "TcBarChart exposes labels, values, unit, density, and accessible summary via tc.ui.bar-chart.",
+                "accessibility": "Name the visual once and offer the same values in a native table inside details."
+              },
+              "DonutChart": {
+                "anatomy": "Named ring visual, completion and remainder labels, percentage, and equivalent data table.",
+                "usage": "Use for part-to-whole values; expose both segments and their unit in the data disclosure.",
+                "api": "TcDonutChart exposes labels, values, unit, and summary.",
+                "accessibility": "Name the visual once and offer every segment value in a native table inside details."
+              },
+              "LineChart": {
+                "anatomy": "Named line visual, ordered labels, series values, and equivalent native data table.",
+                "usage": "Use to show change over an ordered dimension; preserve each point and its unit.",
+                "api": "TcLineChart exposes labels, values, unit, and summary.",
+                "accessibility": "Name the trend once and offer every ordered point in a native table inside details."
+              },
+              "PieChart": {
+                "anatomy": "Named proportional visual, category legend, percentages, and equivalent native data table.",
+                "usage": "Use for a small set of parts of a whole; expose each segment and its percentage.",
+                "api": "TcPieChart exposes labels, values, unit, density, and accessible summary via tc.ui.pie-chart.",
+                "accessibility": "Name the visual once and offer every value in a native table inside details."
+              },
+              "StackedBarChart": {
+                "anatomy": "Named stacked visual, category rows, separate series, totals, and equivalent data table.",
+                "usage": "Use to compare composition and totals; keep every stacked series separately available.",
+                "api": "TcStackedBarChart exposes rows, series, totals, and summary.",
+                "accessibility": "Name the visual once and expose each series value in a native table inside details."
+              },
+              "Field": {
+                "anatomy": "Label, input, helper description, required state, and visible validation state.",
+                "usage": "Use as the shared field contract for labeled values and local supporting text.",
+                "api": "Field is the shared validation contract implemented by public controls such as TcTextField and TcSwitch.",
+                "accessibility": "Use label/aria-describedby, native constraints, text validation, and visible focus."
+              },
+              "Form": {
+                "anatomy": "Native form, validated fields, submit and reset controls, and local result summary.",
+                "usage": "Use for local validation; do not imply network submission or persistence.",
+                 "api": "Form is a native form coordinated by attachFormValidation(nativeForm, options); it is not a TcForm tag.",
+                "accessibility": "Describe fields/errors, expose a live summary, focus first invalid, and reset."
+              },
+              "TextField": {
+                "anatomy": "Native text or email input, label, autocomplete, description, and readable error state.",
+                "usage": "Use for one-line text; choose type and autocomplete from the expected value.",
+                "api": "TcTextField exposes value, type, autocomplete, required, readOnly, disabled, and validation.",
+                "accessibility": "Associate label/description, expose aria-invalid, and keep errors readable."
+              },
+              "Table": {
+               "anatomy": "Native table, column and row headers, textual status, and local scrolling.",
+               "usage": "Use for passive relational data where each row needs a meaningful first-column header.",
+               "api": "TcTable exposes caption, columns, rows, row headers, density, and state via tc.ui.table.",
+               "accessibility": "Use native semantics and scope=col/scope=row; status must not rely on color."
+             }
+     },
+   "actions": {
+    "Button": {
+      "overview": "A native command with one clear intent.",
+      "variants": "Compare primary, secondary, ghost, and destructive emphasis.",
+      "states": "Disabled controls cannot activate; loading remains unavailable until work completes.",
+      "primary": "Continue",
+      "secondary": "Save",
+      "ghost": "Cancel",
+      "destructive": "Delete",
+      "loading": "Loading",
+      "disabled": "Unavailable",
+      "ready": "Ready for activation",
+      "activated": "Activated"
+    },
+    "ButtonFab": {
+      "overview": "A compact contextual action with a visible focus target.",
+      "variants": "Compare circular, filled, and extended floating actions.",
+      "states": "The disabled FAB stays named and visible but cannot activate.",
+      "create": "Create item",
+      "edit": "Edit item",
+      "disabled": "Create unavailable",
+      "ready": "Ready for activation",
+      "activated": "Activated"
+    },
+    "ButtonGroup": {
+      "overview": "Related actions share a named context and native tab order.",
+      "variants": "Compare grouped navigation actions with one emphasized choice.",
+      "states": "Each member remains an independent native action in DOM order.",
+      "groupName": "Workspace view",
+      "overviewLabel": "Overview",
+      "activity": "Activity",
+      "settings": "Settings",
+      "ready": "Choose a workspace view",
+      "activated": "Selected"
+    },
+    "IconButton": {
+      "overview": "A compact named action for familiar icon commands.",
+      "variants": "Compare favorite, edit, and unavailable commands.",
+      "states": "Unavailable commands keep their names and remain inactive.",
+      "ready": "Ready for activation",
+      "activated": "Activated"
+    },
+    "ToggleIconButton": {
+      "overview": "A compact named action with an explicit pressed state.",
+      "variants": "Compare the off and on states without changing the label.",
+      "states": "Keyboard and pointer activation update the state and live output.",
+      "ready": "Ready for activation",
+      "activated": "Activated",
+      "off": "Off",
+      "on": "On"
+    },
+    "Toolbar": {
+      "overview": "A named horizontal command surface with one Tab stop.",
+      "variants": "Compare icon commands, mixed commands, and wrapping.",
+      "states": "Arrow navigation skips disabled commands and wraps safely.",
+      "activated": "Activated",
+      "focused": "Focused",
+      "toolbarReady": "Toolbar ready",
+      "toolbarLabel": "Document actions",
+      "undo": "Undo",
+      "redo": "Redo"
+    }
+  },
+  "demo": {
+    "continue": "Continue",
+    "outlined": "Outlined",
+    "ghost": "Ghost",
+    "destructive": "Destructive",
+    "save": "Save",
+    "create": "Create",
+    "edit": "Edit",
+    "publish": "Publish",
+    "favorite": "Favorite",
+    "pin": "Pin document",
+    "off": "Off",
+    "on": "On",
+    "toolbarLabel": "Document actions",
+    "toolbarReady": "Toolbar ready",
+    "toolbarUndoLabel": "Undo",
+    "redo": "Redo",
+    "deleteUnavailable": "Delete unavailable",
+    "offOn": "Off / on",
+    "projectName": "Project name",
+    "enterValue": "Enter a value",
+    "helper": "Helper text explains the constraint.",
+    "validate": "Validate form",
+    "emailError": "Email · error",
+    "required": "Required field",
+    "readOnly": "Read only",
+    "disabled": "Disabled",
+    "checked": "Checked",
+    "unchecked": "Unchecked",
+    "environment": "Environment",
+    "preview": "Preview",
+    "legacy": "Legacy",
+    "notifications": "Notifications",
+    "quiet": "Quiet mode",
+    "managed": "Managed",
+    "choose": "Choose",
+    "selected": "Selected",
+    "design": "Design",
+    "idle": "Idle",
+    "accepting": "Accepting",
+    "rejecting": "Rejecting",
+    "dropFiles": "Drop files or browse",
+    "fileTypes": "PDF, PNG, or ZIP · up to 25 MB",
+    "chooseFile": "Choose file",
+    "volume": "Volume",
+    "responsive": "Responsive container",
+    "fixedWidth": "Fixed max width",
+    "actualViewport": "Actual viewport",
+    "actualViewportDetail": "Detected from the browser width; this is not simulated.",
+    "simulatedViewport": "Simulated breakpoint",
+    "simulatedViewportDetail": "Use the focused selector to preview provider output without changing the viewport.",
+    "providerState": "Provider state",
+    "providerStateDetail": "The active label follows the current browser width.",
+    "currentViewport": "Current viewport",
+    "containerBehavior": "Fluid container",
+    "containerMeasured": "Measured container",
+    "containerDetail": "The dashed frame is the available region; the inner surface shows the measured constraint.",
+    "columns": "columns",
+    "gap": "gap 16px",
+    "gridAnatomy": "12-column anatomy",
+    "gridState": "Responsive span state",
+    "conditionalVisibility": "Conditional visibility",
+    "simulatedVisibility": "Simulated visibility",
+    "simulatedVisibilityDetail": "This selector is a preview; it does not claim the browser changed size.",
+    "actualVisibility": "Actual visibility",
+    "actualVisibilityDetail": "The live label is derived from the current browser width.",
+    "show": "Show",
+    "hide": "Hide",
+    "visibleContent": "Content is currently visible.",
+    "hiddenDetail": "The control changes the hidden state and exposes it through aria-pressed.",
+    "semanticSurface": "Semantic surface",
+    "groupedContent": "Grouped content",
+    "focusBoundary": "Keyboard focus boundary",
+    "tabCycle": "Tab cycles through these controls.",
+    "first": "First",
+    "last": "Last",
+    "close": "Close",
+    "visible": "Visible ≥ md",
+    "hidden": "Hidden < md",
+    "resize": "Resize to test the boundary.",
+    "internalLink": "Internal link",
+    "actionLink": "Action link",
+    "scrollable": "Scrollable content",
+    "previous": "Previous",
+    "next": "Next",
+    "swipeArea": "Swipe area",
+    "displayScale": "Display and heading scale",
+    "bodyCopy": "Readable body copy establishes rhythm.",
+    "caption": "Caption and supporting metadata",
+    "sectionOne": "Section one",
+    "sectionTwo": "Section two",
+    "home": "Home",
+    "slide": "Slide",
+    "of": "of",
+    "overview": "Overview",
+    "activity": "Activity",
+    "settings": "Settings",
+    "pageContent": "Page content",
+    "persistentNav": "Persistent navigation surface.",
+    "accountSettings": "Account settings",
+    "expandedContent": "Expanded content stays visible in this example.",
+    "singleLine": "Single line",
+    "ready": "Ready",
+    "contextMenu": "Context menu",
+    "duplicate": "Duplicate",
+    "numbered": "Numbered",
+    "icon": "Icon",
+    "panelContent": "Overview panel content",
+    "loading": "Loading rows…",
+    "empty": "Empty state · no filtered rows",
+    "name": "Name",
+    "status": "Status",
+    "review": "Review",
+    "foundation": "Foundation",
+    "navigation": "Navigation",
+    "simpleTable": {
+      "caption": "Project summary",
+      "wrapper": "Scrollable project summary table",
+      "project": "Project",
+      "status": "Status",
+      "owner": "Owner",
+      "team": "Foundation team",
+      "platform": "Platform team",
+      "aurora": "Aurora",
+      "core": "Core",
+      "docs": "Docs",
+      "active": "Active",
+      "review": "In review",
+      "ready": "Ready",
+      "empty": "No projects to display.",
+      "emptyCaption": "Project summary with no records"
+    },
+    "table": {
+      "caption": "Project status table",
+      "wrapper": "Scrollable project status table",
+      "project": "Project",
+      "status": "Status",
+      "owner": "Owner",
+      "team": "Foundation team",
+      "platform": "Platform team",
+      "aurora": "Aurora",
+      "core": "Core",
+      "docs": "Docs",
+      "active": "Active — accepting changes",
+      "review": "In review — owner action pending",
+      "ready": "Ready — no action pending",
+      "empty": "No project status records.",
+      "emptyCaption": "Project status table with no records"
+    },
+    "grid": {
+      "overview": "Sortable records",
+      "variants": "Dense rows",
+      "states": "Selected row",
+      "label": "Project records",
+      "instructions": "Arrows move; Home/End move rows; Control+Home/End cross grid; Enter sorts; Shift+Space selects.",
+      "selected": "Selected row: {name}",
+      "notSelected": "No row selected",
+      "sorted": "Sorted by {column}, {direction}",
+      "ascending": "ascending",
+      "descending": "descending",
+      "project": "Project",
+      "owner": "Owner",
+      "statusColumn": "Status",
+      "aurora": "Aurora",
+      "foundationTeam": "Foundation",
+      "active": "Active",
+      "reviewStatus": "In review",
+      "readyStatus": "Ready"
+    },
+    "denseRow": "Dense row",
+    "compactData": "Compact data",
+    "uploading": "Uploading",
+    "changesSaved": "Changes saved",
+    "undo": "Undo",
+    "viewDetails": "View details",
+    "actionRequired": "Action required",
+    "deploymentReady": "Deployment ready",
+    "persistentMessage": "A persistent, contextual message.",
+    "confirmChanges": "Confirm changes?",
+    "focusedSurface": "A focused, visible surface.",
+    "escapeCloses": "Escape closes without committing.",
+    "underlying": "Underlying content",
+    "overlayActive": "Overlay active",
+    "new": "New",
+    "visibleStatus": "Visible status",
+    "reviews": "4.8 from 128 reviews",
+    "qPeriods": "Q1 · Q2 · Q3 · Q4",
+    "created": "Created",
+    "reviewing": "Reviewing",
+    "published": "Published",
+    "timeline": {
+      "label": "Release timeline",
+      "overview": "Delivery milestones",
+      "variants": "Project timeline",
+      "states": "Timeline states",
+      "createdHeading": "Project created",
+      "reviewingHeading": "Review in progress",
+      "publishedHeading": "Release published",
+      "createdDate": "January 15, 2025 at 09:15 UTC",
+      "reviewingDate": "January 16, 2025 at 14:30 UTC",
+      "publishedDate": "January 18, 2025 at 11:00 UTC",
+      "completed": "Completed",
+      "current": "Current",
+      "upcoming": "Upcoming",
+      "createdDetail": "Workspace and baseline are ready.",
+      "reviewingDetail": "Owners are reviewing the release scope.",
+      "publishedDetail": "The approved release is available."
+    },
+    "behaviorPreview": "Behavior preview",
+    "variantComparison": "Variant comparison",
+    "stateBoundary": "State boundary",
+    "filled": "Filled",
+    "prefix": "Prefix",
+    "suffix": "Suffix",
+    "label": "Label",
+    "production": "Production",
+    "single": "Single",
+    "multiple": "Multiple",
+    "searchable": "Searchable",
+    "calendar": "Calendar",
+    "range": "Range",
+    "month": "Month",
+    "clock": "Clock",
+    "keyboard": "Keyboard",
+    "twentyFourHour": "24-hour",
+    "integer": "Integer",
+    "decimal": "Decimal",
+    "stepped": "Stepped",
+    "input": "Input",
+    "filter": "Filter",
+    "assist": "Assist",
+    "singleSelect": "Single-select",
+    "multiSelect": "Multi-select",
+    "dismissible": "Dismissible",
+    "swatches": "Swatches",
+    "spectrum": "Spectrum",
+    "hexInput": "Hex input",
+    "remote": "Remote",
+    "creatable": "Creatable",
+    "continuous": "Continuous",
+    "discrete": "Discrete",
+    "match": "Search result: Center Aurora",
+    "highlight": "Highlighted match",
+    "cover": "Cover",
+    "contain": "Contain",
+    "fallback": "Fallback",
+    "text": "Text",
+    "avatar": "Avatar",
+    "card": "Card",
+    "top": "Top",
+    "bottom": "Bottom",
+    "auto": "Auto",
+    "indeterminate": "Indeterminate",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "info": "Info",
+    "question": "Question",
+    "danger": "Danger",
+    "grouped": "Grouped",
+    "horizontal": "Horizontal",
+    "stacked": "Stacked",
+    "donut": "Donut",
+    "gauge": "Gauge",
+    "legend": "Legend",
+    "line": "Line",
+    "area": "Area",
+    "multiSeries": "Multi-series",
+    "pie": "Pie",
+    "labels": "Labels",
+    "absolute": "Absolute",
+    "percent": "Percent",
+    "editor": "Editor",
+    "search": "Search",
+    "centerAurora": "Center Aurora",
+    "roadmap": "Roadmap",
+    "searchProjects": "Search projects",
+    "brandColor": "Brand color",
+      "feedback": {
+         "overview": {"severity": "Informational", "message": "A contextual update stays without moving focus."},
+        "variants": {"severity": "Success", "message": "The local update completed successfully."},
+         "states": {"severity": "Error", "message": "Passive error context stays polite until urgent action."},
+         "urgent": {"trigger": "Show urgent error", "severity": "Urgent error", "message": "The action failed."},
+        "determinate": {"label": "Upload progress", "value": "68% complete"},
+        "indeterminate": {"label": "Loading workspace data", "loading": "Loading; completion is not yet known."},
+        "complete": {"value": "100% complete", "statesValue": "80% complete", "button": "Advance progress"},
+        "trigger": "Show snackbar", "ready": "No snackbar is shown.", "shown": "Snackbar shown politely.",
+          "dialog": {"trigger": "Open dialog", "title": "Review workspace changes",
+           "text": "Review is ready to continue.", "confirm": "Continue", "cancel": "Close",
+           "ready": "Dialog is closed.", "opened": "Dialog opened.", "closed": "Dialog closed."},
+         "messageBox": {"trigger": "Open message box", "title": "Delete local draft?",
+           "text": "This interruptive decision only changes the local prototype state.",
+           "confirm": "Delete draft", "cancel": "Keep draft", "ready": "No decision is pending.",
+           "opened": "Decision opened.", "confirmed": "Local draft deleted.", "cancelled": "Local draft kept."},
+         "overlay": {"trigger": "Show bounded overlay", "contentTitle": "Workspace preview",
+           "content": "Controlled content is unavailable while the layer is active.",
+           "loading": "Loading workspace preview…", "dismiss": "Dismiss overlay",
+           "decorative": "Visual loading layer", "active": "Overlay active; content is inert.",
+          "ready": "Overlay dismissed; content is interactive."},
+          "popover": {
+            "trigger": "Show workspace context", "title": "Workspace context",
+            "text": "This anchored surface adds local information without changing the page task.",
+            "opened": "Popover open.", "closed": "Popover closed."
+          },
+          "tooltip": {
+            "trigger": "View details", "text": "Supplementary context for the focused control.",
+            "shown": "Tooltip shown.", "hidden": "Tooltip hidden."
+          },
+        "message": "Changes saved locally.", "undo": "Undo", "dismiss": "Dismiss", "reversed": "Local change undone."
+      },
+     "components": "Components",
+     "actions": "Actions",
+     "icons": "Icons",
+     "breadcrumbLabel": "Breadcrumb",
+     "paginationLabel": "Pagination",
+     "tabsLabel": "Views",
+     "current": "Breadcrumbs",
+     "breadcrumbHint": "Short and deep paths keep the current page last.",
+     "currentState": "Current page",
+     "page": "Page",
+     "pageStatus": "Page {page} of 4",
+     "navigationSelected": "Selected: {label}",
+     "panelText": "Preloaded content for {label}.",
+     "appBarContext": "Application header",
+     "appBarNavigation": "Application navigation",
+     "appBarMenu": "Navigation",
+     "appBarAction": "Save view",
+     "appBarReady": "Ready for a local action",
+     "appBarActivated": "View saved locally",
+     "drawerNavigation": "Drawer navigation",
+     "drawerPersistentHint": "The main content remains available beside the persistent panel.",
+     "drawerOpenButton": "Open modal drawer",
+     "drawerClose": "Close drawer",
+     "drawerReady": "Modal drawer is closed",
+     "drawerOpened": "Modal drawer is open",
+     "drawerClosed": "Modal drawer is closed",
+     "siteNavigation": "Site navigation",
+     "navReady": "Choose a destination",
+      "navSelected": "Selected: {label}",
+      "listLabel": "Workspace records",
+      "listStatic": "Single-line list",
+      "listReady": "Two-line interactive list",
+      "listActivated": "Activated",
+      "aurora": "Aurora",
+      "menuButton": "Workspace actions",
+      "menuClosed": "Action menu is closed",
+      "menuOpened": "Action menu is open",
+      "menuActivated": "Activated",
+      "treeLabel": "Component hierarchy",
+      "treeReady": "Use arrows to move and Enter or Space to select",
+       "treeSelected": "Selected",
+        "carouselLabel": "Featured workspace updates",
+        "carouselRoleDescription": "carousel",
+        "slideRoleDescription": "slide",
+        "carouselSlides": ["Aurora overview", "Sync health", "Design tokens", "Release notes"],
+       "slideText": "Review {label} without leaving this page.",
+       "panelLabels": ["Account settings", "Notifications", "Workspace access"],
+        "expansionPanelContent": "Expanded content for {label} stays in the same panel.",
+       "panelIndependent": "Each disclosure is independent; open panels remain open.",
+       "panelMultiple": "Single-panel variant: one disclosure is rendered for focused secondary content.",
+       "panelStates": "Mixed state: one panel is expanded, one is collapsed, and one is disabled.",
+    "workspaceLabel": "Workspace",
+    "persistent": "Persistent",
+    "modal": "Modal",
+    "rail": "Rail",
+    "twoLine": "Two line",
+    "interactive": "Interactive",
+    "delete": "Delete",
+    "count": "Count",
+    "usageSummary": "Usage summary",
+    "boundedContent": "Bounded content with one next action.",
+    "view": "View",
+    "open": "Open",
+    "designSystem": "Design system",
+     "surface": {
+       "personName": "Maya Chen", "initials": "MC", "teamInitials": "TC",
+       "adjacent": "Product design", "groupLabel": "Center Aurora design team",
+       "online": "Presence: online", "offline": "Presence: offline", "newLabel": "New",
+       "countLabel": "Unread messages", "staticContext": "Static badges remain text; the count names its subject.",
+       "add": "Add one", "updated": "Unread messages: 4", "cardTitle": "Center Aurora release",
+       "cardBody": "A bounded content summary keeps the next decision clear.", "cardAction": "Review release",
+       "cardActivated": "Release review opened locally.",
+       "cardState": {
+         "selected": "State: selected for review.", "elevated": "State: elevated surface.",
+         "disabled": "State: disabled; action unavailable."
+       },
+        "iconDecorative": "Decorative glyph",
+        "iconMeaning": "Information",
+        "iconControl": "Open settings",
+        "iconAvailable": "Available local icon",
+        "iconUnavailable": "Icon unavailable: use visible text fallback.",
+        "ratingLegend": "Rate this result",
+        "ratingLabel": "{value} of 5",
+        "ratingSelected": "Selected rating: {value} of 5",
+        "ratingDisabled": "Rating unavailable",
+        "ratingReadonly": "Read-only rating: {value} of 5"
+      },
+     "visualFoundation": {
+      "before": "Content before",
+      "after": "Content after",
+      "horizontal": "Horizontal separator",
+      "vertical": "Vertical separator",
+      "inset": "Inset separator",
+      "labeled": "Related content",
+      "semantic": "Separators use structural semantics, not color alone.",
+      "query": "Query",
+      "singleQuery": "Center",
+      "multipleQuery": "Aurora",
+      "noMatchQuery": "Missing",
+      "source": "Center Aurora keeps the search result readable.",
+      "matches": "matches",
+      "responsive": "Local image with a responsive aspect ratio.",
+      "cover": "Object-fit cover",
+      "contain": "Object-fit contain",
+      "loading": "Loading image",
+      "loaded": "Loaded image",
+      "fallback": "Fallback image",
+      "fallbackAlt": "Image fallback placeholder",
+      "alt": "Aurora landscape illustration",
+      "internal": "Open internal reference",
+      "external": "Open external guide",
+      "disabled": "Unavailable destination",
+      "current": "Current page",
+      "visited": "Visited reference",
+      "focus": "Visible focus and text remain the accessible name.",
+      "outlined": "Outlined surface",
+      "elevated": "Elevated surface",
+      "tonal": "Tonal surface",
+      "boundary": "A visible boundary groups related content.",
+      "elevation": "Elevation 2 separates the surface from its background.",
+      "padding": "Padding remains measurable and token-driven.",
+      "grouping": "Use a surface landmark only when it names a meaningful region.",
+      "text": "Text skeleton",
+      "avatar": "Avatar skeleton",
+      "card": "Card skeleton",
+        "content": "Loaded content replaces the placeholder.",
+        "skeletonLoading": "Loading content",
+        "skeletonLoaded": "Show loaded content",
+        "reducedMotion": "Reduced motion disables the shimmer animation."
+    }
+  },
+  "selectionInputs": {
+    "label": "Project selection",
+    "placeholder": "Search projects",
+    "choose": "Choose a project",
+    "group": "Workspace projects",
+    "options": ["Center Aurora", "Foundation", "Cloud Console"],
+    "noResults": "No matching projects",
+    "matches": "matches",
+    "selected": "Selected:",
+    "none": "None selected",
+    "disabled": "Disabled control"
+  },
+  "inputForms": {
+    "options": ["Center Aurora", "Cloud Console", "Foundation"],
+    "chipLabel": "Project labels",
+    "chipPlaceholder": "Add a label",
+    "firstChip": "Center Aurora",
+    "secondChip": "API",
+    "thirdChip": "Documentation",
+    "longChip": "Long project label wraps safely",
+    "add": "Add chip",
+    "remove": "Remove",
+    "empty": "Enter a non-empty label",
+    "duplicate": "That label is already present",
+    "added": "Added",
+    "removed": "Removed; focus restored",
+    "help": "Press Enter or use Add chip.",
+    "active": "Active values",
+    "chipSetLabel": "Project scope",
+    "single": "Single selection",
+    "multiple": "Multiple selection",
+    "selected": "Selected:",
+    "none": "None selected",
+    "limit": "Selection limit reached",
+    "numericLabel": "Completion",
+    "step": "Range 0–100",
+    "invalid": "Enter a value from 0 to 100",
+    "colorPicker": {
+      "label": "Brand color",
+      "defaultValue": "#5946b2",
+      "alternateValue": "#42a5f5",
+      "normalized": "Selected value",
+      "swatch": "Selected color preview",
+      "disabled": "Color control disabled",
+      "invalid": "Choose a valid color value",
+      "note": "Native color selection stays keyboard operable; the text value does not claim contrast compliance.",
+      "stateInvalid": "alternate"
+    },
+    "datePicker": {
+      "label": "Release date",
+      "validValue": "2026-09-03",
+      "invalidValue": "2025-12-31",
+      "disabledValue": "2026-10-15",
+      "min": "2026-01-01",
+      "max": "2026-12-31",
+      "normalized": "Normalized yyyy-mm-dd",
+      "invalid": "Invalid: choose a date from 2026-01-01 to 2026-12-31",
+      "disabled": "Disabled date control",
+      "note": "The browser or OS may display the date differently from its normalized value.",
+      "stateInvalid": "invalid"
+    },
+    "timePicker": {
+      "label": "Support time",
+      "validValue": "13:30",
+      "invalidValue": "08:30",
+      "disabledValue": "15:00",
+      "min": "09:00",
+      "max": "18:00",
+      "step": "900",
+      "normalized": "Normalized HH:mm",
+      "invalid": "Invalid: choose a time from 09:00 to 18:00",
+      "disabled": "Disabled time control",
+      "note": "This same-day range avoids fragile cross-midnight behavior; step is 15 minutes.",
+      "stateInvalid": "invalid"
+    },
+    "radio": {
+      "legend": "Deployment environment",
+      "options": ["Development", "Production", "Preview"],
+      "selected": "Selected:",
+      "none": "No environment selected",
+      "error": "Error: choose an environment before continuing."
+    },
+    "checkbox": {
+      "legend": "Project capabilities",
+      "checked": "Checked: cloud sync",
+      "unchecked": "Unchecked: email alerts",
+      "indeterminate": "Indeterminate: inherited access",
+      "disabled": "Disabled: billing export",
+      "ready": "Choose any independent capabilities.",
+      "on": "On",
+      "off": "Off"
+    },
+    "switch": {
+      "label": "Enable automatic backups",
+      "primary": "Enable primary notifications",
+      "secondary": "Enable secondary notifications",
+      "readonly": "Managed backup policy (read-only)",
+      "disabled": "Legacy backup policy (disabled)",
+      "on": "Automatic backups on",
+      "off": "Automatic backups off"
+    },
+    "slider": {
+      "label": "Notification volume",
+      "unit": "%"
+    },
+    "field": {
+      "requiredLabel": "Project name (required)",
+      "optionalLabel": "Project note (optional)",
+      "validLabel": "Workspace (valid)",
+      "validValue": "Center Aurora",
+      "requiredHint": "Required field; a textual error appears when empty.",
+      "optionalHint": "Optional guidance stays available through the description.",
+      "validHint": "Valid state is communicated by text, not color alone.",
+      "readonlyLabel": "Reference ID (read-only)",
+      "readonlyValue": "TC-2048",
+      "readonlyHint": "Read-only values can be reviewed but not edited.",
+      "disabledLabel": "Billing code (disabled)",
+      "disabledHint": "Disabled controls do not participate in form output.",
+      "variants": { "standard": "Standard", "outlined": "Outlined", "filled": "Filled" }
+    },
+    "textField": {
+      "textLabel": "Organization",
+      "standardLabel": "Organization (standard)",
+      "filledLabel": "Organization (filled)",
+      "outlinedLabel": "Organization (outlined)",
+      "clear": "Clear organization",
+      "filledValue": "Center Aurora",
+      "textHint": "Native text editing with autocomplete=organization.",
+      "emailLabel": "Contact email (required)",
+      "emailHint": "Use an email address that can receive updates.",
+      "emailError": "Enter a valid email address.",
+      "readonlyLabel": "Account alias (read-only)",
+      "readonlyValue": "aurora-team",
+      "readonlyHint": "This value is available for review only.",
+      "disabledLabel": "Legacy email (disabled)",
+      "disabledHint": "Disabled input cannot be edited or submitted.",
+      "variants": { "standard": "Standard", "outlined": "Outlined", "filled": "Filled" }
+    },
+    "form": {
+      "nameLabel": "Project name (required)",
+      "nameHint": "Give the project a clear name.",
+      "emailLabel": "Owner email (required)",
+      "emailHint": "Use an address that can receive project notices.",
+      "submit": "Submit locally",
+      "reset": "Reset",
+      "requiredError": "Complete this required field.",
+      "emailError": "Enter a valid email address.",
+      "tooShortError": "Enter a longer value.",
+      "patternError": "Use the requested format.",
+      "invalidError": "Correct this value.",
+      "summary": "Please correct invalid fields:",
+       "success": "Form accepted locally; no data was sent.",
+       "updatesLabel": "Enable project updates (required)",
+       "updatesError": "Choose whether to enable project updates.",
+       "submitWithoutValidation": "Submit without validation",
+       "skipped": "Validation was skipped by this submitter; the result is not marked valid."
+    },
+    "upload": {
+      "dropPrompt": "Drop files here or browse",
+      "filePrompt": "Choose files to inspect locally",
+      "policy": "PNG, JPEG, or PDF · up to 3 files · 5 MB each · metadata only",
+      "accept": ".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf",
+      "singleAccept": ".png,image/png",
+      "mime": ["image/png", "image/jpeg", "application/pdf"],
+      "maxFiles": 3,
+      "maxBytes": 5242880,
+      "selectedFiles": "Selected file metadata",
+      "unknownType": "unknown type",
+      "empty": "No files selected.",
+        "selected": "Selected files",
+        "clear": "Clear selection",
+        "cleared": "Local selection cleared; nothing was uploaded.",
+      "remove": "Remove",
+      "rejectedState": "Rejected example: invalid type or size is announced here.",
+      "typeError": "Rejected: use PNG, JPEG, or PDF files.",
+      "sizeError": "Rejected: each file must be 5 MB or smaller.",
+      "countError": "Rejected: select no more than 3 files."
+    }
+  },
+  "charts": {
+    "BarChart": {
+      "summary": "Compare category values at a glance.",
+      "measure": "Bars make magnitude and ranking visible.",
+      "state": "The active scale keeps change readable.",
+      "aria": "Bar chart comparing four category values.",
+      "accessibility": "This bar chart is a non-interactive image. Its accessible name summarizes the category comparison.",
+      "accessibilityTitle": "Chart accessibility",
+      "roleLabel": "role=img · non-interactive visual"
+    },
+    "DonutChart": {
+      "summary": "Show part-to-whole balance.",
+      "measure": "The ring separates completion from remainder.",
+      "state": "The center keeps the key percentage legible.",
+      "aria": "Donut chart showing 68 percent completion.",
+      "accessibility": "This donut chart is a non-interactive image. Its accessible name conveys the completion ratio.",
+      "accessibilityTitle": "Chart accessibility",
+      "roleLabel": "role=img · non-interactive visual"
+    },
+    "LineChart": {
+      "summary": "Trace movement across an ordered dimension.",
+      "measure": "Connected points emphasize direction and change.",
+      "state": "The line preserves peaks and dips in sequence.",
+      "aria": "Line chart showing a changing series over five points.",
+      "stateLabel": "Series paused",
+      "accessibility": "This line chart is a non-interactive image. Its accessible name summarizes the trend.",
+      "accessibilityTitle": "Chart accessibility",
+      "roleLabel": "role=img · non-interactive visual"
+    },
+    "PieChart": {
+      "summary": "Compare proportional categories.",
+      "measure": "Segments show each category's share of the whole.",
+      "state": "The bounded circle keeps proportions scannable.",
+      "aria": "Pie chart showing three proportional categories.",
+      "accessibility": "This pie chart is a non-interactive image. Its accessible name summarizes the proportions.",
+      "accessibilityTitle": "Chart accessibility",
+      "roleLabel": "role=img · non-interactive visual"
+    },
+    "StackedBarChart": {
+      "summary": "Compare totals and composition together.",
+      "measure": "Segments reveal how each total is composed.",
+      "state": "The shared baseline supports direct comparison.",
+      "aria": "Stacked bar chart showing three composition segments.",
+      "rows": [{"label": "North", "total": "72", "segments": [3, 2, 1]}, {"label": "South", "total": "58", "segments": [2, 3, 1]}, {"label": "West", "total": "84", "segments": [4, 2, 2]}],
+      "accessibility": "This stacked bar chart is a non-interactive image. Its accessible name summarizes totals and composition.",
+      "accessibilityTitle": "Chart accessibility",
+      "roleLabel": "role=img · non-interactive visual"
+    }
+  },
+  "chartData": {
+    "BarChart": {
+      "caption": "Bar chart data", "summary": "View chart data", "category": "Category",
+      "value": "Value", "unit": "units", "labels": ["North", "South", "West", "East"],
+      "values": [42, 68, 54, 82]
+    },
+    "DonutChart": {
+      "caption": "Donut chart data", "summary": "View chart data", "category": "Segment",
+      "value": "Value", "unit": "percent", "labels": ["Complete", "Remaining"], "values": [68, 32]
+    },
+    "LineChart": {
+      "caption": "Line chart data", "summary": "View chart data", "category": "Period",
+      "value": "Value", "unit": "units", "labels": ["Q1", "Q2", "Q3", "Q4", "Q5"],
+      "values": [14, 42, 28, 62, 50]
+    },
+    "PieChart": {
+      "caption": "Pie chart data", "summary": "View chart data", "category": "Category",
+      "value": "Value", "unit": "percent", "labels": ["North", "South", "West"],
+      "values": [42, 34, 24]
+    },
+    "StackedBarChart": {
+      "caption": "Stacked bar chart data", "summary": "View chart data", "category": "Category",
+      "value": "Value", "unit": "units", "labels": ["North", "South", "West"],
+      "series": ["Core", "Platform", "Experience"],
+      "values": [[3, 2, 1], [2, 3, 1], [4, 2, 2]], "totals": [72, 58, 84]
+    }
+  },
+  "guidance": {
+    "eyebrow": "Guidance",
+    "intro": "Read the happy path first, then inspect component details without hiding core behavior.",
+    "quickPath": "Quick path",
+    "step1": "Choose a category.",
+    "step2": "Open a component reference.",
+    "step3": "Check states, accessibility, and related primitives.",
+    "coreRule": "Core rule",
+    "ruleText": "Recognition beats recall: show the component, its state, and the next action together.",
+    "available": "Available"
+  },
+  "buildStatus": {
+    "eyebrow": "Living delivery record",
+    "title": "Build status",
+    "intro": "This page is the in-product source of truth for the documentation stage. Counts explain coverage; they do not imply production readiness.",
+    "stage": "Stage",
+    "scope": "Scope",
+    "state": "State",
+    "stage1": "IA and 71-route component catalog",
+    "stage1Detail": "The information architecture and canonical component routes are complete.",
+    "stage2": "Bilingual documentation, semantic icons, charts, responsive foundations, catalog layout, and visual foundations",
+    "stage2Detail": "Visuals and five Inputs/Forms slices passed; details pending; WU-03 not started.",
+    "responsiveStandardTitle": "Responsive and spacing acceptance standard",
+    "responsiveStandard": "Every component batch must verify widths 390, 768/800, 1024, 1280, 1440, 1920, and 2560; wrapping related actions; zero document-root and sidebar horizontal overflow without blanket clipping; comfortable/compact computed spacing; centered article/TOC allocation; and minimum 40px visible button, navigation, and control targets. Icon, chart, and responsive-foundation batches remain documentation work; WU-03 is not started.",
+    "stage3": "Production alignment / Flutter implementation",
+    "stage3Detail": "Explicitly not started in this prototype stage.",
+    "coverage": "Coverage",
+    "components": "71 components",
+    "componentsDetail": "Seven source categories with counts 15 / 6 / 17 / 11 / 5 / 8 / 9.",
+    "categories": "Seven source categories",
+    "categoriesDetail": "Foundations/Layout, Actions, Inputs/Forms, Navigation/Disclosure, Surfaces/Content, Feedback/Overlays, Data/Visualization.",
+    "icons": "4,275 official icon tokens",
+    "iconsDetail": "The local metadata contains 3,975 unique codepoints; tokens and codepoints are different measures.",
+    "locales": "EN / ES locales",
+    "localesDetail": "Both locale files are structurally isomorphic and loaded locally.",
+    "changeLog": "Change log",
+    "accordion": "Removed accordion-based hiding so core documentation stays visible.",
+    "docs": "Expanded component docs with six sections, direct routes, demos, variants, and states.",
+    "iconCorrection": "Corrected icon metadata handling and preserved the local font and token explorer.",
+    "bilingual": "Added complete English/Spanish content architecture and synchronized README pair.",
+    "verification": "Verification checklist",
+    "checkRoutes": "Validate every component route in both locales.",
+    "checkIcons": "Validate local icon search, five matrices, and 24 practical combinations.",
+    "checkRuntime": "Validate runtime, accessibility labels, local assets, routes, and responsive widths.",
+    "liveUrl": "Exact live URL",
+    "liveUrlValue": "http://127.0.0.1:8093/framework-preview.html",
+    "nextBoundary": "Next boundary",
+    "nextBoundaryText": "Production WU-03 is not part of this prototype stage."
+  },
+  "icons": {
+    "eyebrow": "Local asset explorer",
+    "title": "Material Symbols Rounded",
+    "intro": "Official local token metadata loads asynchronously. Search all names without freezing the page.",
+    "loading": "Loading local icon metadata…",
+    "error": "Unable to load local icon metadata",
+    "searchLabel": "Search icon names",
+    "searchPlaceholder": "Search 4,275 icon tokens",
+    "select": "Select an icon",
+    "selectIntro": "Outlined, filled, weight, optical size, grade, and combined variants are shown after selection.",
+    "copy": "Copy token",
+    "copied": "Copied",
+    "matches": "matching names",
+    "noMatches": "No icon names match.",
+    "loadMore": "Load more",
+    "source": "Source",
+    "officialNames": "official names",
+    "uniqueCodepoints": "unique codepoints",
+    "axes": "axes",
+    "outlinedFilled": "Outlined and filled",
+    "weight": "Weight",
+    "optical": "Optical size",
+    "grade": "Grade",
+    "practical": "Practical combinations",
+    "accessible": "Accessible label must be supplied by the consuming control."
+  },
+  "search": {
+    "component": "component",
+    "category": "category",
+    "guidance": "guidance",
+    "icon": "icon",
+    "noMatches": "No matches yet.",
+    "selection": "Select a result to open its route."
+  },
+  "dialog": {
+    "title": "Confirm changes",
+    "text": "This working Dialog example keeps the decision visible and returns focus when closed.",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "toast": {
+    "updated": "Preference updated."
+  },
+  "notFound": {
+    "title": "Route not found",
+    "text": "Choose a destination from the sidebar."
+  },
+  "mobile": {
+    "breadcrumb": "Breadcrumb",
+    "selectAll": "Select all"
+  },
+  "components": {
+    "BreakpointProvider": "Defines responsive breakpoints so layouts adapt predictably across viewport sizes.",
+    "Container": "Constrains content width while preserving a responsive layout boundary.",
+    "Divider": "Separates related content with a clear visual and semantic boundary.",
+    "Element": "Provides a semantic surface primitive for composing accessible content.",
+    "FocusTrap": "Keeps keyboard focus within an active surface until the interaction is complete.",
+    "Grid": "Arranges content in a consistent responsive column and row system.",
+    "Hidden": "Conditionally hides content at defined breakpoints without changing the layout contract.",
+    "Highlighter": "Emphasizes matching text while preserving readable surrounding content.",
+    "Image": "Displays visual content with predictable sizing, fitting, and fallback behavior.",
+    "Link": "Connects destinations with an explicit navigation meaning and visible affordance.",
+    "Paper": "Provides an elevation surface for grouping content and establishing hierarchy.",
+    "ScrollToTop": "Returns a long content view to its starting position with a clear action.",
+    "Skeleton": "Communicates loading structure before the final content is available.",
+    "SwipeArea": "Defines a touch-friendly region for horizontal navigation and gesture feedback.",
+    "Typography": "Establishes readable type scale, rhythm, hierarchy, and supporting metadata.",
+    "Button": "Presents a clear action with emphasis, intent, and loading feedback.",
+    "ButtonFab": "Presents a compact floating action that can expand into an optional text action.",
+    "ButtonGroup": "Groups related actions while making their relationship and selection clear.",
+    "IconButton": "Presents a compact icon-only action with an accessible name and state.",
+    "ToggleIconButton": "Toggles one icon action between explicit pressed and unpressed states.",
+    "Toolbar": "Groups frequent contextual actions into a compact, predictable command surface.",
+    "Autocomplete": "Suggests matching values while the user enters text into a constrained field.",
+    "Checkbox": "Captures independent boolean choices with clear checked and indeterminate states.",
+    "Chips": "Represents compact input, filter, or assist values that can be selected or dismissed.",
+    "ChipSet": "Coordinates a collection of chips with a defined selection and dismissal model.",
+    "ColorPicker": "Helps users choose a color through recognizable visual and textual inputs.",
+    "DatePicker": "Captures a date or date range through a navigable calendar interaction.",
+    "DropZone": "Accepts files through a visible drag-and-drop boundary and validation feedback.",
+    "Field": "Provides a shared contract for labels, helper text, validation, and value states.",
+    "FileUpload": "Collects files with explicit type, size, progress, and recovery feedback.",
+    "Form": "Coordinates validated fields and exposes a visible submission outcome.",
+    "NumericField": "Captures numeric values with constraints, formatting, and step behavior.",
+    "Radio": "Selects one option from a related set with a clear group relationship.",
+    "Select": "Chooses one or more values from a visible, keyboard-operable option list.",
+    "Slider": "Adjusts a value or range along a bounded continuous or discrete scale.",
+    "Switch": "Expresses an immediate on or off setting with a persistent state.",
+    "TextField": "Captures labeled text with validation, affordances, and readable states.",
+    "TimePicker": "Captures a time through clock, keyboard, and format-aware interactions.",
+    "AppBar": "Anchors primary context and actions in a consistent application header.",
+    "Breadcrumbs": "Shows the current location within a navigable hierarchy.",
+    "Carousel": "Presents related items one at a time with visible position and navigation controls.",
+    "Drawer": "Provides persistent or modal navigation while preserving the main content context.",
+    "ExpansionPanels": "Reveals grouped secondary content with an explicit expansion state.",
+    "List": "Presents related records in a scannable, optionally interactive sequence.",
+    "Menu": "Presents a focused set of actions with keyboard and pointer navigation.",
+    "NavMenu": "Structures application destinations into a clear, composable navigation model.",
+    "Pagination": "Moves through a bounded collection with visible position and adjacent controls.",
+    "Tabs": "Switches between related views while preserving a clear selected state.",
+    "TreeView": "Represents nested information with expandable hierarchy and selection affordances.",
+    "Avatar": "Represents a person or entity through initials, imagery, and status context.",
+    "Badge": "Adds concise status, count, or attention context to another surface.",
+    "Card": "Groups one understandable decision or content summary inside a bounded surface.",
+    "Icons": "Provides a consistent icon presentation primitive for symbolic interface meaning.",
+    "Rating": "Communicates a quantitative or qualitative score with a recognizable scale.",
+    "Alert": "Communicates persistent contextual information that may require user attention.",
+    "Dialog": "Presents a focused decision surface with predictable open, close, and focus behavior.",
+    "MessageBox": "Frames a concise message and decision with an explicit severity and action.",
+    "Overlay": "Places a temporary visual layer above content while defining interaction boundaries.",
+    "Popover": "Anchors contextual content to a triggering control without losing page context.",
+    "Progress": "Communicates completion, activity, or indeterminate work at a glance.",
+    "Snackbar": "Reports a transient result with an optional recovery or undo action.",
+    "Tooltip": "Explains an unfamiliar control or value at the moment it needs context.",
+    "BarChart": "Compares values across categories with a readable visual scale.",
+    "DataGrid": "Presents structured data with headers, selection, loading, and empty states.",
+    "DonutChart": "Shows part-to-whole relationships with a central visual balance.",
+    "LineChart": "Shows change over an ordered dimension through connected data points.",
+    "PieChart": "Shows proportional categories through a bounded circular composition.",
+    "SimpleTable": "Presents a compact set of rows and columns for quick comparison.",
+    "StackedBarChart": "Compares totals and composition across categories in one visual scale.",
+    "Table": "Presents relational data with stable headers, rows, and state feedback.",
+    "Timeline": "Shows ordered events with time, status, and progression context."
+  },
+  "localeError": {
+    "title": "Unable to load locale",
+    "text": "Local translation content is unavailable. Check the prototype server."
+  },
+  "profiles": {
+    "Foundations/Layout": {
+      "variants": [
+        "Fluid",
+        "Fixed",
+        "Responsive",
+        "Compact"
+      ],
+       "states": [
+        "Wide",
+        "Medium",
+        "Narrow",
+        "Hidden"
+      ]
+    },
+    "Actions": {
+      "variants": [
+        "Default",
+        "Emphasized",
+        "Quiet",
+        "Disabled"
+      ],
+      "states": [
+        "Enabled",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "Inputs/Forms": {
+      "variants": [
+        "Default",
+        "Filled",
+        "Validation",
+        "Disabled"
+      ],
+      "states": [
+        "Empty",
+        "Focused",
+        "Valid",
+        "Invalid"
+      ]
+    },
+    "Navigation/Disclosure": {
+      "variants": [
+        "Default",
+        "Active",
+        "Nested",
+        "Collapsed"
+      ],
+      "states": [
+        "Closed",
+        "Open",
+        "Selected",
+        "Disabled"
+      ]
+    },
+    "Surfaces/Content": {
+      "variants": [
+        "Outlined",
+        "Elevated",
+        "Interactive",
+        "Disabled"
+      ],
+      "states": [
+        "Default",
+        "Hover",
+        "Selected",
+        "Disabled"
+      ]
+    },
+    "Feedback/Overlays": {
+      "variants": [
+        "Info",
+        "Success",
+        "Warning",
+        "Error"
+      ],
+      "states": [
+        "Queued",
+        "Visible",
+        "Dismissed",
+        "Error"
+      ]
+    },
+    "Data/Visualization": {
+      "variants": [
+        "Default",
+        "Dense",
+        "Loading",
+        "Empty"
+      ],
+      "states": [
+        "Populated",
+        "Loading",
+        "Empty",
+        "Error"
+      ]
+    }
+  },
+  "profileOverrides": {
+    "Avatar": {
+      "variants": ["Informative", "Decorative", "Initials", "Grouped"],
+      "states": ["Online", "Offline", "Redundant", "Team"]
+    },
+    "Badge": {
+      "variants": ["Status", "Count", "Attention", "Dynamic"],
+      "states": ["Static", "Named count", "Updated", "Disabled context"]
+    },
+    "Card": {
+      "variants": ["Default", "Elevated", "Selected", "Disabled"],
+      "states": ["Default", "Focused action", "Selected visual", "Disabled action"]
+    },
+    "Button": {
+      "variants": ["Primary", "Secondary", "Ghost", "Destructive"],
+      "states": ["Default", "Hover", "Loading", "Disabled"]
+    },
+    "ButtonFab": {
+      "variants": [
+        "Simple",
+        "Filled",
+        "Extended",
+        "Outlined"
+      ],
+      "states": [
+        "Small",
+        "Medium",
+        "Large",
+        "Disabled"
+      ]
+    },
+    "ButtonGroup": {
+      "variants": ["Adjacent", "Emphasized", "Wrapped"],
+      "states": ["Default", "Focused member", "Disabled member"]
+    },
+    "TextField": {
+      "variants": [
+        "Outlined",
+        "Filled",
+        "Prefix",
+        "Suffix"
+      ],
+      "states": [
+        "Helper",
+        "Error",
+        "Read-only",
+        "Disabled"
+      ]
+    },
+    "Tabs": {
+      "variants": [
+        "Fixed",
+        "Scrollable",
+        "Icon"
+      ],
+      "states": [
+        "Default",
+        "Hover",
+        "Selected",
+        "Disabled"
+       ]
+     },
+     "Breadcrumbs": {
+       "variants": ["Short path", "Deep path", "Wrapped"],
+       "states": ["Ancestor link", "Current page", "Focus"]
+     },
+      "Pagination": {
+        "variants": ["Numbered", "Compact", "With context"],
+        "states": ["First page", "Middle page", "Last page"]
+      },
+      "BarChart": {"variants": ["Grouped", "Horizontal", "Stacked data"],
+        "states": ["Named", "Expanded data", "Compact"]},
+      "DonutChart": {"variants": ["Completion", "Remainder", "Legend"],
+        "states": ["Named", "Expanded data", "Compact"]},
+      "LineChart": {"variants": ["Trend", "Area", "Multiple points"],
+        "states": ["Named", "Expanded data", "Compact"]},
+      "PieChart": {"variants": ["Proportions", "Segments", "Labels"],
+        "states": ["Named", "Expanded data", "Compact"]},
+      "StackedBarChart": {"variants": ["Totals", "Composition", "Horizontal"],
+        "states": ["Named", "Expanded data", "Compact"]},
+      "DataGrid": {
+       "variants": [
+         "Sortable headers",
+         "Dense rows",
+         "Single selection"
+       ],
+       "states": [
+         "Ascending",
+         "Descending",
+         "Selected row",
+         "Focus retained"
+       ]
+     },
+     "SimpleTable": {
+       "variants": ["Compact records", "Wide columns"],
+       "states": ["Populated", "Empty"]
+     },
+     "Table": {
+       "variants": ["Column and row headers", "Textual status"],
+       "states": ["Populated", "Empty"]
+     },
+     "Timeline": {
+       "variants": ["Milestones", "Status-led"],
+       "states": ["Completed", "Current", "Upcoming"]
+     },
+     "Carousel": {
+      "variants": ["Manual wrap", "Named slide groups", "Visible status"],
+      "states": ["First slide", "Middle slide", "Last slide"]
+    },
+    "ExpansionPanels": {
+      "variants": ["Single panel", "Independent panels", "Native disclosures"],
+      "states": ["Collapsed", "Expanded", "Mixed", "Disabled"]
+    }
+    ,"Icons": {
+        "variants": ["Decorative", "Informative", "Control-consumed"],
+        "states": ["Available", "Unavailable fallback", "Redundant hidden"]
+      },
+      "Rating": {
+        "variants": ["Selectable", "Read-only", "Five-point scale"],
+        "states": ["Unselected", "Selected", "Disabled"]
+      },
+      "Alert": {
+        "variants": ["Informational", "Success", "Warning", "Error"],
+        "states": ["Passive", "Urgent trigger", "Visible", "Isolated"]
+      },
+      "Progress": {
+        "variants": ["Determinate", "Indeterminate", "Labeled"],
+        "states": ["Advancing", "Complete", "Disabled control"]
+      },
+      "Snackbar": {
+        "variants": ["Polite", "Undo", "Dismissible"],
+        "states": ["Hidden", "Shown", "Reversed", "Focus restored"]
+      },
+      "Dialog": {
+        "variants": ["Modal task", "Described", "Explicit close"],
+        "states": ["Closed", "Open", "Escape cancelled", "Restored focus"]
+      },
+      "MessageBox": {
+        "variants": ["Confirm", "Cancel", "Interruptive"],
+        "states": ["Pending", "Confirmed", "Cancelled", "Least destructive focus"]
+      },
+      "Overlay": {
+        "variants": ["Bounded", "Busy", "Decorative layer"],
+        "states": ["Ready", "Active", "Dismissed", "Content restored"]
+      },
+       "Popover": {
+         "variants": ["Anchored", "Informational", "Auto dismiss"],
+         "states": ["Closed", "Open", "Light dismissed", "Focus logical"]
+       },
+       "Tooltip": {
+         "variants": ["Focus", "Hover", "Descriptive"],
+         "states": ["Hidden", "Shown", "Escape dismissed", "Focus retained"]
+       }
+  }
+}

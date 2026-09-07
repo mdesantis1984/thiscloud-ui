@@ -16,6 +16,10 @@ files.
 5. Target the immediate parent branch, not `main`, for every child PR.
 6. Include focused verification, or state why verification is not yet
    applicable when adding a baseline-only change.
+7. After each completed phase, verify it, create a Conventional Commit, push
+   the branch, and open or update the applicable chained child PR. Merge only
+   after required checks pass and the owner approves; no `develop` branch is
+   used.
 
 The planned chain is: tracker, contracts/tooling, identity/access, client
 shell, then sync/MCP/infrastructure gate. The tracker issue is the chain's

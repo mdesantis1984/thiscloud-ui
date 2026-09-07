@@ -1,0 +1,14 @@
+{
+  "name": "@thiscloud/ui-web",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": { "types": "./index.d.ts", "import": "./dist/index.js" },
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "files": ["dist", "LICENSE", "README.md", "CHANGELOG.md", "MIGRATION.md", "SUPPORT.md", "index.d.ts"],
+  "sideEffects": ["./dist/index.js", "./dist/tokens.css"]
+}

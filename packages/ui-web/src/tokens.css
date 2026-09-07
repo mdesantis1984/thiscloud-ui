@@ -1,0 +1,19 @@
+:root {
+  --tc-control-height: 44px;
+  --tc-space-3: 12px;
+  --tc-switch-track: #616161;
+  --tc-switch-thumb: #fff;
+  --tc-switch-checked: #5946b2;
+  --tc-switch-secondary: #42a5f5;
+  --tc-switch-small-scale: .82;
+  --tc-switch-large-scale: 1.18;
+  --tc-focus: #bb86fc;
+  --tc-text: var(--text, currentColor);
+  --tc-text-muted: var(--muted, #666);
+  --tc-field-line: var(--line, #767676);
+  --tc-field-focus: var(--focus, #5946b2);
+  --tc-field-error: var(--tc-catalog-field-error, var(--bad, #b3261e));
+  --tc-field-filled: var(--field, #f1eff8);
+  --tc-field-readonly: var(--raised, #eee);
+  --tc-field-surface: var(--surface, #fff);
+}
