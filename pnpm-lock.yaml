@@ -18,8 +18,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1
       playwright-core:
-        specifier: 1.61.0
-        version: 1.61.0
+        specifier: 1.62.1
+        version: 1.62.1
 
   packages/ui-web: {}
 
@@ -470,9 +470,9 @@ packages:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
     engines: {node: '>= 0.8.0'}
 
-  playwright-core@1.61.0:
-    resolution: {integrity: sha512-caX7TrY3Ml6egyDX0WUcTHDxodl/b51y5wJOdCEA36QviK/s2g081hvmGs8eaE3DWb6NYZQ6BjO/QkNRPenoPA==}
-    engines: {node: '>=18'}
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
     hasBin: true
 
   possible-typed-array-names@1.1.0:
@@ -946,7 +946,7 @@ snapshots:
       type-check: 0.3.2
       word-wrap: 1.2.5
 
-  playwright-core@1.61.0: {}
+  playwright-core@1.62.1: {}
 
   possible-typed-array-names@1.1.0: {}
 
