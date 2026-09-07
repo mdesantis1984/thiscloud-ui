@@ -17,6 +17,10 @@ Both branches require pull requests, passing status checks, resolved conversatio
 
 For an external contribution, only the maintainer can merge it or provide a review with repository authority. If another maintainer is added later, enable one required CODEOWNER approval and retain stale-review dismissal.
 
+## Automated dependency PRs
+
+Dependabot is the only issue-link exception. Its authenticated GitHub actor must target `develop`, use `type:chore`, remain under the 400-line budget, and pass every required check. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+
 ## Promotion rule
 
 A promotion PR from `develop` to `main` contains only commits already reviewed as bounded work units. It may exceed the 400-line aggregate budget, but it must not introduce new implementation changes. Promotions use merge commits to preserve ancestry between the long-lived branches; work-unit PRs into `develop` use squash merges. Release tags are accepted only when their commit is contained in `main`.
