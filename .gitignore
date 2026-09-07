@@ -3,6 +3,7 @@
 .packages
 .pub-cache/
 .pub/
+/packages/ui_kit/pubspec.lock
 build/
 coverage/
 

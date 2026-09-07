@@ -6,13 +6,12 @@ Closes #
 
 - [ ] Bug fix
 - [ ] New feature
-- [ ] Documentation
+- [ ] Documentation only
 - [ ] Refactoring
 - [ ] Maintenance/tooling
 - [ ] Breaking change
 
-Select exactly one type and apply the matching `type:*` label when the private
-GitHub repository is available.
+Select exactly one type and apply the matching `type:*` label.
 
 ## Summary
 

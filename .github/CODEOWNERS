@@ -1,3 +1,5 @@
-# Default owner for repository review. Narrower ownership can be added with
-# implementation modules when those directories are introduced.
 * @mdesantis1984
+/apps/catalog/ @mdesantis1984
+/packages/ui-web/ @mdesantis1984
+/packages/ui_kit/ @mdesantis1984
+/.github/ @mdesantis1984

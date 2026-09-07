@@ -1,0 +1,61 @@
+name: Pull request policy
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  policy:
+    name: Issue, label, branch, and size
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate pull request metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_PATH: ${{ github.event_path }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          pr_number="$(jq -r '.pull_request.number' "$EVENT_PATH")"
+          head_ref="$(jq -r '.pull_request.head.ref' "$EVENT_PATH")"
+          body="$(jq -r '.pull_request.body // ""' "$EVENT_PATH")"
+          additions="$(jq -r '.pull_request.additions' "$EVENT_PATH")"
+          deletions="$(jq -r '.pull_request.deletions' "$EVENT_PATH")"
+
+          if [[ ! "$head_ref" =~ ^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)/[a-z0-9._-]+$ ]]; then
+            echo "Invalid branch name: $head_ref" >&2
+            exit 1
+          fi
+
+          mapfile -t type_labels < <(gh api "repos/$REPOSITORY/issues/$pr_number/labels" --paginate --jq '.[] | .name | select(startswith("type:"))')
+          if [[ "${#type_labels[@]}" -ne 1 ]]; then
+            echo "Expected exactly one type:* label, found ${#type_labels[@]}." >&2
+            exit 1
+          fi
+
+          issue_number="$(printf '%s' "$body" | grep -Eio '(closes|fixes|resolves)[[:space:]]+#[0-9]+' | grep -Eo '[0-9]+' | head -n 1 || true)"
+          if [[ -z "$issue_number" ]]; then
+            echo "PR body must contain Closes, Fixes, or Resolves followed by an issue number." >&2
+            exit 1
+          fi
+
+          approved="$(gh issue view "$issue_number" --repo "$REPOSITORY" --json labels --jq 'any(.labels[]; .name == "status:approved")')"
+          if [[ "$approved" != "true" ]]; then
+            echo "Linked issue #$issue_number does not have status:approved." >&2
+            exit 1
+          fi
+
+          changed_lines=$((additions + deletions))
+          if (( changed_lines > 400 )); then
+            echo "PR has $changed_lines changed lines; the review budget is 400." >&2
+            exit 1
+          fi
+
+          echo "PR policy passed for #$pr_number (${type_labels[0]}, $changed_lines changed lines, issue #$issue_number)."

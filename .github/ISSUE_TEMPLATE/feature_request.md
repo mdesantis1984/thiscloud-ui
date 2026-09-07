@@ -2,7 +2,7 @@
 name: Feature request
 about: Propose a focused product or engineering change
 title: ""
-labels: ""
+labels: "type:feature"
 assignees: ""
 ---
 
