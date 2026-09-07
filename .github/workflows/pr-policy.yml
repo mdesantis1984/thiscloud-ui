@@ -25,14 +25,14 @@ jobs:
           pr_number="$(jq -r '.pull_request.number' "$GITHUB_EVENT_PATH")"
           head_ref="$(jq -r '.pull_request.head.ref' "$GITHUB_EVENT_PATH")"
           base_ref="$(jq -r '.pull_request.base.ref' "$GITHUB_EVENT_PATH")"
-          actor="$(jq -r '.sender.login' "$GITHUB_EVENT_PATH")"
+          author="$(jq -r '.pull_request.user.login' "$GITHUB_EVENT_PATH")"
           body="$(jq -r '.pull_request.body // ""' "$GITHUB_EVENT_PATH")"
           additions="$(jq -r '.pull_request.additions' "$GITHUB_EVENT_PATH")"
           deletions="$(jq -r '.pull_request.deletions' "$GITHUB_EVENT_PATH")"
 
           promotion=false
           automation=false
-          if [[ "$actor" == "dependabot[bot]" && "$base_ref" == "develop" && "$head_ref" =~ ^dependabot/ ]]; then
+          if [[ "$author" == "dependabot[bot]" && "$base_ref" == "develop" && "$head_ref" =~ ^dependabot/ ]]; then
             automation=true
           elif [[ "$base_ref" == "main" && "$head_ref" == "develop" ]]; then
             promotion=true
