@@ -1,0 +1,20 @@
+name: thiscloud-ui
+
+services:
+  catalog:
+    image: ghcr.io/mdesantis1984/thiscloud-ui:${UI_IMAGE_TAG:?Set UI_IMAGE_TAG to an immutable release tag}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:${UI_CATALOG_PORT:-8080}:8080"
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+      - /var/cache/nginx:size=16m,uid=101,gid=101
+      - /var/run:size=1m,uid=101,gid=101
