@@ -5,10 +5,10 @@
     "brandSupport": "Aurora",
     "workspace": "Prototipo de documentación",
     "workspaceStrong": "Mapa de componentes orientado por IA",
-    "workspaceVersion": "0.1.0-rc.2 · vista previa web/híbrida",
+    "workspaceVersion": "0.1.0-rc.3 · vista previa web/híbrida",
     "footer": "Vista previa activa",
     "footerSupport": "API RC web/híbrida · solo recursos locales",
-    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.2"
+    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.3"
   },
   "nav": {
     "explore": "Explorar",
@@ -1304,7 +1304,7 @@
     "eyebrow": "Paquete Thiscloud UI",
     "title": "Descargar la RC web/híbrida verificada",
     "intro": "Instale el mismo paquete que usa este catálogo. Contiene únicamente Thiscloud UI Aurora; Thiscloud Center no está incluido.",
-    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.2",
+    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.3",
     "checksum": "Descargar checksum SHA-256",
     "installTitle": "Instalación en cuatro pasos",
     "step1Title": "Descargue ambos archivos",

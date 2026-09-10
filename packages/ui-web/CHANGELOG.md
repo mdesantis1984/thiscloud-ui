@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-rc.3
+
+- Clears stale switch validation UI when a native form reset preserves the default checked state.
+- Keeps switch and text-field activation, focus, and accessible names aligned with labels inserted after connection.
+
 ## 0.1.0-rc.2
 
 - Adds an append-only checksum registry that binds every release version to exact package bytes.

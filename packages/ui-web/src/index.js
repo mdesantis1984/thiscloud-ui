@@ -23,12 +23,13 @@ export class TcSwitch extends HTMLElementBase {
     this.button.addEventListener('click', () => this.toggle());
     this.button.addEventListener('keydown', (event) => this.handleKeydown(event));
     this.addEventListener('invalid', () => { this.touched = true; this.sync(); });
-    this.associatedLabels = [];
+    this.labelRoot = null;
     this.onAssociatedLabelClick = (event) => {
-      // A label wrapping the component receives clicks which originated inside it.
-      // The button listener already handled those; only label activation from outside
-      // the component should act here.
-      if (event.composedPath().includes(this)) return;
+      const path = event.composedPath();
+      const associated = [...(this.internals?.labels ?? [])].some((label) => path.includes(label));
+      // Root delegation keeps labels inserted after connection active without observers.
+      if (!associated || path.includes(this)) return;
+      this.sync();
       this.button?.focus();
       this.toggle();
     };
@@ -36,17 +37,18 @@ export class TcSwitch extends HTMLElementBase {
 
   connectedCallback() {
     if (this.defaultChecked === undefined) this.defaultChecked = this.checked;
-    this.associatedLabels = [...(this.internals?.labels ?? [])];
-    this.associatedLabels.forEach((label) => label.addEventListener('click', this.onAssociatedLabelClick));
+    this.labelRoot?.removeEventListener('click', this.onAssociatedLabelClick);
+    this.labelRoot = this.getRootNode();
+    this.labelRoot.addEventListener('click', this.onAssociatedLabelClick);
     this.sync();
   }
   disconnectedCallback() {
-    this.associatedLabels.forEach((label) => label.removeEventListener('click', this.onAssociatedLabelClick));
-    this.associatedLabels = [];
+    this.labelRoot?.removeEventListener('click', this.onAssociatedLabelClick);
+    this.labelRoot = null;
   }
   attributeChangedCallback() { this.sync(); }
   formDisabledCallback(disabled) { this.formDisabled = disabled; this.sync(); }
-  formResetCallback() { this.touched = false; this.checked = this.defaultChecked; }
+  formResetCallback() { this.touched = false; this.checked = this.defaultChecked; this.sync(); }
 
   get checked() { return this.hasAttribute('checked'); }
   set checked(value) { this.toggleAttribute('checked', Boolean(value)); }
@@ -118,7 +120,7 @@ export class TcSwitch extends HTMLElementBase {
     this.errorNode.hidden = !showError;
     this.errorNode.textContent = showError ? this.requiredMessage : '';
     this.toggleAttribute('data-invalid', showError);
-    const accessibleLabel = this.label || this.associatedLabels.map((label) => label.textContent.trim()).filter(Boolean).join(' ');
+    const accessibleLabel = this.label || [...(this.internals?.labels ?? [])].map((label) => label.textContent.trim()).filter(Boolean).join(' ');
     this.labelNode.textContent = this.label;
     if (accessibleLabel) this.button.setAttribute('aria-label', accessibleLabel);
     else this.button.removeAttribute('aria-label');
