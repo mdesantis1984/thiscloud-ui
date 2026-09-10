@@ -2,11 +2,17 @@ name: thiscloud-ui
 
 services:
   catalog:
-    image: ghcr.io/mdesantis1984/thiscloud-ui:${UI_IMAGE_TAG:?Set UI_IMAGE_TAG to an immutable release tag}
+    image: ${UI_IMAGE_REF:?Set UI_IMAGE_REF to an immutable release tag or digest}
     build:
       context: ..
       dockerfile: Dockerfile
     restart: unless-stopped
+    cpus: 0.50
+    mem_limit: 128m
+    mem_reservation: 32m
+    memswap_limit: 128m
+    pids_limit: 64
+    stop_grace_period: 10s
     read_only: true
     cap_drop:
       - ALL
@@ -18,3 +24,8 @@ services:
       - /tmp:size=16m,mode=1777
       - /var/cache/nginx:size=16m,uid=101,gid=101
       - /var/run:size=1m,uid=101,gid=101
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
