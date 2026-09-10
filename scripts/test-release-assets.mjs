@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { validateReleaseRegistry } from './release-registry.mjs';
+import { gzipSync, gunzipSync } from 'node:zlib';
+import { createDeterministicGzip, validateReleaseRegistry } from './release-registry.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(await readFile(resolve(root, 'packages/ui-web/package.json'), 'utf8'));
@@ -21,6 +22,9 @@ const digest = createHash('sha256').update(archive).digest('hex');
 
 assert.equal(checksum, `${digest}  ${archiveName}\n`, 'Release checksum must describe the packaged bytes.');
 assert.equal(validateReleaseRegistry(releaseChecksums, { version: manifest.version, digest }), digest, 'Release bytes must match the immutable checksum registry.');
+assert.deepEqual(archive, createDeterministicGzip(gunzipSync(archive)), 'Release gzip bytes must use the deterministic encoding.');
+assert.deepEqual(createDeterministicGzip(gunzipSync(gzipSync(gunzipSync(archive), { level: 1 }))), archive, 'Different source compression must normalize to identical release bytes.');
+assert.deepEqual(gunzipSync(createDeterministicGzip(Buffer.alloc(0))), Buffer.alloc(0), 'Deterministic gzip must support an empty payload.');
 assert.throws(
   () => validateReleaseRegistry(releaseChecksums, { version: manifest.version, digest: '0'.repeat(64) }),
   /bump the package version/,

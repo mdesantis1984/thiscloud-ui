@@ -3,7 +3,8 @@ import { execFile } from 'node:child_process';
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
-import { validateReleaseRegistry } from './release-registry.mjs';
+import { gunzipSync } from 'node:zlib';
+import { createDeterministicGzip, validateReleaseRegistry } from './release-registry.mjs';
 
 const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
@@ -49,7 +50,9 @@ if (archives.length !== 1 || archives[0] !== expectedArchive) {
 
 const archivePath = resolve(releaseDir, expectedArchive);
 const checksumName = `${expectedArchive}.sha256`;
-const digest = createHash('sha256').update(await readFile(archivePath)).digest('hex');
+const archive = createDeterministicGzip(gunzipSync(await readFile(archivePath)));
+await writeFile(archivePath, archive);
+const digest = createHash('sha256').update(archive).digest('hex');
 validateReleaseRegistry(releaseChecksums, { version: manifest.version, digest });
 await writeFile(resolve(releaseDir, checksumName), `${digest}  ${expectedArchive}\n`);
 

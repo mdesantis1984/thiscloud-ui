@@ -1,6 +1,38 @@
 const versionPattern = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
 const digestPattern = /^[a-f0-9]{64}$/;
 
+function crc32(input) {
+  let crc = 0xffffffff;
+  for (const byte of input) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit += 1) {
+      crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+    }
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+export function createDeterministicGzip(input) {
+  const source = Buffer.from(input);
+  const chunks = [Buffer.from([0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff])];
+
+  for (let offset = 0; offset < source.length || offset === 0; offset += 0xffff) {
+    const size = Math.min(0xffff, source.length - offset);
+    const block = Buffer.allocUnsafe(size + 5);
+    block[0] = offset + size >= source.length ? 0x01 : 0x00;
+    block.writeUInt16LE(size, 1);
+    block.writeUInt16LE((~size) & 0xffff, 3);
+    source.copy(block, 5, offset, offset + size);
+    chunks.push(block);
+  }
+
+  const trailer = Buffer.allocUnsafe(8);
+  trailer.writeUInt32LE(crc32(source), 0);
+  trailer.writeUInt32LE(source.length >>> 0, 4);
+  chunks.push(trailer);
+  return Buffer.concat(chunks);
+}
+
 export function validateReleaseRegistry(releaseChecksums, { version, digest, baselineChecksums } = {}) {
   if (!releaseChecksums || Array.isArray(releaseChecksums) || typeof releaseChecksums !== 'object') {
     throw new Error('Release checksum registry must be a JSON object.');

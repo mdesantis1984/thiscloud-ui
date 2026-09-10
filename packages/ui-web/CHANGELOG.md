@@ -3,6 +3,7 @@
 ## 0.1.0-rc.2
 
 - Adds an append-only checksum registry that binds every release version to exact package bytes.
+- Normalizes gzip output so release archives are byte-identical across build environments.
 - Rejects packaging when a version's generated tarball differs from its registered checksum.
 - Refreshes release metadata after the repository migration without changing the public API.
 
