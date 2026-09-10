@@ -49,9 +49,13 @@ export class TcTextField extends HTMLElementBase {
       this.input.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
       this.input.focus();
     });
-    this.associatedLabels = [];
+    this.labelRoot = null;
     this.onAssociatedLabelClick = (event) => {
-      if (!event.composedPath().includes(this)) this.input?.focus();
+      const path = event.composedPath();
+      const associated = [...(this.internals?.labels ?? [])].some((label) => path.includes(label));
+      if (!associated || path.includes(this)) return;
+      this.sync();
+      this.input?.focus();
     };
   }
 
@@ -59,8 +63,9 @@ export class TcTextField extends HTMLElementBase {
     if (this.defaultValue === undefined) this.defaultValue = this.value;
     this.input?.addEventListener('keydown', this.onInputKeydown);
     this.input?.addEventListener('keypress', this.onInputKeypress);
-    this.associatedLabels = [...(this.internals?.labels ?? [])];
-    this.associatedLabels.forEach((label) => label.addEventListener('click', this.onAssociatedLabelClick));
+    this.labelRoot?.removeEventListener('click', this.onAssociatedLabelClick);
+    this.labelRoot = this.getRootNode();
+    this.labelRoot.addEventListener('click', this.onAssociatedLabelClick);
     this.sync();
   }
 
@@ -71,8 +76,8 @@ export class TcTextField extends HTMLElementBase {
     this.implicitSubmitTimers.clear();
     this.implicitSubmitCleanups.forEach((cleanup) => cleanup());
     this.implicitSubmitCleanups.clear();
-    this.associatedLabels.forEach((label) => label.removeEventListener('click', this.onAssociatedLabelClick));
-    this.associatedLabels = [];
+    this.labelRoot?.removeEventListener('click', this.onAssociatedLabelClick);
+    this.labelRoot = null;
   }
 
   attributeChangedCallback() { this.sync(); }
@@ -191,7 +196,7 @@ export class TcTextField extends HTMLElementBase {
     this.input.disabled = this.disabled;
     this.labelNode.textContent = this.label;
     this.helperNode.textContent = this.helper;
-    const label = this.label || this.associatedLabels.map((item) => item.textContent.trim()).filter(Boolean).join(' ');
+    const label = this.label || [...(this.internals?.labels ?? [])].map((item) => item.textContent.trim()).filter(Boolean).join(' ');
     if (label) this.input.setAttribute('aria-label', label);
     else this.input.removeAttribute('aria-label');
     this.input.setAttribute('aria-describedby', `${this.helperNode.id} ${this.errorNode.id}`);

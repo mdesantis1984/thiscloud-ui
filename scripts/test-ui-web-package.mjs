@@ -528,6 +528,47 @@ try {
     return { oldListenerRemoved, replacementWorks: control.checked, wrappedChecked: wrapped.checked };
   });
   assert.deepEqual(labels, { oldListenerRemoved: true, replacementWorks: true, wrappedChecked: true }, 'Disconnect/reconnect must remove old label listeners and attach current labels.');
+  const switchResetVisualState = await control.evaluate((element) => {
+    const form = document.querySelector('#form');
+    element.readOnly = false; element.disabled = false; element.required = true; element.checked = false;
+    form.reportValidity();
+    const invalidBeforeReset = element.hasAttribute('data-invalid');
+    form.reset();
+    const error = element.shadowRoot.querySelector('[part=error]');
+    return {
+      invalidBeforeReset,
+      checked: element.checked,
+      constraintAvailable: !element.internals.validity.valid,
+      errorHidden: error.hidden,
+      errorText: error.textContent,
+      dataInvalid: element.hasAttribute('data-invalid'),
+    };
+  });
+  assert.deepEqual(switchResetVisualState, { invalidBeforeReset: true, checked: false, constraintAvailable: true, errorHidden: true, errorText: '', dataInvalid: false }, 'Reset must clear stale switch validation UI even when checked already matches its default.');
+  const dynamicLabels = await page.evaluate(() => {
+    const dynamicSwitch = document.createElement('tc-switch'); dynamicSwitch.id = 'dynamic-switch-label';
+    const dynamicText = document.createElement('tc-text-field'); dynamicText.id = 'dynamic-text-label';
+    document.querySelector('#fieldset').append(dynamicSwitch, dynamicText);
+    const switchLabel = document.createElement('label'); switchLabel.htmlFor = dynamicSwitch.id; switchLabel.textContent = 'Dynamic switch label';
+    const textLabel = document.createElement('label'); textLabel.htmlFor = dynamicText.id; textLabel.textContent = 'Dynamic text label';
+    document.body.append(switchLabel, textLabel);
+    switchLabel.click();
+    const switchResult = {
+      checked: dynamicSwitch.checked,
+      focused: dynamicSwitch.shadowRoot.activeElement === dynamicSwitch.shadowRoot.querySelector('button'),
+      label: dynamicSwitch.shadowRoot.querySelector('button').getAttribute('aria-label'),
+    };
+    textLabel.click();
+    const textResult = {
+      focused: dynamicText.shadowRoot.activeElement === dynamicText.shadowRoot.querySelector('input'),
+      label: dynamicText.shadowRoot.querySelector('input').getAttribute('aria-label'),
+    };
+    return { switchResult, textResult };
+  });
+  assert.deepEqual(dynamicLabels, {
+    switchResult: { checked: true, focused: true, label: 'Dynamic switch label' },
+    textResult: { focused: true, label: 'Dynamic text label' },
+  }, 'Labels inserted after connection must activate, focus, and name their associated controls.');
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const styles = await control.evaluate((element) => {
