@@ -5,10 +5,10 @@
     "brandSupport": "Aurora",
     "workspace": "Documentation prototype",
     "workspaceStrong": "IA-first component map",
-    "workspaceVersion": "0.1.0-rc.1 · web/hybrid preview",
+    "workspaceVersion": "0.1.0-rc.2 · web/hybrid preview",
     "footer": "Preview active",
     "footerSupport": "Web/hybrid RC API · local assets only",
-    "rcPreview": "0.1.0-rc.1 web/hybrid preview"
+    "rcPreview": "0.1.0-rc.2 web/hybrid preview"
   },
   "nav": {
     "explore": "Explore",
@@ -1301,7 +1301,7 @@
     "eyebrow": "Thiscloud UI package",
     "title": "Download the verified web/hybrid RC",
     "intro": "Install the exact package used by this catalog. The package contains only Thiscloud UI Aurora; Thiscloud Center is not included.",
-    "package": "Download @thiscloud/ui-web 0.1.0-rc.1",
+    "package": "Download @thiscloud/ui-web 0.1.0-rc.2",
     "checksum": "Download SHA-256 checksum",
     "installTitle": "Install in four steps",
     "step1Title": "Download both files",

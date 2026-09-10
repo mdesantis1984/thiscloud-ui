@@ -12,6 +12,7 @@ import { build } from 'esbuild';
 const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
 const packageDir = resolve(root, 'packages/ui-web');
+const packageVersion = JSON.parse(await readFile(resolve(packageDir, 'package.json'), 'utf8')).version;
 const temp = await mkdtemp(resolve(tmpdir(), 'thiscloud-ui-web-'));
 
 async function browserExecutable() {
@@ -36,7 +37,7 @@ async function packageArtifact() {
   }
   await exec('tar', ['-xzf', resolve(temp, archive), '-C', temp]);
   const packageRoot = resolve(temp, 'package');
-  assert.equal(JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8')).version, '0.1.0-rc.1', 'The packed package must be the RC1 version.');
+  assert.equal(JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8')).version, packageVersion, 'The packed package version must match its source manifest.');
   const consumer = resolve(temp, 'consumer');
   await mkdir(resolve(consumer, 'node_modules/@thiscloud'), { recursive: true });
   await cp(packageRoot, resolve(consumer, 'node_modules/@thiscloud/ui-web'), { recursive: true });
@@ -560,8 +561,8 @@ try {
   }));
   assert.deepEqual(downloadRoute, {
     title: 'Descargar la RC web/híbrida verificada',
-    packageHref: '/downloads/thiscloud-ui-web-0.1.0-rc.1.tgz',
-    checksumHref: '/downloads/thiscloud-ui-web-0.1.0-rc.1.tgz.sha256',
+    packageHref: `/downloads/thiscloud-ui-web-${packageVersion}.tgz`,
+    checksumHref: `/downloads/thiscloud-ui-web-${packageVersion}.tgz.sha256`,
     guest: 'Invitado',
     ownerInitials: false,
     navigationHref: '#guidance/download',

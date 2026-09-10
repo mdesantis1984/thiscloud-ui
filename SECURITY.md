@@ -6,6 +6,7 @@ Security reports for Thiscloud UI Aurora must use GitHub private vulnerability r
 
 | Version | Supported |
 | --- | --- |
+| `0.1.0-rc.2` | Yes |
 | `0.1.0-rc.1` | Yes |
 | Earlier previews | No |
 
