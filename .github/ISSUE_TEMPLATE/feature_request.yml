@@ -1,0 +1,33 @@
+name: Feature request
+description: Propose a focused product or engineering change
+title: "feat: "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the user or operational problem to solve.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Proposed outcome
+      description: Describe the observable result, not an implementation prescription.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Identify what is in scope, out of scope, and any dependencies.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-signals
+    attributes:
+      label: Acceptance signals
+      description: List the evidence that will prove the outcome is complete.
+    validations:
+      required: true

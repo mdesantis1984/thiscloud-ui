@@ -1,0 +1,50 @@
+name: Tracker issue
+description: Establish an approved parent work unit for a feature-branch chain
+title: ""
+labels: []
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Describe the cohesive outcome this chain must deliver.
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent branch or baseline
+      placeholder: main
+    validations:
+      required: true
+  - type: textarea
+    id: work-units
+    attributes:
+      label: Planned work units
+      description: List the ordered, independently verifiable work units.
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: State what this chain deliberately will not change.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: List the evidence required before the tracker can close.
+    validations:
+      required: true
+  - type: dropdown
+    id: review-budget
+    attributes:
+      label: Review budget
+      description: Select whether every child fits the standard review budget.
+      options:
+        - Within 400 changed lines per child
+        - Size exception requested
+    validations:
+      required: true
