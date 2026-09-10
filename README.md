@@ -4,7 +4,7 @@ Thiscloud UI Aurora is the independent design-system repository for Thiscloud pr
 
 ## Current release
 
-The verified web/hybrid RC is `@thiscloud/ui-web` `0.1.0-rc.1`. Its public API contains `TcSwitch`, `TcTextField`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`. The other 67 catalog routes are design demonstrations, not shipped component APIs. The Flutter package remains an incubation shell.
+The verified web/hybrid RC is `@thiscloud/ui-web` `0.1.0-rc.2`. Its public API contains `TcSwitch`, `TcTextField`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`. The other 67 catalog routes are design demonstrations, not shipped component APIs. The Flutter package remains an incubation shell.
 
 ## Quick start
 
@@ -35,7 +35,7 @@ The catalog is then available at `http://127.0.0.1:8095`. Production builds are 
 pnpm release:prepare
 ```
 
-This creates a versioned tarball and SHA-256 checksum in ignored `tmp/release/`, and places the same files under the generated catalog download directory. Tagged releases publish those artifacts and a catalog container image.
+This creates a versioned tarball and SHA-256 checksum in ignored `tmp/release/`, verifies the bytes against `packages/ui-web/release-checksums.json`, and places the same files under the generated catalog download directory. Tagged releases publish those artifacts and a catalog container image.
 
 ## Boundaries
 
