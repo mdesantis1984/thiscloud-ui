@@ -40,4 +40,3 @@ Details:
 - [ ] Targeted the immediate parent branch.
 - [ ] Kept the child PR at or below 400 changed lines.
 - [ ] Used a Conventional Commit message.
-- [ ] Did not add AI attribution or `Co-Authored-By` trailers.
