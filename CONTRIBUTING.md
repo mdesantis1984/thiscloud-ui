@@ -1,6 +1,6 @@
 # Contributing
 
-Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read [`AGENTS.md`](AGENTS.md) and the relevant issue before editing the repository.
+Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read this guide, the relevant package documentation, and the approved issue before editing the repository.
 
 ## Workflow
 
@@ -8,7 +8,7 @@ Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read [`A
 2. Wait for the owner to apply `status:approved`.
 3. Create a branch named `type/description` from `develop`.
 4. Implement one cohesive work unit with its tests and documentation.
-5. Run the focused verification and `git diff --check`.
+5. Run the focused verification locally and `git diff --check` before pushing.
 6. Commit using Conventional Commits.
 7. Open a PR linking the approved issue and apply exactly one `type:*` label.
 8. Merge only after required checks and owner approval.
@@ -38,7 +38,7 @@ Flutter changes additionally require the pinned SDK and package checks documente
 
 ## Commits
 
-Use `type(scope): outcome`, for example `feat(web): add select control contract` or `ci(release): publish verified package assets`. Never add AI attribution or `Co-Authored-By` trailers.
+Use `type(scope): outcome`, for example `feat(web): add select control contract` or `ci(release): publish verified package assets`.
 
 ## Review checklist
 
