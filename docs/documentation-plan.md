@@ -5,7 +5,7 @@
 | Status | Active |
 | Owner | `@mdesantis1984` |
 | Tracker | [#27](https://github.com/mdesantis1984/thiscloud-ui/issues/27) |
-| Code baseline | `@thiscloud/ui-web` `0.1.0-rc.2` |
+| Code baseline | `@thiscloud/ui-web` `0.1.0-rc.3` |
 | Published release | `@thiscloud/ui-web` `0.1.0-rc.1` |
 | Last verified | 2026-09-10 |
 
