@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
         with:
@@ -37,6 +39,8 @@ jobs:
           UI_WEB_CHROME: /usr/bin/google-chrome
         run: pnpm check:web
       - name: Verify release and deployment
+        env:
+          RELEASE_REGISTRY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: pnpm check:release
       - name: Check patch whitespace
         run: git diff --check

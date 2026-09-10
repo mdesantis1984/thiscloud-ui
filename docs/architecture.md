@@ -22,7 +22,7 @@ Aurora must never import product repositories. Consumers must never import Auror
 
 ## Release contract
 
-- Web releases use `ui-web-v<semver>` tags and immutable tarball/checksum pairs.
+- Web releases use `ui-web-v<semver>` tags and immutable tarball/checksum pairs recorded in the append-only `packages/ui-web/release-checksums.json` registry.
 - The catalog image is built from the same revision and contains the same package assets.
 - RC API claims are accepted only when packed-consumer browser tests pass.
 - Flutter artifacts remain unpublished until the package exposes a verified runtime API.
