@@ -863,6 +863,24 @@ try {
     assert.deepEqual(catalogAssertions.actualPublicRoutes, ['switch', 'text-field', 'field', 'form'], 'The catalog must expose exactly four actual public API routes.');
     assert.equal(catalogAssertions.demoOnlyCount, 67, 'The catalog must expose 67 demo-only routes.');
     assert.equal((await catalogPage.evaluate(() => window.ThiscloudCatalog.records)).length, 71, 'The catalog must expose all 71 routes.');
+    const cardStatuses = async () => {
+      const cards = catalogPage.locator('.component-grid > .card');
+      await cards.first().waitFor();
+      return cards.evaluateAll((items) => Object.fromEntries(items.map((card) => {
+        const heading = card.querySelector(':scope > .card-body > h3');
+        const status = [...card.querySelector(':scope > .card-body > .pill').classList].find((name) => ['rcApi', 'demoOnly', 'production', 'roadmap'].includes(name));
+        return [heading.lastChild.textContent.trim(), status];
+      })));
+    };
+    await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#explore`);
+    let statuses = await cardStatuses();
+    assert.deepEqual(statuses, { Button: 'demoOnly', TextField: 'rcApi', Card: 'demoOnly', Alert: 'demoOnly', Tabs: 'demoOnly', BarChart: 'demoOnly' }, 'Featured cards must use the authoritative public API status.');
+    await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#category/actions`);
+    statuses = await cardStatuses();
+    assert.equal(statuses.Button, 'demoOnly', 'Action category cards must not present demo-only controls as production APIs.');
+    await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#category/inputs-forms`);
+    statuses = await cardStatuses();
+    assert.deepEqual({ Field: statuses.Field, Form: statuses.Form, Switch: statuses.Switch, TextField: statuses.TextField }, { Field: 'rcApi', Form: 'rcApi', Switch: 'rcApi', TextField: 'rcApi' }, 'Input and form category cards must identify every verified RC API.');
     const actualApi = {
       switch: ['TcSwitch', '<tc-switch>'],
       'text-field': ['TcTextField', '<tc-text-field>'],
