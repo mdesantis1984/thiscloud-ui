@@ -1,6 +1,6 @@
 # Thiscloud UI Web Core
 
-`@thiscloud/ui-web` 0.1.0-rc.2 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but it is not available from a public registry.
+`@thiscloud/ui-web` 0.1.0-rc.3 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but it is not available from a public registry.
 
 ## Supported RC API
 
@@ -14,7 +14,7 @@
 Install the verified public tarball in a consumer workspace:
 
 ```bash
-pnpm add https://ui.thiscloud.com.ar/downloads/thiscloud-ui-web-0.1.0-rc.2.tgz
+pnpm add https://ui.thiscloud.com.ar/downloads/thiscloud-ui-web-0.1.0-rc.3.tgz
 ```
 
 This package remains `private: true` solely to prevent accidental registry publication. Versioned release tarballs and checksums are published instead. The tarball also contains registration and CSS-token assets required to use the four boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
