@@ -32,6 +32,8 @@ jobs:
         with:
           node-version: 22.22.1
           cache: pnpm
+      - name: Test pull request policy
+        run: node --test scripts/test-pr-policy.mjs
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Verify web and catalog

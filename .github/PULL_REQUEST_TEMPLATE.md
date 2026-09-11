@@ -27,6 +27,10 @@ Select exactly one type and apply the matching `type:*` label.
 - Promotion-only PR: yes/no
 - Out of scope:
 
+## Size Exception Rationale
+
+_Not applicable._ Replace this text only when an authorized `size:exception` is required.
+
 ## Verification
 
 - [ ] Focused verification completed, or limitation explained below.
