@@ -28,6 +28,28 @@ body:
       description: Include the revision, target, and relevant configuration without secrets.
     validations:
       required: true
+  - type: dropdown
+    id: delivery-impact
+    attributes:
+      label: Delivery impact
+      description: Select every impact that applies, or explicitly select no user-facing impact.
+      multiple: true
+      options:
+        - Documentation change required
+        - Public API change
+        - Migration required
+        - Compatibility change
+        - Release note required
+        - No user-facing impact
+    validations:
+      required: true
+  - type: textarea
+    id: impact-evidence
+    attributes:
+      label: Impact evidence
+      description: Name affected documents and tests, or justify why the selected impact is absent.
+    validations:
+      required: true
   - type: textarea
     id: evidence
     attributes:
