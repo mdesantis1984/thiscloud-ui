@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0-rc.5
+
+- Adds the form-associated `TcRadio` / `<tc-radio>` API with same-name group exclusivity, labels, roving keyboard focus, validation, reset, disabled-fieldset, and FormData behavior.
+- Replaces the catalog Radio mock with nine bilingual SDK-backed overview, variant, and state examples.
+- Adds scoped radio tokens, TypeScript declarations, packed Chromium evidence, and manifest-backed Web/HTML/Go release-candidate status.
+- Records deterministic repository release bytes without claiming registry, GitHub Release, or public-site publication.
+
 ## 0.1.0-rc.4
 
 - Adds the form-associated `TcCheckbox` / `<tc-checkbox>` API with native checkbox semantics, labels, validation, reset, disabled-fieldset, FormData, and indeterminate behavior.

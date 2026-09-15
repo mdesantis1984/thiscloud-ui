@@ -1,6 +1,6 @@
 # Catálogo de Thiscloud UI Aurora
 
-El catálogo del repositorio ofrece una superficie completa de documentación en inglés/español para Thiscloud UI Aurora: cinco rutas de API RC verificadas y 66 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
+El catálogo del repositorio ofrece una superficie completa de documentación en inglés/español para Thiscloud UI Aurora: seis rutas de API RC verificadas y 65 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
 
 ## Recorrido rápido de revisión
 
@@ -38,7 +38,7 @@ pnpm ui-catalog:serve
 
 Cada texto visible para la persona usuaria se obtiene del locale activo. Inglés y español se renderizan con las mismas funciones de ruta; el cambio actualiza el contenido visible, `<html lang>`, etiquetas, placeholders, título, estados, interfaz de iconos, diálogo, toast y búsqueda.
 
-Los identificadores técnicos canónicos permanecen invariantes. Solo Switch, TextField, Field y Form tienen identidades de API RC; las rutas de demostración no tienen una API `Tc*` ni `tc.ui.*`.
+Los identificadores técnicos canónicos permanecen invariantes. Solo Checkbox, Radio, Switch, TextField, Field y Form tienen identidades de API RC; las rutas de demostración no tienen una API `Tc*` ni `tc.ui.*`.
 
 ## Invariantes intencionales
 
@@ -74,7 +74,7 @@ La marca `Thiscloud UI Aurora`, los nombres canónicos de componentes (`ButtonFa
                  un paso actual y estados textuales independientes del color.
                   Lote de detalle BarChart/DonutChart/LineChart/PieChart/StackedBarChart: completado con visuales
                   con nombre, leyendas localizadas y datos equivalentes nativos cerrados por defecto.
-- Etapa 3 — API RC web/híbrida: cuatro rutas (`TcSwitch`/`<tc-switch>`, `TcTextField`/`<tc-text-field>`, `ValidationControl` y `attachFormValidation(nativeForm, options)`); las otras 67 rutas siguen siendo demostraciones de diseño. La implementación Flutter queda diferida.
+- Etapa 3 — API RC web/híbrida: seis rutas (`TcCheckbox`/`<tc-checkbox>`, `TcRadio`/`<tc-radio>`, `TcSwitch`/`<tc-switch>`, `TcTextField`/`<tc-text-field>`, `ValidationControl` y `attachFormValidation(nativeForm, options)`); las otras 65 rutas siguen siendo demostraciones de diseño. La implementación Flutter queda diferida.
 - Cobertura: 71 componentes; siete categorías con cantidades 15 / 6 / 17 / 11 / 5 / 8 / 9; 4.275 tokens oficiales de iconos / 3.975 codepoints únicos; locales EN y ES.
 
 ## Lista de verificación local
@@ -111,4 +111,4 @@ Cada lote futuro de componentes debe verificar los anchos 390, 768/800, 1024, 12
 
 ## Próximo límite
 
-Este artefacto RC1 documenta una vista previa web/híbrida. No declara API para las 66 demostraciones de diseño ni implementa controles Flutter/nativos.
+Este artefacto RC1 documenta una vista previa web/híbrida. No declara API para las 65 demostraciones de diseño ni implementa controles Flutter/nativos.

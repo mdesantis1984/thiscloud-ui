@@ -1,8 +1,10 @@
 import markup from './switch.html';
 import styles from './switch.css';
 import { TcCheckbox } from './checkbox.js';
+import { TcRadio } from './radio.js';
 import { TcTextField } from './text-field.js';
 export { TcCheckbox };
+export { TcRadio };
 export { TcTextField };
 export { attachFormValidation } from './form-validation.js';
 
@@ -134,6 +136,7 @@ export function defineThiscloudUiWeb() {
   let defined = false;
   if (!customElements.get('tc-switch')) { customElements.define('tc-switch', TcSwitch); defined = true; }
   if (!customElements.get('tc-checkbox')) { customElements.define('tc-checkbox', TcCheckbox); defined = true; }
+  if (!customElements.get('tc-radio')) { customElements.define('tc-radio', TcRadio); defined = true; }
   if (!customElements.get('tc-text-field')) { customElements.define('tc-text-field', TcTextField); defined = true; }
   return defined;
 }

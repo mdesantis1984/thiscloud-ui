@@ -181,11 +181,18 @@
           "name": "Radio",
           "kind": "component",
           "support": {
-            "web": "planned",
-            "html": "planned",
-            "go": "planned",
+            "web": "release-candidate",
+            "html": "release-candidate",
+            "go": "release-candidate",
             "blazor": "planned",
             "flutter": "planned"
+          },
+          "web": {
+            "export": "TcRadio",
+            "identity": "TcRadio",
+            "element": "tc-radio",
+            "boundary": "<tc-radio>",
+            "example": "import '@thiscloud/ui-web';\n<tc-radio name=\"environment\" value=\"production\" label=\"Production\" required></tc-radio>"
           }
         },
         {

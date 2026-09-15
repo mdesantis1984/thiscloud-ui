@@ -5,10 +5,10 @@
     "brandSupport": "Aurora",
     "workspace": "Prototipo de documentación",
     "workspaceStrong": "Mapa de componentes orientado por IA",
-    "workspaceVersion": "0.1.0-rc.4 · vista previa web/híbrida",
+    "workspaceVersion": "0.1.0-rc.5 · vista previa web/híbrida",
     "footer": "Vista previa activa",
     "footerSupport": "API RC web/híbrida · solo recursos locales",
-    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.4"
+    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.5"
   },
   "nav": {
     "explore": "Explorar",
@@ -276,10 +276,10 @@
       "accessibility": "Asocie etiqueta y estado, anuncie entradas inválidas y no dependa solo del color."
     },
     "Radio": {
-      "anatomy": "Fieldset, leyenda visible, radios nativos, etiquetas explícitas y estado de selección en vivo.",
-      "usage": "Use Radio para una elección entre opciones relacionadas; mantenga cada opción etiquetada y excluyente.",
-      "api": "TcRadio expone valor, opciones, nombre común, opción deshabilitada y validación en tc.ui.radio.",
-      "accessibility": "Los radios nativos ofrecen Tab, Espacio y flechas; la leyenda nombra el grupo y sus errores."
+      "anatomy": "Host asociado al formulario, una semántica radio nativa, indicador, etiqueta y mensaje de validación.",
+      "usage": "Use Radio para una elección entre pocas opciones; agrupe pares con el mismo nombre, raíz y formulario.",
+      "api": "TcRadio expone checked/defaultChecked, disabled, required, requiredMessage, label, name, value y validación nativa.",
+      "accessibility": "Las etiquetas nombran opciones; Tab entra una vez, Espacio selecciona y las flechas recorren pares habilitados."
     },
     "DropZone": {
       "anatomy": "Destino visible, entrada múltiple, estado de arrastre, lista de metadatos y rechazo.",
@@ -1114,7 +1114,7 @@
       "options": ["Desarrollo", "Producción", "Vista previa"],
       "selected": "Seleccionado:",
       "none": "No hay entorno seleccionado",
-      "error": "Error: elija un entorno antes de continuar."
+      "requiredMessage": "Elija un entorno antes de continuar."
     },
     "checkbox": {
       "legend": "Capacidades del proyecto",
@@ -1306,7 +1306,7 @@
     "eyebrow": "Paquete Thiscloud UI",
     "title": "Descargar la RC web/híbrida verificada",
     "intro": "Instale el mismo paquete que usa este catálogo. Contiene únicamente Thiscloud UI Aurora; Thiscloud Center no está incluido.",
-    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.4",
+    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.5",
     "checksum": "Descargar checksum SHA-256",
     "installTitle": "Instalación en cuatro pasos",
     "step1Title": "Descargue ambos archivos",
@@ -1318,7 +1318,7 @@
     "step3Title": "Instale el archivo local",
     "step4Title": "Importe el registro y los tokens",
     "useTitle": "Use los controles verificados",
-    "useIntro": "La RC expone Switch, TextField, el tipo ValidationControl y el helper de validación de formularios nativos.",
+    "useIntro": "La RC expone Checkbox, Radio, Switch, TextField, el tipo ValidationControl y el helper de validación de formularios nativos.",
     "boundary": "Esta RC está verificada en Chromium. Cada consumidor debe validar su navegador o WebView híbrida de destino.",
     "back": "Volver al catálogo"
   },
