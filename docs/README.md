@@ -1,6 +1,6 @@
 # Documentación de Thiscloud UI Aurora
 
-[Inicio en español](../README.md) · [English](../README.en.md) · [Catálogo en vivo](https://ui.thiscloud.com.ar)
+[Inicio en español](../README.md) · [English documentation](README.en.md) · [Catálogo en vivo](https://ui.thiscloud.com.ar)
 
 Esta página organiza la documentación por audiencia y hace visible el estado de traducción. El español es la entrada principal del repositorio; las fuentes técnicas todavía no traducidas permanecen disponibles mientras avanzan las siguientes unidades de trabajo del [programa documental](documentation-plan.md).
 
@@ -10,6 +10,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | --- | --- | --- |
 | Conocer el producto y probar la RC web | [README principal](../README.md) | Español e inglés |
 | Explorar componentes y demostraciones | [Catálogo](https://ui.thiscloud.com.ar) | Español e inglés |
+| Personalizar los tokens CSS exportados | [Referencia de tokens CSS](reference/css-tokens.md) | Español e inglés |
+| Coordinar la validación de formularios nativos | [Validación de formularios nativos](guides/native-form-validation.md) | Español e inglés |
 | Integrar `@thiscloud/ui-web` | [Guía del paquete web](../packages/ui-web/README.md) | Inglés, traducción pendiente |
 | Entender la frontera Flutter | [Guía de `thiscloud_ui`](../packages/ui_kit/README.md) | Inglés, traducción pendiente |
 | Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
@@ -29,7 +31,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 
 | Unidad de trabajo | Estado |
 | --- | --- |
-| Entrada de producto con español como idioma principal y espejo inglés | En curso en issue #38 |
+| Entrada de producto con español como idioma principal y espejo inglés | Disponible |
+| Guías bilingües de tokens CSS y validación de formularios nativos | Disponible |
 | Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
 | Guías bilingües de los paquetes web y Flutter | Pendiente |
 | Referencia pública generada y validación automática de enlaces | Pendiente |

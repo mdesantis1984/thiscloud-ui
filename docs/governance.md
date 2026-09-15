@@ -19,7 +19,11 @@ For an external contribution, only the maintainer can merge it or provide a revi
 
 ## Automated dependency PRs
 
-Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, remain under the 400-line budget, and pass every required check. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, and pass every required check. A change above 400 lines also needs an administrator-applied `size:exception` label and a concrete rationale showing why no valid split exists. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+
+## Delivery evidence
+
+Issue Forms classify documentation, public API, migration, compatibility, and release-note impact before implementation. Human and promotion PRs repeat those classifications in the `Delivery Impact` section and name concrete evidence. The policy check rejects placeholders or missing dimensions; Dependabot remains exempt because GitHub generates its PR body.
 
 ## Promotion rule
 

@@ -45,7 +45,85 @@ export function sizeExceptionRationale(body) {
   return /^(?:not applicable|no response)\.?$/i.test(normalized) ? '' : value;
 }
 
-export function validatePolicy({ pullRequest, labels, linkedIssueApproved, exceptionPermission }) {
+const impactOptions = new Map([
+  ['Documentation', ['updated', 'not required']],
+  ['Public API', ['changed', 'unchanged']],
+  ['Migration', ['required', 'not required']],
+  ['Compatibility', ['changed', 'unchanged']],
+  ['Release notes', ['required', 'not required']],
+]);
+const issueImpactOptions = new Map([
+  ['Documentation change required', ['Documentation', 'updated']],
+  ['Public API change', ['Public API', 'changed']],
+  ['Migration required', ['Migration', 'required']],
+  ['Compatibility change', ['Compatibility', 'changed']],
+  ['Release note required', ['Release notes', 'required']],
+]);
+
+function sectionLines(body, heading) {
+  const lines = body.split(/\r?\n/);
+  const pattern = new RegExp(`^#{1,6}\\s+${heading}\\s*$`, 'i');
+  const starts = lines.flatMap((line, index) => pattern.test(line) ? [index] : []);
+  if (starts.length !== 1) fail(`PR body must contain exactly one ${heading} section.`);
+  const section = [];
+  for (const line of lines.slice(starts[0] + 1)) {
+    if (/^#{1,6}\s+/.test(line)) break;
+    section.push(line);
+  }
+  return section;
+}
+
+export function deliveryImpact(body) {
+  const section = sectionLines(body, 'Delivery Impact');
+  const impact = {};
+  for (const [field, allowed] of impactOptions) {
+    const matches = section.filter((line) => new RegExp(`^- ${field}:`, 'i').test(line));
+    if (matches.length !== 1) fail(`Delivery Impact must contain exactly one ${field} classification.`);
+    const value = matches[0].replace(new RegExp(`^- ${field}:`, 'i'), '').replaceAll('`', '').trim().toLowerCase();
+    if (!allowed.includes(value)) fail(`Delivery Impact must classify ${field}: ${allowed.join(' or ')}.`);
+    impact[field] = value;
+  }
+  const evidenceLines = section.filter((line) => /^- Evidence:/i.test(line));
+  if (evidenceLines.length !== 1) fail('Delivery Impact must contain exactly one Evidence entry.');
+  const evidence = evidenceLines[0].replace(/^- Evidence:/i, '').trim();
+  if (!evidence || /^(?:n\/?a|none|not applicable)\.?$/i.test(evidence)) {
+    fail('Delivery Impact must include concrete Evidence.');
+  }
+  return { ...impact, Evidence: evidence };
+}
+
+export function issueDeliveryImpact(body) {
+  const submitted = sectionLines(body, 'Delivery impact')
+    .flatMap((line) => line.split(','))
+    .map((value) => value.replace(/^-\s+/, '').trim())
+    .filter(Boolean);
+  const allowed = new Set([...issueImpactOptions.keys(), 'No user-facing impact']);
+  const unknown = submitted.filter((value) => !allowed.has(value));
+  if (unknown.length > 0) fail(`Linked issue has invalid Delivery impact: ${unknown.join(', ')}.`);
+  const selected = submitted.filter((value) => issueImpactOptions.has(value));
+  const noImpact = submitted.includes('No user-facing impact');
+  if (selected.length === 0 && !noImpact) fail('Linked issue must classify Delivery impact.');
+  if (noImpact && selected.length > 0) fail('Linked issue cannot combine No user-facing impact with another Delivery impact.');
+
+  const impact = {
+    Documentation: 'not required',
+    'Public API': 'unchanged',
+    Migration: 'not required',
+    Compatibility: 'unchanged',
+    'Release notes': 'not required',
+  };
+  for (const option of selected) {
+    const [field, value] = issueImpactOptions.get(option);
+    impact[field] = value;
+  }
+  const evidence = sectionLines(body, 'Impact evidence').join('\n').trim();
+  if (!evidence || /^(?:n\/?a|none|not applicable|_no response_)\.?$/i.test(evidence)) {
+    fail('Linked issue must include concrete Impact evidence.');
+  }
+  return { ...impact, Evidence: evidence };
+}
+
+export function validatePolicy({ pullRequest, labels, linkedIssueApproved, linkedIssueBody, exceptionPermission }) {
   const { automation, promotion } = classifyFlow(pullRequest);
   if (!automation && !promotion && !branchPattern.test(pullRequest.headRef)) {
     fail(`Invalid branch name: ${pullRequest.headRef}`);
@@ -57,10 +135,17 @@ export function validatePolicy({ pullRequest, labels, linkedIssueApproved, excep
   }
 
   let reference = 'Dependabot automation';
+  const impact = automation ? undefined : deliveryImpact(pullRequest.body);
   if (!automation) {
     const issueNumber = issueReference(pullRequest.body);
     if (!issueNumber) fail('PR body must contain Closes, Fixes, or Resolves followed by an issue number.');
     if (!linkedIssueApproved) fail(`Linked issue #${issueNumber} does not have status:approved.`);
+    const issueImpact = issueDeliveryImpact(linkedIssueBody ?? '');
+    for (const field of impactOptions.keys()) {
+      if (impact[field] !== issueImpact[field]) {
+        fail(`Delivery Impact ${field} disagrees with linked issue #${issueNumber}.`);
+      }
+    }
     reference = `issue #${issueNumber}`;
   }
 
@@ -79,7 +164,7 @@ export function validatePolicy({ pullRequest, labels, linkedIssueApproved, excep
     exception = true;
   }
 
-  return { automation, changedLines, exception, promotion, reference, typeLabel: typeLabels[0] };
+  return { automation, changedLines, exception, impact, promotion, reference, typeLabel: typeLabels[0] };
 }
 
 async function ghJson(args) {
@@ -121,11 +206,13 @@ export async function main(env = process.env) {
   const labelNames = labels.map(({ name }) => name);
 
   let linkedIssueApproved;
+  let linkedIssueBody;
   if (!flow.automation) {
     const issueNumber = issueReference(pullRequest.body);
     if (issueNumber) {
       const issue = await ghJson([`repos/${repository}/issues/${issueNumber}`]);
       linkedIssueApproved = issue.labels.some(({ name }) => name === 'status:approved');
+      linkedIssueBody = issue.body ?? '';
     }
   }
 
@@ -133,7 +220,7 @@ export async function main(env = process.env) {
   const permission = !flow.promotion && changedLines > 400 && labelNames.includes(exceptionLabel)
     ? await exceptionPermission(repository, source.number)
     : undefined;
-  const result = validatePolicy({ pullRequest, labels: labelNames, linkedIssueApproved, exceptionPermission: permission });
+  const result = validatePolicy({ pullRequest, labels: labelNames, linkedIssueApproved, linkedIssueBody, exceptionPermission: permission });
   const exception = result.exception ? `, ${exceptionLabel}` : '';
   console.log(`PR policy passed for #${source.number} (${pullRequest.headRef} -> ${pullRequest.baseRef}, ${result.typeLabel}, ${result.changedLines} changed lines, ${result.reference}${exception}).`);
 }
