@@ -5,10 +5,10 @@
     "brandSupport": "Aurora",
     "workspace": "Documentation prototype",
     "workspaceStrong": "IA-first component map",
-    "workspaceVersion": "0.1.0-rc.3 · web/hybrid preview",
+    "workspaceVersion": "0.1.0-rc.4 · web/hybrid preview",
     "footer": "Preview active",
     "footerSupport": "Web/hybrid RC API · local assets only",
-    "rcPreview": "0.1.0-rc.3 web/hybrid preview"
+    "rcPreview": "0.1.0-rc.4 web/hybrid preview"
   },
   "nav": {
     "explore": "Explore",
@@ -138,10 +138,10 @@
       "accessibility": "Use role=toolbar with a name; keep one enabled child at tabindex=0 and skip disabled children."
     },
     "Checkbox": {
-      "anatomy": "Native checkbox, visible label, grouped options, focus ring, and checked or indeterminate state.",
+      "anatomy": "Form-associated custom element, one native checkbox semantic, visible label, focus ring, and checked or indeterminate state.",
       "usage": "Use for independent choices; use a fieldset and legend when several options share one question.",
-      "api": "TcCheckbox exposes label, checked, indeterminate, disabled, and change callbacks through tc.ui.checkbox.",
-      "accessibility": "Keep the native checkbox and visible label; Space toggles it without custom keyboard handling."
+      "api": "TcCheckbox exposes checked, defaultChecked, indeterminate, disabled, required, requiredMessage, label, name, value, validation, and native input/change events.",
+      "accessibility": "One named native checkbox owns Space activation and focus; external and wrapping labels activate the same control."
     },
     "Switch": {
       "anatomy": "Native checkbox with switch role, stable label, truthful state, focus ring, and disabled state.",
@@ -1118,6 +1118,8 @@
       "checked": "Checked: cloud sync",
       "unchecked": "Unchecked: email alerts",
       "indeterminate": "Indeterminate: inherited access",
+      "required": "Required: accept the workspace policy",
+      "requiredMessage": "Accept the workspace policy to continue.",
       "disabled": "Disabled: billing export",
       "ready": "Choose any independent capabilities.",
       "on": "On",
@@ -1301,7 +1303,7 @@
     "eyebrow": "Thiscloud UI package",
     "title": "Download the verified web/hybrid RC",
     "intro": "Install the exact package used by this catalog. The package contains only Thiscloud UI Aurora; Thiscloud Center is not included.",
-    "package": "Download @thiscloud/ui-web 0.1.0-rc.3",
+    "package": "Download @thiscloud/ui-web 0.1.0-rc.4",
     "checksum": "Download SHA-256 checksum",
     "installTitle": "Install in four steps",
     "step1Title": "Download both files",

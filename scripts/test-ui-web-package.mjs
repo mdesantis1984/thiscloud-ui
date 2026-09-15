@@ -48,7 +48,8 @@ async function packageArtifact() {
   await mkdir(resolve(consumer, 'node_modules/@thiscloud'), { recursive: true });
   await cp(packageRoot, resolve(consumer, 'node_modules/@thiscloud/ui-web'), { recursive: true });
   const output = await build({ stdin: { contents: "import '@thiscloud/ui-web';", resolveDir: consumer, sourcefile: 'consumer.js' }, bundle: true, format: 'esm', platform: 'browser', write: false });
-  assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-switch/, 'A side-effect-only public import must retain registration.');
+  assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-switch/, 'A side-effect-only public import must retain switch registration.');
+  assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-checkbox/, 'A side-effect-only public import must retain checkbox registration.');
   return { packageRoot, bundle: output.outputFiles[0].text };
 }
 
@@ -60,7 +61,7 @@ function createHostServer({ packageRoot, bundle }) {
     };
     if (request.url === '/') {
       response.writeHead(200, { 'content-type': 'text/html' });
-      response.end(`<!doctype html><link rel="stylesheet" href="/sdk/tokens.css"><form id="form"><fieldset id="fieldset"><label id="external" for="control">External control</label><tc-switch id="control" name="notifications" label="Notifications" value="enabled"></tc-switch><label id="wrapping">Wrapping label <tc-switch id="wrapped" name="wrapped"></tc-switch></label><label id="accessible" for="associated">Associated accessible name</label><tc-switch id="associated" name="associated"></tc-switch></fieldset><button type="reset">Reset</button></form><form id="defaults"><tc-switch id="initial-true" checked label="Initial true"></tc-switch><tc-switch id="initial-false" label="Initial false"></tc-switch></form><script type="module" src="/sdk/index.js"></script>`);
+      response.end(`<!doctype html><link rel="stylesheet" href="/sdk/tokens.css"><form id="form"><fieldset id="fieldset"><label id="external" for="control">External control</label><tc-switch id="control" name="notifications" label="Notifications" value="enabled"></tc-switch><label id="wrapping">Wrapping label <tc-switch id="wrapped" name="wrapped"></tc-switch></label><label id="accessible" for="associated">Associated accessible name</label><tc-switch id="associated" name="associated"></tc-switch></fieldset><button type="reset">Reset</button></form><form id="defaults"><tc-switch id="initial-true" checked label="Initial true"></tc-switch><tc-switch id="initial-false" label="Initial false"></tc-switch></form><form id="checkbox-form"><fieldset id="checkbox-fieldset"><label id="checkbox-external" for="checkbox-control">External checkbox</label><tc-checkbox id="checkbox-control" name="consent" value="accepted" required required-message="Consent is required."></tc-checkbox><label id="checkbox-wrapping">Wrapping checkbox <tc-checkbox id="checkbox-wrapped" name="wrapped-checkbox"></tc-checkbox></label><tc-checkbox id="checkbox-default" name="default-checkbox" label="Default checkbox" checked></tc-checkbox></fieldset><button type="reset">Reset checkbox</button></form><script type="module" src="/sdk/index.js"></script>`);
       return;
     }
     if (request.url === '/side-effect.html') {
@@ -89,7 +90,7 @@ try {
   browser = await chromium.launch({ executablePath: chrome, headless: true });
   const page = await browser.newPage();
   await page.goto(`http://127.0.0.1:${address.port}`);
-  await page.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-text-field'));
+  await page.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox') && customElements.get('tc-text-field'));
   const control = page.locator('#control');
   const switchButton = control.getByRole('switch', { name: 'Notifications' });
   assert.equal(await page.locator('tc-switch').evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelectorAll('[role=switch]').length === 1)), true, 'Each host must expose one switch role.');
@@ -476,7 +477,7 @@ try {
 
   const sideEffectPage = await browser.newPage();
   await sideEffectPage.goto(`http://127.0.0.1:${address.port}/side-effect.html`);
-  await sideEffectPage.waitForFunction(() => customElements.get('tc-switch'));
+  await sideEffectPage.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox'));
 
   const behavior = await control.evaluate((element) => {
     const events = [];
@@ -585,6 +586,130 @@ try {
   });
   assert.equal(styles.background, 'rgb(1, 2, 3)'); assert.notEqual(styles.transform, 'none'); assert.equal(styles.transition, '0s');
 
+  const checkbox = page.locator('#checkbox-control');
+  const checkboxInput = checkbox.getByRole('checkbox', { name: 'External checkbox' });
+  assert.equal(await page.locator('tc-checkbox').evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelectorAll('input[type="checkbox"]').length === 1)), true, 'Each checkbox host must expose exactly one native checkbox semantic.');
+  assert.equal(await page.locator('#checkbox-wrapped').getByRole('checkbox').getAttribute('aria-label'), 'Wrapping checkbox', 'A wrapping label must name the native checkbox.');
+  const programmaticCheckbox = await checkbox.evaluate((element) => {
+    const events = [];
+    for (const type of ['input', 'change']) element.addEventListener(type, (event) => events.push([type, event.composed]));
+    element.checked = true;
+    element.indeterminate = true;
+    const formValue = new FormData(document.querySelector('#checkbox-form')).get('consent');
+    element.checked = false;
+    element.indeterminate = false;
+    return { events, formValue, constructorRegistered: customElements.get('tc-checkbox') === element.constructor };
+  });
+  assert.deepEqual(programmaticCheckbox, { events: [], formValue: 'accepted', constructorRegistered: true }, 'Programmatic checkbox state must be quiet while updating FormData.');
+  await checkbox.evaluate((element) => { element.events = []; for (const type of ['input', 'change']) element.addEventListener(type, (event) => element.events.push([type, event.composed])); });
+  await page.locator('#checkbox-external').click();
+  assert.deepEqual(await checkbox.evaluate((element) => ({ checked: element.checked, focused: element.shadowRoot.activeElement === element.input, events: element.events, value: new FormData(element.form || document.querySelector('#checkbox-form')).get('consent') })), {
+    checked: true, focused: true, events: [['input', true], ['change', true]], value: 'accepted',
+  }, 'An external label must focus and activate the checkbox exactly once.');
+  await checkbox.evaluate((element) => { element.events = []; });
+  await checkboxInput.press('Space');
+  assert.deepEqual(await checkbox.evaluate((element) => ({ checked: element.checked, events: element.events })), { checked: false, events: [['input', true], ['change', true]] }, 'Native Space activation must emit one composed input/change pair.');
+  const mixedBeforeActivation = await checkbox.evaluate((element) => {
+    element.indeterminate = true;
+    element.events = [];
+    return { checked: element.checked, indeterminate: element.indeterminate, submitted: new FormData(document.querySelector('#checkbox-form')).has('consent') };
+  });
+  assert.deepEqual(mixedBeforeActivation, { checked: false, indeterminate: true, submitted: false }, 'Indeterminate must remain visual and never fabricate checked form data.');
+  await checkboxInput.press('Space');
+  assert.deepEqual(await checkbox.evaluate((element) => ({ checked: element.checked, indeterminate: element.indeterminate, events: element.events })), {
+    checked: true, indeterminate: false, events: [['input', true], ['change', true]],
+  }, 'User activation must clear indeterminate and commit one checked interaction.');
+  await page.locator('#checkbox-wrapping').click();
+  assert.deepEqual(await page.locator('#checkbox-wrapped').evaluate((element) => ({ checked: element.checked, focused: element.shadowRoot.activeElement === element.input })), { checked: true, focused: true }, 'A wrapping label must focus and activate its checkbox.');
+  const checkboxValidation = await checkbox.evaluate((element) => {
+    const form = document.querySelector('#checkbox-form');
+    element.checked = false;
+    const check = form.checkValidity();
+    const report = form.reportValidity();
+    return {
+      check,
+      report,
+      message: element.validationMessage,
+      error: element.shadowRoot.querySelector('[part=error]').textContent,
+      ariaInvalid: element.input.getAttribute('aria-invalid'),
+      focused: element.shadowRoot.activeElement === element.input,
+    };
+  });
+  assert.deepEqual(checkboxValidation, { check: false, report: false, message: 'Consent is required.', error: 'Consent is required.', ariaInvalid: 'true', focused: true }, 'Required validation must expose consumer copy, ARIA state, and focus the native checkbox anchor.');
+  await page.locator('#checkbox-default').getByRole('checkbox').click();
+  const checkboxReset = await checkbox.evaluate((element) => {
+    const form = document.querySelector('#checkbox-form');
+    element.checked = true;
+    element.indeterminate = true;
+    form.reset();
+    return {
+      checked: element.checked,
+      indeterminate: element.indeterminate,
+      defaultChecked: document.querySelector('#checkbox-default').checked,
+      constraintAvailable: !element.validity.valid,
+      errorHidden: element.shadowRoot.querySelector('[part=error]').hidden,
+      ariaInvalid: element.input.hasAttribute('aria-invalid'),
+      dataInvalid: element.hasAttribute('data-invalid'),
+    };
+  });
+  assert.deepEqual(checkboxReset, { checked: false, indeterminate: true, defaultChecked: true, constraintAvailable: true, errorHidden: true, ariaInvalid: false, dataInvalid: false }, 'Reset must restore checked defaults, preserve native indeterminate presentation, and clear stale validation UI and ARIA state.');
+  const checkboxDirtyState = await checkbox.evaluate((element) => {
+    const form = document.querySelector('#checkbox-form');
+    element.checked = true;
+    element.defaultChecked = true;
+    element.defaultChecked = false;
+    const dirty = { checked: element.checked, defaultChecked: element.defaultChecked };
+    form.reset();
+    const reset = { checked: element.checked, defaultChecked: element.defaultChecked };
+    element.defaultChecked = true;
+    const clean = { checked: element.checked, defaultChecked: element.defaultChecked };
+    element.defaultChecked = false;
+    form.reset();
+    return { dirty, reset, clean };
+  });
+  assert.deepEqual(checkboxDirtyState, {
+    dirty: { checked: true, defaultChecked: false },
+    reset: { checked: false, defaultChecked: false },
+    clean: { checked: true, defaultChecked: true },
+  }, 'Default changes must preserve dirty checkedness, while reset restores native clean checkedness behavior.');
+  const checkboxDisabled = await checkbox.evaluate(async (element) => {
+    const form = document.querySelector('#checkbox-form');
+    const fieldset = document.querySelector('#checkbox-fieldset');
+    element.checked = true;
+    element.disabled = true;
+    element.events = [];
+    element.input.click();
+    const ownDisabled = !new FormData(form).has('consent');
+    element.disabled = false;
+    fieldset.disabled = true;
+    await new Promise((resolve) => setTimeout(resolve));
+    const fieldsetDisabled = !new FormData(form).has('consent') && form.checkValidity();
+    fieldset.disabled = false;
+    return { ownDisabled, fieldsetDisabled, checked: element.checked, events: element.events };
+  });
+  assert.deepEqual(checkboxDisabled, { ownDisabled: true, fieldsetDisabled: true, checked: true, events: [] }, 'Own and fieldset disabled states must exclude FormData, validation, and interactions.');
+  const dynamicCheckboxLabel = await page.evaluate(() => {
+    const element = document.createElement('tc-checkbox');
+    element.id = 'dynamic-checkbox-label';
+    document.querySelector('#checkbox-form').append(element);
+    const label = document.createElement('label');
+    label.htmlFor = element.id;
+    label.textContent = 'Dynamic checkbox label';
+    document.body.append(label);
+    label.click();
+    return { checked: element.checked, focused: element.shadowRoot.activeElement === element.input, label: element.input.getAttribute('aria-label') };
+  });
+  assert.deepEqual(dynamicCheckboxLabel, { checked: true, focused: true, label: 'Dynamic checkbox label' }, 'A label inserted after connection must activate, focus, and name its checkbox.');
+  const checkboxStyles = await checkbox.evaluate((element) => {
+    element.disabled = false;
+    element.checked = true;
+    element.style.setProperty('--tc-checkbox-checked', 'rgb(4, 5, 6)');
+    const box = element.shadowRoot.querySelector('[part=box]');
+    return { background: getComputedStyle(box).backgroundColor, transitions: getComputedStyle(box).transitionDuration.split(',').map((value) => value.trim()) };
+  });
+  assert.equal(checkboxStyles.background, 'rgb(4, 5, 6)');
+  assert.equal(checkboxStyles.transitions.every((duration) => duration === '0s'), true, 'Reduced motion must remove checkbox transitions.');
+
   catalogServer = spawn(process.execPath, ['scripts/serve-ui-catalog.mjs'], {
     cwd: root, env: { ...process.env, UI_CATALOG_PORT: '0' }, stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -624,6 +749,23 @@ try {
   await catalogPage.locator('#language').click();
   await catalogPage.waitForFunction(() => document.documentElement.lang === 'en');
   assert.deepEqual(await catalogPage.evaluate(() => [document.querySelector('main h1')?.textContent, document.querySelector('#guestText')?.textContent]), ['Download the verified web/hybrid RC', 'Guest'], 'The download guide and guest state must switch to English together.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'es');
+  await catalogPage.setViewportSize({ width: 1280, height: 900 });
+  await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#component/checkbox`);
+  const catalogCheckboxes = catalogPage.locator('tc-checkbox');
+  assert.equal(await catalogCheckboxes.count(), 6, 'The Checkbox route must render its six SDK-backed overview, variant, and state examples.');
+  assert.equal(await catalogCheckboxes.evaluateAll((elements) => elements.filter((element) => element.indeterminate).length), 1, 'The Checkbox variants must include one real indeterminate SDK state.');
+  const checkboxStatus = catalogPage.locator('[data-native-input="Checkbox"] [data-native-status]').first();
+  const checkboxStatusBefore = await checkboxStatus.textContent();
+  await catalogCheckboxes.first().getByRole('checkbox').click();
+  assert.equal(await catalogCheckboxes.first().evaluate((element) => element.checked), false, 'The obfuscated catalog adapter must load and operate tc-checkbox.');
+  assert.notEqual(await checkboxStatus.textContent(), checkboxStatusBefore, 'Catalog checkbox input must update its local status.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'en');
+  assert.equal(await catalogPage.locator('tc-checkbox').count(), 6, 'English Checkbox documentation must retain the SDK examples.');
+  await catalogPage.setViewportSize({ width: 390, height: 844 });
+  assert.equal(await catalogCheckboxes.evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelector('[part=box]').getBoundingClientRect().width >= 20)), true, 'Mobile Checkbox examples must retain usable visible boxes.');
   await catalogPage.locator('#language').click();
   await catalogPage.waitForFunction(() => document.documentElement.lang === 'es');
   await catalogPage.setViewportSize({ width: 1280, height: 900 });

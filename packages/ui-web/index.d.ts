@@ -63,6 +63,23 @@ export class TcSwitch extends HTMLElement implements ValidationControl {
   reportValidity(): boolean;
 }
 
+export class TcCheckbox extends HTMLElement implements ValidationControl {
+  checked: boolean;
+  defaultChecked: boolean;
+  indeterminate: boolean;
+  disabled: boolean;
+  required: boolean;
+  requiredMessage: string;
+  label: string;
+  name: string;
+  value: string;
+  readonly validity: ValidityState;
+  readonly validationMessage: string;
+  readonly willValidate: boolean;
+  checkValidity(): boolean;
+  reportValidity(): boolean;
+}
+
 export class TcTextField extends HTMLElement implements ValidationControl {
   value: string;
   defaultValue: string;
@@ -91,6 +108,7 @@ export function defineThiscloudUiWeb(): boolean;
 declare global {
   interface HTMLElementTagNameMap {
     'tc-switch': TcSwitch;
+    'tc-checkbox': TcCheckbox;
     'tc-text-field': TcTextField;
   }
 }

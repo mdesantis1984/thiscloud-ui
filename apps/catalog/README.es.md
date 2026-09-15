@@ -1,6 +1,6 @@
 # Catálogo de Thiscloud UI Aurora
 
-El catálogo en vivo ofrece una superficie completa de documentación en inglés/español para Thiscloud UI Aurora: cuatro rutas de API RC verificadas y 67 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
+El catálogo del repositorio ofrece una superficie completa de documentación en inglés/español para Thiscloud UI Aurora: cinco rutas de API RC verificadas y 66 rutas de demostración de diseño, iconografía semántica, demostraciones y detalles visibles, navegación directa y un explorador local de Material Symbols Rounded.
 
 ## Recorrido rápido de revisión
 
@@ -111,4 +111,4 @@ Cada lote futuro de componentes debe verificar los anchos 390, 768/800, 1024, 12
 
 ## Próximo límite
 
-Este artefacto RC1 documenta una vista previa web/híbrida. No declara API para las 67 demostraciones de diseño ni implementa controles Flutter/nativos.
+Este artefacto RC1 documenta una vista previa web/híbrida. No declara API para las 66 demostraciones de diseño ni implementa controles Flutter/nativos.
