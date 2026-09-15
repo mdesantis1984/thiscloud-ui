@@ -51,5 +51,5 @@ Details:
 
 - [ ] Linked an approved issue.
 - [ ] Targeted the immediate parent branch.
-- [ ] Kept the child PR at or below 400 changed lines.
+- [ ] Kept the child PR at or below 1000 changed lines.
 - [ ] Used a Conventional Commit message.
