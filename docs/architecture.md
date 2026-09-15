@@ -20,6 +20,20 @@ Thiscloud UI Aurora -> versioned package or image -> Thiscloud product
 
 Aurora must never import product repositories. Consumers must never import Aurora source paths, private modules, generated catalog files, or local workspace links.
 
+## Portable component contract
+
+[`contracts/components.json`](../contracts/components.json) is the versioned neutral inventory for portable component work. The first family covers all 17 `Inputs/Forms` entries and distinguishes components, type contracts, and helpers without claiming that planned catalog demonstrations are shipped APIs.
+
+| Target | Runtime boundary |
+| --- | --- |
+| Web | Standards-based Web Components |
+| HTML | Direct use of the Web Component package |
+| Go | Server-rendered Web Component markup and package assets |
+| Blazor | Thin Razor and JavaScript-interop wrappers over Web Components |
+| Flutter | Native Dart widgets; no WebView runtime |
+
+`release-candidate` means an implementation has current package evidence; `planned` is not a support claim; `not-applicable` is reserved for contracts that have no runtime representation on that target. `pnpm contracts:check` rejects invalid target combinations, duplicate identities, TypeScript declaration drift, and catalog copies that stop consuming the manifest. Runtime properties and events enter the manifest with the component work unit that implements and tests them.
+
 ## Release contract
 
 - Web releases use `ui-web-v<semver>` tags and immutable tarball/checksum pairs recorded in the append-only `packages/ui-web/release-checksums.json` registry.

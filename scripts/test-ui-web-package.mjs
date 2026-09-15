@@ -13,6 +13,12 @@ const exec = promisify(execFile);
 const root = resolve(import.meta.dirname, '..');
 const packageDir = resolve(root, 'packages/ui-web');
 const packageVersion = JSON.parse(await readFile(resolve(packageDir, 'package.json'), 'utf8')).version;
+const componentManifest = JSON.parse(await readFile(resolve(root, 'contracts/components.json'), 'utf8'));
+const formContracts = componentManifest.families.find(({ id }) => id === 'inputs-forms').components;
+const expectedPublicApi = Object.fromEntries(formContracts
+  .filter(({ support }) => support.web === 'release-candidate')
+  .map(({ id, web }) => [id, [web.identity, web.boundary]]));
+const expectedPublicRoutes = Object.keys(expectedPublicApi).sort();
 const temp = await mkdtemp(resolve(tmpdir(), 'thiscloud-ui-web-'));
 
 async function browserExecutable() {
@@ -860,8 +866,8 @@ try {
       }
     }
     const catalogAssertions = await catalogPage.evaluate(() => window.ThiscloudCatalog.assertions);
-    assert.deepEqual(catalogAssertions.actualPublicRoutes, ['switch', 'text-field', 'field', 'form'], 'The catalog must expose exactly four actual public API routes.');
-    assert.equal(catalogAssertions.demoOnlyCount, 67, 'The catalog must expose 67 demo-only routes.');
+    assert.deepEqual([...catalogAssertions.actualPublicRoutes].sort(), expectedPublicRoutes, 'The catalog must expose exactly the manifest-backed public API routes.');
+    assert.equal(catalogAssertions.demoOnlyCount, 71 - expectedPublicRoutes.length, 'Every non-public catalog route must remain explicitly demo-only.');
     assert.equal((await catalogPage.evaluate(() => window.ThiscloudCatalog.records)).length, 71, 'The catalog must expose all 71 routes.');
     const cardStatuses = async () => {
       const cards = catalogPage.locator('.component-grid > .card');
@@ -881,19 +887,13 @@ try {
     await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#category/inputs-forms`);
     statuses = await cardStatuses();
     assert.deepEqual({ Field: statuses.Field, Form: statuses.Form, Switch: statuses.Switch, TextField: statuses.TextField }, { Field: 'rcApi', Form: 'rcApi', Switch: 'rcApi', TextField: 'rcApi' }, 'Input and form category cards must identify every verified RC API.');
-    const actualApi = {
-      switch: ['TcSwitch', '<tc-switch>'],
-      'text-field': ['TcTextField', '<tc-text-field>'],
-      field: ['ValidationControl', 'type contract'],
-      form: ['attachFormValidation(nativeForm, options)', 'native form helper'],
-    };
     for (const language of ['en', 'es']) {
       if (await catalogPage.evaluate(() => document.documentElement.lang) !== language) await catalogPage.locator('#language').click();
       for (const record of await catalogPage.evaluate(() => window.ThiscloudCatalog.records)) {
         await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#component/${record.slug}`);
         const text = await catalogPage.locator('.component-layout').textContent();
         if (catalogAssertions.actualPublicRoutes.includes(record.slug)) {
-          const [identity, boundary] = actualApi[record.slug];
+          const [identity, boundary] = expectedPublicApi[record.slug];
           const renderedApi = await catalogPage.evaluate(() => ({
             badges: [...document.querySelectorAll('.page-head > .row .pill')].slice(0, 2).map((node) => node.textContent),
             api: document.querySelector('#doc-api .card-body > p').textContent,
