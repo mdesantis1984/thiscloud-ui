@@ -13,6 +13,7 @@ const output = resolve(catalog, 'dist');
 const webSource = resolve(root, 'packages/ui-web/src/index.js');
 const webTokens = resolve(root, 'packages/ui-web/src/tokens.css');
 const webOutput = resolve(root, 'packages/ui-web/dist');
+const componentManifestSource = resolve(root, 'contracts/components.json');
 const profile = process.argv[2] ?? 'production';
 
 function insideCatalog(path) {
@@ -23,12 +24,14 @@ function insideCatalog(path) {
 if (!insideCatalog(output)) throw new Error('Refusing to clean an output path outside the catalog.');
 if (!['development', 'production'].includes(profile)) throw new Error(`Unknown profile: ${profile}`);
 
-const [html, cssSource, scriptSource, webTokensSource] = await Promise.all([
+const [html, cssSource, scriptSource, webTokensSource, componentManifestJson] = await Promise.all([
   readFile(source, 'utf8'),
   readFile(css, 'utf8'),
   readFile(script, 'utf8'),
   readFile(webTokens, 'utf8'),
+  readFile(componentManifestSource, 'utf8'),
 ]);
+const componentManifest = JSON.parse(componentManifestJson);
 
 if (/<style\b|<script\b(?![^>]*\bsrc=)/i.test(html)) {
   throw new Error('The catalog shell must reference external CSS and JavaScript only.');
@@ -58,6 +61,7 @@ await build({
 const bundled = await build({
   stdin: { contents: scriptSource, sourcefile: 'catalog.js', loader: 'js', resolveDir: catalog },
   bundle: true,
+  define: { __TC_COMPONENT_MANIFEST__: JSON.stringify(componentManifest) },
   format: 'iife',
   minify: profile === 'production',
   write: false,
