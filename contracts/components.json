@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "web": {
+      "runtime": "web-component"
+    },
+    "html": {
+      "runtime": "web-component",
+      "inherits": "web"
+    },
+    "go": {
+      "runtime": "server-rendered-web-component",
+      "inherits": "web"
+    },
+    "blazor": {
+      "runtime": "razor-web-component-wrapper",
+      "inherits": "web"
+    },
+    "flutter": {
+      "runtime": "native-widget"
+    }
+  },
+  "families": [
+    {
+      "id": "inputs-forms",
+      "catalogName": "Inputs/Forms",
+      "components": [
+        {
+          "id": "autocomplete",
+          "name": "Autocomplete",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "checkbox",
+          "name": "Checkbox",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "chips",
+          "name": "Chips",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "chip-set",
+          "name": "ChipSet",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "color-picker",
+          "name": "ColorPicker",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "date-picker",
+          "name": "DatePicker",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "drop-zone",
+          "name": "DropZone",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "field",
+          "name": "Field",
+          "kind": "contract",
+          "support": {
+            "web": "release-candidate",
+            "html": "not-applicable",
+            "go": "not-applicable",
+            "blazor": "planned",
+            "flutter": "planned"
+          },
+          "web": {
+            "export": "ValidationControl",
+            "identity": "ValidationControl",
+            "boundary": "type contract",
+            "example": "import type { ValidationControl } from '@thiscloud/ui-web';"
+          }
+        },
+        {
+          "id": "file-upload",
+          "name": "FileUpload",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "form",
+          "name": "Form",
+          "kind": "helper",
+          "support": {
+            "web": "release-candidate",
+            "html": "release-candidate",
+            "go": "release-candidate",
+            "blazor": "planned",
+            "flutter": "planned"
+          },
+          "web": {
+            "export": "attachFormValidation",
+            "identity": "attachFormValidation(nativeForm, options)",
+            "boundary": "native form helper",
+            "example": "import { attachFormValidation } from '@thiscloud/ui-web';\nattachFormValidation(nativeForm, options);"
+          }
+        },
+        {
+          "id": "numeric-field",
+          "name": "NumericField",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "radio",
+          "name": "Radio",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "select",
+          "name": "Select",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "slider",
+          "name": "Slider",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        },
+        {
+          "id": "switch",
+          "name": "Switch",
+          "kind": "component",
+          "support": {
+            "web": "release-candidate",
+            "html": "release-candidate",
+            "go": "release-candidate",
+            "blazor": "planned",
+            "flutter": "planned"
+          },
+          "web": {
+            "export": "TcSwitch",
+            "identity": "TcSwitch",
+            "element": "tc-switch",
+            "boundary": "<tc-switch>",
+            "example": "import '@thiscloud/ui-web';\n<tc-switch label=\"Notifications\"></tc-switch>"
+          }
+        },
+        {
+          "id": "text-field",
+          "name": "TextField",
+          "kind": "component",
+          "support": {
+            "web": "release-candidate",
+            "html": "release-candidate",
+            "go": "release-candidate",
+            "blazor": "planned",
+            "flutter": "planned"
+          },
+          "web": {
+            "export": "TcTextField",
+            "identity": "TcTextField",
+            "element": "tc-text-field",
+            "boundary": "<tc-text-field>",
+            "example": "import '@thiscloud/ui-web';\n<tc-text-field label=\"Organization\"></tc-text-field>"
+          }
+        },
+        {
+          "id": "time-picker",
+          "name": "TimePicker",
+          "kind": "component",
+          "support": {
+            "web": "planned",
+            "html": "planned",
+            "go": "planned",
+            "blazor": "planned",
+            "flutter": "planned"
+          }
+        }
+      ]
+    }
+  ]
+}
