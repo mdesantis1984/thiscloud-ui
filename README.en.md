@@ -6,7 +6,7 @@ Accessible, versioned, and verifiable UI foundations for building Thiscloud prod
 
 [Explore the catalog](https://ui.thiscloud.com.ar) · [Download the web RC](https://ui.thiscloud.com.ar/downloads/) · [Documentation](docs/README.md) · [Español](README.md)
 
-[![CI](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml) `repository: @thiscloud/ui-web 0.1.0-rc.3` · `public release: rc.1` · 4 verified API boundaries · 71 documentation routes · ES/EN
+[![CI](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml) `repository: @thiscloud/ui-web 0.1.0-rc.4` · `public release: rc.1` · 5 verified API boundaries · 71 documentation routes · ES/EN
 
 ## A shared foundation, not another component collection
 
@@ -41,6 +41,7 @@ import '@thiscloud/ui-web/tokens.css';
 ```
 
 ```html
+<tc-checkbox name="terms" label="Accept terms" required></tc-checkbox>
 <tc-switch name="notifications" label="Enable notifications" value="enabled"></tc-switch>
 <tc-text-field name="organization" label="Organization" required></tc-text-field>
 ```
@@ -50,8 +51,8 @@ import '@thiscloud/ui-web/tokens.css';
 | Surface | Actual status |
 | --- | --- |
 | Public web release | `@thiscloud/ui-web 0.1.0-rc.1`, available from the download site. |
-| Validated web revision | `@thiscloud/ui-web 0.1.0-rc.3`: private package with `TcSwitch`, `TcTextField`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`, pending publication. |
-| Public catalog | 71 bilingual routes: 4 RC API boundaries and 67 design demonstrations, not published APIs. |
+| Validated web revision | `@thiscloud/ui-web 0.1.0-rc.4`: private package with `TcCheckbox`, `TcSwitch`, `TcTextField`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`, pending publication. |
+| Repository catalog | 71 bilingual routes: 5 RC API boundaries and 66 design demonstrations; site publication remains separate. |
 | Flutter `thiscloud_ui` | Private incubation package with no published runtime components or API yet. |
 
 ## Designed for trust

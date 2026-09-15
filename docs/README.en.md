@@ -22,7 +22,7 @@ This page organizes documentation by audience and makes translation status visib
 ## Documentation contract
 
 - Public APIs are documented only when executable evidence exists.
-- The 67 catalog demonstrations are not presented as published components.
+- The 66 catalog demonstrations are not presented as published components.
 - Commands must run from the stated path.
 - Versions come from manifests and publication records; prose does not invent status.
 - Spanish and English documents retain the same structure and verifiable claims.

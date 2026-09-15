@@ -1,23 +1,25 @@
 # Thiscloud UI Web Core
 
-`@thiscloud/ui-web` 0.1.0-rc.3 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but it is not available from a public registry.
+`@thiscloud/ui-web` 0.1.0-rc.4 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but this revision has not been published to a registry or public download site.
 
 ## Supported RC API
 
 | Surface | Public boundary |
 | --- | --- |
+| `TcCheckbox` | `<tc-checkbox>` custom element |
 | `TcSwitch` | `<tc-switch>` custom element |
 | `TcTextField` | `<tc-text-field>` custom element |
 | `ValidationControl` | TypeScript type contract |
 | `attachFormValidation(nativeForm, options)` | Native-form validation helper |
 
-Install the verified public tarball in a consumer workspace:
+Prepare and install the repository-validated tarball in a consumer workspace:
 
 ```bash
-pnpm add https://ui.thiscloud.com.ar/downloads/thiscloud-ui-web-0.1.0-rc.3.tgz
+pnpm release:prepare
+pnpm add ./tmp/release/thiscloud-ui-web-0.1.0-rc.4.tgz
 ```
 
-This package remains `private: true` solely to prevent accidental registry publication. Versioned release tarballs and checksums are published instead. The tarball also contains registration and CSS-token assets required to use the four boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
+This package remains `private: true` to prevent accidental registry publication. Versioned tarballs and checksums are generated as repository evidence; public availability is a separate release step. The tarball also contains registration and CSS-token assets required to use the five boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
 
 ## Technical choice
 
@@ -54,17 +56,18 @@ import '@thiscloud/ui-web/tokens.css';
 <!-- In a standalone browser page, point at the served package files. -->
 <link rel="stylesheet" href="/node_modules/@thiscloud/ui-web/dist/tokens.css">
 <script type="module" src="/node_modules/@thiscloud/ui-web/dist/index.js"></script>
+<tc-checkbox name="terms" label="Accept terms" value="accepted" required></tc-checkbox>
 <tc-switch name="notifications" label="Enable notifications" value="enabled"></tc-switch>
 <tc-text-field name="organization" label="Organization" helper="Used for workspace display." clearable></tc-text-field>
 ```
 
-The element is form-associated through `ElementInternals`: a checked switch contributes its `value`; an unchecked or disabled switch contributes no value. `required` uses native form validity where the browser supports form-associated custom elements. A readonly unchecked required switch is valid and remains in form data if checked. A disabled ancestor `fieldset` also disables form participation. A native Flutter implementation is outside this web/hybrid slice.
+`tc-checkbox` and `tc-switch` are form-associated through `ElementInternals`: a checked control contributes its `value`; an unchecked or effectively disabled control contributes no value. `required` uses native form validity. A readonly unchecked required switch is valid and remains in form data if checked; Checkbox deliberately has no readonly API because native checkboxes do not define one. A disabled ancestor `fieldset` disables form participation. A native Flutter implementation is outside this web/hybrid slice.
 
-`size` accepts `small`, `medium` (default), or `large`; `tone` accepts `primary` (default) or `secondary`. Consumers can override the documented `--tc-switch-*` CSS custom properties after importing `tokens.css`. The browser test runs the packed package in a blank host using `UI_WEB_CHROME` or the local Chrome path.
+Switch `size` accepts `small`, `medium` (default), or `large`; `tone` accepts `primary` (default) or `secondary`. Consumers can override the documented `--tc-switch-*` and `--tc-checkbox-*` CSS custom properties after importing `tokens.css`. The browser test runs the packed package in a blank host using `UI_WEB_CHROME` or the local Chrome path.
 
-The public properties `checked`, `disabled`, `readOnly`, `required`, `label`, `name`, `value`, `size`, and `tone` reflect their matching attributes. `defaultChecked` is captured on first connection and is restored by the owning form's reset. `disabled` and `readOnly` prevent user input; the latter preserves form participation. Setting properties or attributes programmatically does not emit events. A user pointer or supported keyboard interaction that changes state emits one `input` and one `change` event; both bubble and are composed. No-op keyboard actions emit neither event.
+The boolean controls expose `checked`, `defaultChecked`, `disabled`, `required`, `label`, `name`, and `value`; Switch additionally exposes `readOnly`, `size`, and `tone`. Checkbox exposes the property-only visual state `indeterminate`, which never creates form data and clears on user activation. Form reset restores `defaultChecked` and clears stale validation UI. Setting state programmatically does not emit events. A user pointer or supported keyboard interaction that changes state emits one bubbling and composed `input`/`change` pair.
 
-`label` supplies the visible and accessible name. When it is absent, an associated HTML `<label for="…">` or wrapping `<label>` supplies the accessible name. Associated-label activation focuses the inner switch control. The public declaration file is included in the package for TypeScript consumers.
+`label` supplies the visible and accessible name. When it is absent, an associated HTML `<label for="…">` or wrapping `<label>` supplies the accessible name. Associated-label activation focuses the inner native control. The public declaration file is included in the package for TypeScript consumers.
 
 This SDK is intentionally browser-only. It does not claim universal compatibility: consumers must validate support for custom elements, Shadow DOM, and form-associated custom elements/`ElementInternals` in their target browsers.
 
@@ -72,7 +75,7 @@ This SDK is intentionally browser-only. It does not claim universal compatibilit
 
 ## Native form validation
 
-`tc-text-field` and `tc-switch` expose the native validation surface used by form controls: `validity`, `validationMessage`, `willValidate`, `checkValidity()`, `reportValidity()`, and `focus()`. Each control owns its own touched and error presentation. `tc-switch` accepts an optional `required-message` property/attribute when a consumer needs localized required copy. `tc-switch` requires `ElementInternals` for that surface and throws a descriptive error when the browser lacks it; `tc-text-field` uses its native input when internals are unavailable.
+`tc-checkbox`, `tc-text-field`, and `tc-switch` expose the native validation surface used by form controls: `validity`, `validationMessage`, `willValidate`, `checkValidity()`, `reportValidity()`, and `focus()`. Each control owns its own touched and error presentation. Checkbox and Switch accept optional `required-message` copy. Both boolean controls require `ElementInternals` and throw a descriptive error when the browser lacks it; TextField uses its native input when internals are unavailable.
 
 `attachFormValidation(nativeForm, options)` is an optional, form-scoped helper. It does not create a custom form element, alter `novalidate`, inspect shadow roots, mutate `FormData`, submit requests, or provide localization. It is idempotent for a form and returns a handle with `validate()` and `dispose()`.
 

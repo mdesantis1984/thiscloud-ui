@@ -5,10 +5,10 @@
     "brandSupport": "Aurora",
     "workspace": "Prototipo de documentación",
     "workspaceStrong": "Mapa de componentes orientado por IA",
-    "workspaceVersion": "0.1.0-rc.3 · vista previa web/híbrida",
+    "workspaceVersion": "0.1.0-rc.4 · vista previa web/híbrida",
     "footer": "Vista previa activa",
     "footerSupport": "API RC web/híbrida · solo recursos locales",
-    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.3"
+    "rcPreview": "Vista previa web/híbrida 0.1.0-rc.4"
   },
   "nav": {
     "explore": "Explorar",
@@ -138,10 +138,10 @@
       "accessibility": "Use role=toolbar con nombre; mantenga un hijo activo en tabindex=0 y omita los disabled."
     },
     "Checkbox": {
-      "anatomy": "Casilla nativa, etiqueta visible, opciones agrupadas, foco visible y estado marcado o indeterminado.",
+      "anatomy": "Custom element asociado al formulario, una casilla nativa, etiqueta visible, foco y estado marcado o indeterminado.",
       "usage": "Úsela para elecciones independientes; use fieldset y legend para una pregunta compartida.",
-      "api": "TcCheckbox expone label, checked, indeterminate, disabled y callbacks de cambio mediante tc.ui.checkbox.",
-      "accessibility": "Conserve la casilla nativa y su etiqueta visible; Space la alterna sin lógica personalizada."
+      "api": "TcCheckbox expone checked, defaultChecked, indeterminate, disabled, required, requiredMessage, label, name, value, validación y eventos input/change nativos.",
+      "accessibility": "Una casilla nativa con nombre controla Space y el foco; las etiquetas externas y envolventes activan el mismo control."
     },
     "Switch": {
       "anatomy": "Casilla nativa con rol switch, etiqueta estable, estado veraz, foco visible y estado disabled.",
@@ -1121,6 +1121,8 @@
       "checked": "Marcada: sincronización cloud",
       "unchecked": "Sin marcar: alertas por correo",
       "indeterminate": "Indeterminada: acceso heredado",
+      "required": "Obligatoria: aceptar la política del workspace",
+      "requiredMessage": "Acepte la política del workspace para continuar.",
       "disabled": "Deshabilitada: exportación de facturación",
       "ready": "Elija cualquier capacidad independiente.",
       "on": "Activada",
@@ -1304,7 +1306,7 @@
     "eyebrow": "Paquete Thiscloud UI",
     "title": "Descargar la RC web/híbrida verificada",
     "intro": "Instale el mismo paquete que usa este catálogo. Contiene únicamente Thiscloud UI Aurora; Thiscloud Center no está incluido.",
-    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.3",
+    "package": "Descargar @thiscloud/ui-web 0.1.0-rc.4",
     "checksum": "Descargar checksum SHA-256",
     "installTitle": "Instalación en cuatro pasos",
     "step1Title": "Descargue ambos archivos",

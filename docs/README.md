@@ -22,7 +22,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 ## Contrato documental
 
 - Las APIs públicas se documentan sólo cuando tienen evidencia ejecutable.
-- Las 67 demostraciones del catálogo no se presentan como componentes publicados.
+- Las 66 demostraciones del catálogo no se presentan como componentes publicados.
 - Los comandos deben poder copiarse y ejecutarse desde la ruta indicada.
 - Las versiones viven en manifiestos y registros de publicación; la prosa no inventa estados.
 - Los documentos español/inglés deben conservar la misma estructura y las mismas afirmaciones verificables.
