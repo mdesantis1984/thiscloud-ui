@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { sizeExceptionRationale, validatePolicy } from './validate-pr-policy.mjs';
+import { reviewBudget, sizeExceptionRationale, validatePolicy } from './validate-pr-policy.mjs';
 
 function issueBody(impact = 'Documentation change required', evidence = 'Policy behavior and fixtures change together.') {
   return `### Delivery impact
@@ -44,22 +44,33 @@ test('accepts an ordinary approved work unit within budget', () => {
   assert.equal(result.exception, false);
 });
 
+test('accepts a child exactly at the standard review budget', () => {
+  const result = validatePolicy({
+    pullRequest: request({ additions: reviewBudget, deletions: 0 }),
+    labels: ['status:approved', 'type:feature'],
+    linkedIssueApproved: true,
+    linkedIssueBody: issueBody(),
+  });
+  assert.equal(result.changedLines, reviewBudget);
+  assert.equal(result.exception, false);
+});
+
 test('rejects an over-budget work unit without an exception', () => {
   assert.throws(
     () => validatePolicy({
-      pullRequest: request({ additions: 401 }),
+      pullRequest: request({ additions: reviewBudget + 1, deletions: 0 }),
       labels: ['type:bug'],
       linkedIssueApproved: true,
       linkedIssueBody: issueBody(),
     }),
-    /review budget is 400/,
+    /review budget is 1000/,
   );
 });
 
 test('requires a concrete rationale for the exception label', () => {
   assert.throws(
     () => validatePolicy({
-      pullRequest: request({ additions: 401, body: `${request().body}\n\n## Size exception rationale\n\n_Not applicable._` }),
+      pullRequest: request({ additions: reviewBudget + 1, deletions: 0, body: `${request().body}\n\n## Size exception rationale\n\n_Not applicable._` }),
       labels: ['size:exception', 'type:bug'],
       linkedIssueApproved: true,
       linkedIssueBody: issueBody(),
@@ -72,7 +83,7 @@ test('requires a concrete rationale for the exception label', () => {
 test('requires administrator authority for an exception', () => {
   assert.throws(
     () => validatePolicy({
-      pullRequest: request({ additions: 401, body: `${request().body}\n\n## Size exception rationale\n\nGenerated lockfile is indivisible.` }),
+      pullRequest: request({ additions: reviewBudget + 1, deletions: 0, body: `${request().body}\n\n## Size exception rationale\n\nGenerated lockfile is indivisible.` }),
       labels: ['size:exception', 'type:bug'],
       linkedIssueApproved: true,
       linkedIssueBody: issueBody(),
@@ -84,7 +95,7 @@ test('requires administrator authority for an exception', () => {
 
 test('accepts a documented administrator-approved exception', () => {
   const result = validatePolicy({
-    pullRequest: request({ additions: 401, body: `${request().body}\n\n## Size exception rationale\n\nGenerated lockfile is indivisible.` }),
+    pullRequest: request({ additions: reviewBudget + 1, deletions: 0, body: `${request().body}\n\n## Size exception rationale\n\nGenerated lockfile is indivisible.` }),
     labels: ['size:exception', 'type:bug'],
     linkedIssueApproved: true,
     linkedIssueBody: issueBody(),
@@ -95,7 +106,7 @@ test('accepts a documented administrator-approved exception', () => {
 
 test('keeps promotions exempt from the review budget', () => {
   const result = validatePolicy({
-    pullRequest: request({ additions: 1000, baseRef: 'main', headRef: 'develop' }),
+    pullRequest: request({ additions: reviewBudget + 500, deletions: 0, baseRef: 'main', headRef: 'develop' }),
     labels: ['type:chore'],
     linkedIssueApproved: true,
     linkedIssueBody: issueBody(),

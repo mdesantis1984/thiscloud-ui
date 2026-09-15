@@ -13,7 +13,7 @@ Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read thi
 7. Open a PR linking the approved issue and apply exactly one `type:*` label.
 8. Merge only after required checks and owner approval.
 
-Use chained PRs when a change cannot remain below 400 changed lines without mixing concerns. Each child remains independently reviewable; merge the chain into `develop` in dependency order before promotion.
+Use chained PRs when one cohesive change exceeds 1000 changed lines and can be divided into independently reviewable outcomes. Never combine unrelated concerns to fill the budget. Merge each child into `develop` in dependency order before promotion.
 
 ## Branch model
 
@@ -45,6 +45,6 @@ Use `type(scope): outcome`, for example `feat(web): add select control contract`
 - [ ] The PR links an approved issue.
 - [ ] The PR has exactly one `type:*` label.
 - [ ] The branch and commit names follow repository conventions.
-- [ ] The change stays within the 400-line review budget.
+- [ ] The change stays within the 1000-line review budget.
 - [ ] Verification evidence and runtime limitations are explicit.
 - [ ] No secrets, generated outputs, or unrelated product code are included.
