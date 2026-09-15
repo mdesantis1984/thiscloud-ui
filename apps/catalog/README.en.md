@@ -1,6 +1,6 @@
 # Thiscloud UI Aurora catalog
 
-The live catalog provides a complete English/Spanish documentation surface for Thiscloud UI Aurora: four verified RC API routes and 67 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
+The repository catalog provides a complete English/Spanish documentation surface for Thiscloud UI Aurora: five verified RC API routes and 66 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
 
 ## Quick review path
 
@@ -111,4 +111,4 @@ Every future component batch must verify widths 390, 768/800, 1024, 1280, 1440, 
 
 ## Next boundary
 
-This RC1 artifact documents a web/hybrid preview. It does not claim APIs for the 67 design demos or implement Flutter/native controls.
+This RC1 artifact documents a web/hybrid preview. It does not claim APIs for the 66 design demos or implement Flutter/native controls.

@@ -2,7 +2,7 @@
 
 [Español](css-tokens.md) · [Documentation index](../README.en.md)
 
-This reference covers only the custom properties exported by `@thiscloud/ui-web/tokens.css`. Values match the repository-validated `0.1.0-rc.3` revision.
+This reference covers only the custom properties exported by `@thiscloud/ui-web/tokens.css`. Values match the repository-validated `0.1.0-rc.4` revision.
 
 ## Shortest path
 
@@ -15,6 +15,7 @@ import '@thiscloud/ui-web/tokens.css';
 ```css
 :root {
   --tc-field-focus: #185abc;
+  --tc-checkbox-checked: #185abc;
   --tc-switch-checked: #185abc;
 }
 
@@ -29,11 +30,16 @@ Custom properties inherit into Shadow DOM. A definition on `:root` affects every
 
 | Token | Default value or fallback | Current use |
 | --- | --- | --- |
-| `--tc-control-height` | `44px` | Minimum interactive switch height |
-| `--tc-space-3` | `12px` | Gap between switch and label |
-| `--tc-focus` | `#bb86fc` | Visible switch focus ring |
+| `--tc-control-height` | `44px` | Minimum interactive boolean-control height |
+| `--tc-space-3` | `12px` | Gap between a boolean control and its label |
+| `--tc-focus` | `#bb86fc` | Visible boolean-control focus ring |
 | `--tc-text` | `var(--text, currentColor)` | Field text |
 | `--tc-text-muted` | `var(--muted, #666)` | Label, helper, and clear action |
+| `--tc-checkbox-size` | `20px` | Visible checkbox size |
+| `--tc-checkbox-border` | `var(--tc-field-line)` | Unchecked checkbox border |
+| `--tc-checkbox-surface` | `transparent` | Unchecked checkbox surface |
+| `--tc-checkbox-checked` | `#5946b2` | Checked and indeterminate surface |
+| `--tc-checkbox-mark` | `#fff` | Check and indeterminate marks |
 | `--tc-switch-track` | `#616161` | Unchecked track |
 | `--tc-switch-thumb` | `#fff` | Switch thumb |
 | `--tc-switch-checked` | `#5946b2` | Checked track with primary tone |
@@ -42,7 +48,7 @@ Custom properties inherit into Shadow DOM. A definition on `:root` affects every
 | `--tc-switch-large-scale` | `1.18` | Track scale with `size="large"` |
 | `--tc-field-line` | `var(--line, #767676)` | Field border or line |
 | `--tc-field-focus` | `var(--focus, #5946b2)` | Focused border and label |
-| `--tc-field-error` | `var(--tc-catalog-field-error, var(--bad, #b3261e))` | Field and switch errors |
+| `--tc-field-error` | `var(--tc-catalog-field-error, var(--bad, #b3261e))` | Field, checkbox, and switch errors |
 | `--tc-field-filled` | `var(--field, #f1eff8)` | `variant="filled"` background |
 | `--tc-field-readonly` | `var(--raised, #eee)` | Read-only background |
 | `--tc-field-surface` | `var(--surface, #fff)` | Surface behind an outlined label |
@@ -54,7 +60,7 @@ The names `--text`, `--muted`, `--line`, `--focus`, `--bad`, `--field`, `--raise
 - `tone="secondary"` uses `--tc-switch-secondary`; other values retain the primary tone.
 - `size="small"` and `size="large"` scale the track. `--tc-control-height` continues to control the minimum interactive height.
 - Disabled, read-only, invalid, and focus states apply opacity or color over these tokens; they require no separate theme sheet.
-- `prefers-reduced-motion: reduce` removes transitions from both published controls.
+- `prefers-reduced-motion: reduce` removes transitions from all three published controls.
 
 ## Limits and evidence
 

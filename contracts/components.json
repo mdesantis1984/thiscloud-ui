@@ -42,11 +42,18 @@
           "name": "Checkbox",
           "kind": "component",
           "support": {
-            "web": "planned",
-            "html": "planned",
-            "go": "planned",
+            "web": "release-candidate",
+            "html": "release-candidate",
+            "go": "release-candidate",
             "blazor": "planned",
             "flutter": "planned"
+          },
+          "web": {
+            "export": "TcCheckbox",
+            "identity": "TcCheckbox",
+            "element": "tc-checkbox",
+            "boundary": "<tc-checkbox>",
+            "example": "import '@thiscloud/ui-web';\n<tc-checkbox name=\"terms\" label=\"Accept terms\" required></tc-checkbox>"
           }
         },
         {

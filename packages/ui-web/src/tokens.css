@@ -7,6 +7,11 @@
   --tc-switch-secondary: #42a5f5;
   --tc-switch-small-scale: .82;
   --tc-switch-large-scale: 1.18;
+  --tc-checkbox-size: 20px;
+  --tc-checkbox-border: var(--tc-field-line);
+  --tc-checkbox-surface: transparent;
+  --tc-checkbox-checked: #5946b2;
+  --tc-checkbox-mark: #fff;
   --tc-focus: #bb86fc;
   --tc-text: var(--text, currentColor);
   --tc-text-muted: var(--muted, #666);
