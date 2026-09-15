@@ -6,7 +6,7 @@ Fundamentos de interfaz accesibles, versionados y verificables para construir pr
 
 [Explorar el catálogo](https://ui.thiscloud.com.ar) · [Descargar la RC web](https://ui.thiscloud.com.ar/downloads/) · [Documentación](docs/README.md) · [English](README.en.md)
 
-[![CI](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml) `repositorio: @thiscloud/ui-web 0.1.0-rc.3` · `versión pública: rc.1` · 4 contratos de API verificados · 71 rutas documentales · ES/EN
+[![CI](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mdesantis1984/thiscloud-ui/actions/workflows/ci.yml) `repositorio: @thiscloud/ui-web 0.1.0-rc.4` · `versión pública: rc.1` · 5 contratos de API verificados · 71 rutas documentales · ES/EN
 
 ## Una base compartida, no otra colección de componentes
 
@@ -41,6 +41,7 @@ import '@thiscloud/ui-web/tokens.css';
 ```
 
 ```html
+<tc-checkbox name="terms" label="Aceptar términos" required></tc-checkbox>
 <tc-switch name="notifications" label="Activar notificaciones" value="enabled"></tc-switch>
 <tc-text-field name="organization" label="Organización" required></tc-text-field>
 ```
@@ -50,8 +51,8 @@ import '@thiscloud/ui-web/tokens.css';
 | Superficie | Estado real |
 | --- | --- |
 | Versión web pública | `@thiscloud/ui-web 0.1.0-rc.1`, disponible en el sitio de descargas. |
-| Revisión web validada | `@thiscloud/ui-web 0.1.0-rc.3`: paquete privado con `TcSwitch`, `TcTextField`, `ValidationControl` y `attachFormValidation(nativeForm, options)`, pendiente de publicación. |
-| Catálogo público | 71 rutas bilingües: 4 contratos de API RC y 67 demostraciones de diseño, no APIs publicadas. |
+| Revisión web validada | `@thiscloud/ui-web 0.1.0-rc.4`: paquete privado con `TcCheckbox`, `TcSwitch`, `TcTextField`, `ValidationControl` y `attachFormValidation(nativeForm, options)`, pendiente de publicación. |
+| Catálogo del repositorio | 71 rutas bilingües: 5 contratos de API RC y 66 demostraciones de diseño; la publicación del sitio sigue separada. |
 | `thiscloud_ui` para Flutter | Incubación privada, todavía sin componentes ni API de entorno de ejecución publicados. |
 
 ## Diseñado para poder confiar

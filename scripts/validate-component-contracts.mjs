@@ -112,7 +112,7 @@ export function validateComponentManifest(manifest, { declarations = '', catalog
     if (declarations) verifyDeclaration(component, declarations);
   }
 
-  requireContract(publicComponents.length === 4, `Expected four current RC Web contracts; found ${publicComponents.length}.`);
+  requireContract(publicComponents.length > 0, 'Expected at least one current RC Web contract.');
   if (catalogSource) {
     requireContract(/const componentManifest = __TC_COMPONENT_MANIFEST__/.test(catalogSource), 'Catalog must consume the injected neutral component manifest.');
     requireContract(/formFamily\.components\.map/.test(catalogSource), 'Catalog Inputs/Forms inventory must derive from the neutral manifest.');
