@@ -186,7 +186,7 @@ As of 2026-09-10:
 | 5 | Enforce documentation contracts | Link, version, API, language-parity, privacy, and PR metadata checks are required in CI |
 | 6 | Integrate release documentation | Release workflow verifies docs, notes, artifacts, catalog, and post-release state from one version source |
 
-Each phase uses an approved tracker issue and reviewable child issues. Each child branch and PR must deliver one independently useful outcome and remain within the 400-line review budget; split larger phases into dependency-ordered PRs.
+Each phase uses an approved tracker issue and reviewable child issues. Each child branch and PR must deliver one independently useful outcome and remain within the 1000-line review budget; split larger phases into dependency-ordered PRs.
 
 ## Definition Of Done
 

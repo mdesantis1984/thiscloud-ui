@@ -19,7 +19,7 @@ For an external contribution, only the maintainer can merge it or provide a revi
 
 ## Automated dependency PRs
 
-Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, and pass every required check. A change above 400 lines also needs an administrator-applied `size:exception` label and a concrete rationale showing why no valid split exists. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, and pass every required check. A change above 1000 lines also needs an administrator-applied `size:exception` label and a concrete rationale showing why no valid split exists. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
 
 ## Delivery evidence
 
@@ -27,7 +27,7 @@ Issue Forms classify documentation, public API, migration, compatibility, and re
 
 ## Promotion rule
 
-A promotion PR from `develop` to `main` contains only commits already reviewed as bounded work units. It may exceed the 400-line aggregate budget, but it must not introduce new implementation changes. Promotions use merge commits to preserve ancestry between the long-lived branches; work-unit PRs into `develop` use squash merges. Release tags are accepted only when their commit is contained in `main`.
+A promotion PR from `develop` to `main` contains only commits already reviewed as bounded work units. It may exceed the 1000-line aggregate budget, but it must not introduce new implementation changes. Promotions use merge commits to preserve ancestry between the long-lived branches; work-unit PRs into `develop` use squash merges. Release tags are accepted only when their commit is contained in `main`.
 
 ## Repository settings
 

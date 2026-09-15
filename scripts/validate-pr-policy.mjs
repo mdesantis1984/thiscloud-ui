@@ -5,6 +5,7 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 const branchPattern = /^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\/[a-z0-9._-]+$/;
 const exceptionLabel = 'size:exception';
+export const reviewBudget = 1000;
 
 function fail(message) {
   throw new Error(message);
@@ -151,9 +152,9 @@ export function validatePolicy({ pullRequest, labels, linkedIssueApproved, linke
 
   const changedLines = pullRequest.additions + pullRequest.deletions;
   let exception = false;
-  if (!promotion && changedLines > 400) {
+  if (!promotion && changedLines > reviewBudget) {
     if (!labels.includes(exceptionLabel)) {
-      fail(`PR has ${changedLines} changed lines; the review budget is 400.`);
+      fail(`PR has ${changedLines} changed lines; the review budget is ${reviewBudget}.`);
     }
     if (!sizeExceptionRationale(pullRequest.body)) {
       fail(`PR has ${changedLines} changed lines and ${exceptionLabel}, but no Size exception rationale.`);
@@ -217,7 +218,7 @@ export async function main(env = process.env) {
   }
 
   const changedLines = pullRequest.additions + pullRequest.deletions;
-  const permission = !flow.promotion && changedLines > 400 && labelNames.includes(exceptionLabel)
+  const permission = !flow.promotion && changedLines > reviewBudget && labelNames.includes(exceptionLabel)
     ? await exceptionPermission(repository, source.number)
     : undefined;
   const result = validatePolicy({ pullRequest, labels: labelNames, linkedIssueApproved, linkedIssueBody, exceptionPermission: permission });
