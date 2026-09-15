@@ -2,7 +2,7 @@
 
 [English](css-tokens.en.md) · [Índice de documentación](../README.md)
 
-Esta referencia cubre únicamente las propiedades personalizadas exportadas por `@thiscloud/ui-web/tokens.css`. Los valores corresponden a la revisión validada `0.1.0-rc.4` del repositorio.
+Esta referencia cubre únicamente las propiedades personalizadas exportadas por `@thiscloud/ui-web/tokens.css`. Los valores corresponden a la revisión validada `0.1.0-rc.5` del repositorio.
 
 ## Camino mínimo
 
@@ -16,6 +16,7 @@ import '@thiscloud/ui-web/tokens.css';
 :root {
   --tc-field-focus: #185abc;
   --tc-checkbox-checked: #185abc;
+  --tc-radio-checked: #185abc;
   --tc-switch-checked: #185abc;
 }
 
@@ -40,6 +41,10 @@ Las propiedades personalizadas heredan hacia el Shadow DOM. Una definición en `
 | `--tc-checkbox-surface` | `transparent` | Superficie de la casilla sin marcar |
 | `--tc-checkbox-checked` | `#5946b2` | Superficie marcada e indeterminada |
 | `--tc-checkbox-mark` | `#fff` | Marcas de selección e indeterminada |
+| `--tc-radio-size` | `20px` | Tamaño visible del radio |
+| `--tc-radio-border` | `var(--tc-field-line)` | Borde del radio sin seleccionar |
+| `--tc-radio-surface` | `transparent` | Superficie del radio sin seleccionar |
+| `--tc-radio-checked` | `#5946b2` | Borde y marca interior seleccionados |
 | `--tc-switch-track` | `#616161` | Pista sin activar |
 | `--tc-switch-thumb` | `#fff` | Pulgar del switch |
 | `--tc-switch-checked` | `#5946b2` | Pista activada con tono primario |
@@ -48,7 +53,7 @@ Las propiedades personalizadas heredan hacia el Shadow DOM. Una definición en `
 | `--tc-switch-large-scale` | `1.18` | Escala de pista con `size="large"` |
 | `--tc-field-line` | `var(--line, #767676)` | Borde o línea del campo |
 | `--tc-field-focus` | `var(--focus, #5946b2)` | Borde y etiqueta con foco |
-| `--tc-field-error` | `var(--tc-catalog-field-error, var(--bad, #b3261e))` | Error de campo, checkbox y switch |
+| `--tc-field-error` | `var(--tc-catalog-field-error, var(--bad, #b3261e))` | Error de campo, checkbox, radio y switch |
 | `--tc-field-filled` | `var(--field, #f1eff8)` | Fondo de `variant="filled"` |
 | `--tc-field-readonly` | `var(--raised, #eee)` | Fondo de sólo lectura |
 | `--tc-field-surface` | `var(--surface, #fff)` | Superficie detrás de la etiqueta outlined |
@@ -60,7 +65,7 @@ Los nombres `--text`, `--muted`, `--line`, `--focus`, `--bad`, `--field`, `--rai
 - `tone="secondary"` usa `--tc-switch-secondary`; otros valores conservan el tono primario.
 - `size="small"` y `size="large"` escalan la pista. La altura mínima interactiva sigue controlada por `--tc-control-height`.
 - Los estados `disabled`, `readonly`, inválido y foco aplican opacidad o color sobre estos tokens; no requieren una hoja de tema separada.
-- `prefers-reduced-motion: reduce` elimina las transiciones de los tres controles publicados.
+- `prefers-reduced-motion: reduce` elimina las transiciones de los cuatro controles publicados.
 
 ## Límites y evidencia
 

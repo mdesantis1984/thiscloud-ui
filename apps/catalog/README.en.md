@@ -1,6 +1,6 @@
 # Thiscloud UI Aurora catalog
 
-The repository catalog provides a complete English/Spanish documentation surface for Thiscloud UI Aurora: five verified RC API routes and 66 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
+The repository catalog provides a complete English/Spanish documentation surface for Thiscloud UI Aurora: six verified RC API routes and 65 design-demo routes, semantic component iconography, visible demos/details, direct navigation, and a local Material Symbols Rounded explorer.
 
 ## Quick review path
 
@@ -38,7 +38,7 @@ pnpm ui-catalog:serve
 
 Every user-facing string is read from the active locale content. English and Spanish are rendered together through the same route functions; toggling updates visible copy, `<html lang>`, labels, placeholders, title, status names, icon UI, dialog, toast, and search behavior.
 
-Canonical technical identifiers remain invariant. Only Switch, TextField, Field, and Form have RC API identities; demo routes intentionally have no `Tc*` or `tc.ui.*` API.
+Canonical technical identifiers remain invariant. Only Checkbox, Radio, Switch, TextField, Field, and Form have RC API identities; demo routes intentionally have no `Tc*` or `tc.ui.*` API.
 
 ## Intentional invariants
 
@@ -74,7 +74,7 @@ The `Thiscloud UI Aurora` brand, canonical component names (`ButtonFab`, `TextFi
              dates, one current step, and textual non-color status.
              BarChart/DonutChart/LineChart/PieChart/StackedBarChart detail slice: completed with named visuals,
              localized legends, and native closed-by-default equivalent-data disclosures.
-- Stage 3 — web/hybrid RC API: four routes (`TcSwitch`/`<tc-switch>`, `TcTextField`/`<tc-text-field>`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`); the other 67 routes remain design demos. Flutter implementation is deferred.
+- Stage 3 — web/hybrid RC API: six routes (`TcCheckbox`/`<tc-checkbox>`, `TcRadio`/`<tc-radio>`, `TcSwitch`/`<tc-switch>`, `TcTextField`/`<tc-text-field>`, `ValidationControl`, and `attachFormValidation(nativeForm, options)`); the other 65 routes remain design demos. Flutter implementation is deferred.
 - Coverage: 71 components; seven categories with counts 15 / 6 / 17 / 11 / 5 / 8 / 9; 4,275 official icon tokens / 3,975 unique codepoints; EN and ES locales.
 
 ## Local validation checklist
@@ -111,4 +111,4 @@ Every future component batch must verify widths 390, 768/800, 1024, 1280, 1440, 
 
 ## Next boundary
 
-This RC1 artifact documents a web/hybrid preview. It does not claim APIs for the 66 design demos or implement Flutter/native controls.
+This RC1 artifact documents a web/hybrid preview. It does not claim APIs for the 65 design demos or implement Flutter/native controls.

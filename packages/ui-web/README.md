@@ -1,12 +1,13 @@
 # Thiscloud UI Web Core
 
-`@thiscloud/ui-web` 0.1.0-rc.4 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but this revision has not been published to a registry or public download site.
+`@thiscloud/ui-web` 0.1.0-rc.5 is a private, framework-independent web/hybrid preview. Its source is MIT-licensed and its tarball is reusable for local consumer validation, but this revision has not been published to a registry or public download site.
 
 ## Supported RC API
 
 | Surface | Public boundary |
 | --- | --- |
 | `TcCheckbox` | `<tc-checkbox>` custom element |
+| `TcRadio` | `<tc-radio>` custom element |
 | `TcSwitch` | `<tc-switch>` custom element |
 | `TcTextField` | `<tc-text-field>` custom element |
 | `ValidationControl` | TypeScript type contract |
@@ -16,14 +17,14 @@ Prepare and install the repository-validated tarball in a consumer workspace:
 
 ```bash
 pnpm release:prepare
-pnpm add ./tmp/release/thiscloud-ui-web-0.1.0-rc.4.tgz
+pnpm add ./tmp/release/thiscloud-ui-web-0.1.0-rc.5.tgz
 ```
 
-This package remains `private: true` to prevent accidental registry publication. Versioned tarballs and checksums are generated as repository evidence; public availability is a separate release step. The tarball also contains registration and CSS-token assets required to use the five boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
+This package remains `private: true` to prevent accidental registry publication. Versioned tarballs and checksums are generated as repository evidence; public availability is a separate release step. The tarball also contains registration and CSS-token assets required to use the six boundaries above; they do not add catalog API routes. Flutter/native controls, the remaining catalog routes, cross-browser support claims, and manual assistive-technology certification are outside its public contract.
 
 ## Technical choice
 
-This slice deliberately uses a platform-native custom element instead of a host framework. The agent chose form-associated custom elements and `ElementInternals` so the public control can participate in standard HTML forms without coupling to Flutter or the catalog runtime.
+This package deliberately uses platform-native custom elements instead of a host framework. Form-associated custom elements and `ElementInternals` let the public controls participate in standard HTML forms without coupling to Flutter or the catalog runtime.
 
 ## Build and pack
 
@@ -57,15 +58,17 @@ import '@thiscloud/ui-web/tokens.css';
 <link rel="stylesheet" href="/node_modules/@thiscloud/ui-web/dist/tokens.css">
 <script type="module" src="/node_modules/@thiscloud/ui-web/dist/index.js"></script>
 <tc-checkbox name="terms" label="Accept terms" value="accepted" required></tc-checkbox>
+<tc-radio name="environment" value="production" label="Production" required></tc-radio>
+<tc-radio name="environment" value="preview" label="Preview"></tc-radio>
 <tc-switch name="notifications" label="Enable notifications" value="enabled"></tc-switch>
 <tc-text-field name="organization" label="Organization" helper="Used for workspace display." clearable></tc-text-field>
 ```
 
-`tc-checkbox` and `tc-switch` are form-associated through `ElementInternals`: a checked control contributes its `value`; an unchecked or effectively disabled control contributes no value. `required` uses native form validity. A readonly unchecked required switch is valid and remains in form data if checked; Checkbox deliberately has no readonly API because native checkboxes do not define one. A disabled ancestor `fieldset` disables form participation. A native Flutter implementation is outside this web/hybrid slice.
+`tc-checkbox`, `tc-radio`, and `tc-switch` are form-associated through `ElementInternals`: a checked control contributes its `value`; an unchecked or effectively disabled control contributes no value. Radio peers are exclusive only when they share a non-empty `name`, tree root, and form owner. Group `required` validity applies when any peer is required and none is checked. A readonly unchecked required switch is valid and remains in form data if checked; Checkbox and Radio deliberately have no readonly API because their native counterparts do not define one. A disabled ancestor `fieldset` disables form participation. A native Flutter implementation is outside this web/hybrid slice.
 
-Switch `size` accepts `small`, `medium` (default), or `large`; `tone` accepts `primary` (default) or `secondary`. Consumers can override the documented `--tc-switch-*` and `--tc-checkbox-*` CSS custom properties after importing `tokens.css`. The browser test runs the packed package in a blank host using `UI_WEB_CHROME` or the local Chrome path.
+Switch `size` accepts `small`, `medium` (default), or `large`; `tone` accepts `primary` (default) or `secondary`. Consumers can override the documented `--tc-switch-*`, `--tc-checkbox-*`, and `--tc-radio-*` CSS custom properties after importing `tokens.css`. The browser test runs the packed package in a blank host using `UI_WEB_CHROME` or the local Chrome path.
 
-The boolean controls expose `checked`, `defaultChecked`, `disabled`, `required`, `label`, `name`, and `value`; Switch additionally exposes `readOnly`, `size`, and `tone`. Checkbox exposes the property-only visual state `indeterminate`, which never creates form data and clears on user activation. Form reset restores `defaultChecked` and clears stale validation UI. Setting state programmatically does not emit events. A user pointer or supported keyboard interaction that changes state emits one bubbling and composed `input`/`change` pair.
+The selection controls expose `checked`, `defaultChecked`, `disabled`, `required`, `label`, `name`, and `value`; Switch additionally exposes `readOnly`, `size`, and `tone`. Checkbox exposes the property-only visual state `indeterminate`, which never creates form data and clears on user activation. Radio keeps one enabled group tab stop and uses Space or arrow keys for native-style selection. Form reset restores `defaultChecked` and clears stale validation UI. Setting state programmatically does not emit events. A user pointer or supported keyboard interaction that changes state emits one bubbling and composed `input`/`change` pair from the selected control only.
 
 `label` supplies the visible and accessible name. When it is absent, an associated HTML `<label for="…">` or wrapping `<label>` supplies the accessible name. Associated-label activation focuses the inner native control. The public declaration file is included in the package for TypeScript consumers.
 
@@ -75,7 +78,7 @@ This SDK is intentionally browser-only. It does not claim universal compatibilit
 
 ## Native form validation
 
-`tc-checkbox`, `tc-text-field`, and `tc-switch` expose the native validation surface used by form controls: `validity`, `validationMessage`, `willValidate`, `checkValidity()`, `reportValidity()`, and `focus()`. Each control owns its own touched and error presentation. Checkbox and Switch accept optional `required-message` copy. Both boolean controls require `ElementInternals` and throw a descriptive error when the browser lacks it; TextField uses its native input when internals are unavailable.
+`tc-checkbox`, `tc-radio`, `tc-text-field`, and `tc-switch` expose the native validation surface used by form controls: `validity`, `validationMessage`, `willValidate`, `checkValidity()`, `reportValidity()`, and `focus()`. Each control owns its own touched and error presentation. Checkbox, Radio, and Switch accept optional `required-message` copy. All three selection controls require `ElementInternals` and throw a descriptive error when the browser lacks it; TextField uses its native input when internals are unavailable.
 
 `attachFormValidation(nativeForm, options)` is an optional, form-scoped helper. It does not create a custom form element, alter `novalidate`, inspect shadow roots, mutate `FormData`, submit requests, or provide localization. It is idempotent for a form and returns a handle with `validate()` and `dispose()`.
 

@@ -1,0 +1,114 @@
+:host {
+  color: var(--tc-text, var(--text, currentColor));
+  display: inline-block;
+  font: inherit;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.control {
+  align-items: center;
+  cursor: pointer;
+  display: inline-grid;
+  gap: var(--tc-space-3, 12px);
+  grid-template-columns: var(--tc-radio-size, 20px) auto;
+  min-height: var(--tc-control-height, 44px);
+  position: relative;
+}
+
+input {
+  appearance: none;
+  cursor: inherit;
+  height: 100%;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.radio {
+  align-items: center;
+  background: var(--tc-radio-surface, transparent);
+  border: 2px solid var(--tc-radio-border, var(--tc-field-line, var(--line, #767676)));
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-flex;
+  height: var(--tc-radio-size, 20px);
+  justify-content: center;
+  transition: border-color 120ms ease;
+  width: var(--tc-radio-size, 20px);
+}
+
+.radio::after {
+  background: var(--tc-radio-checked, #5946b2);
+  border-radius: 50%;
+  content: '';
+  height: calc(var(--tc-radio-size, 20px) / 2);
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity 120ms ease, transform 120ms ease;
+  width: calc(var(--tc-radio-size, 20px) / 2);
+}
+
+input:checked + .radio {
+  border-color: var(--tc-radio-checked, #5946b2);
+}
+
+input:checked + .radio::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+input:focus-visible + .radio {
+  outline: 3px solid var(--tc-focus, #bb86fc);
+  outline-offset: 3px;
+}
+
+.label:empty {
+  display: none;
+}
+
+:host([data-invalid]) .radio {
+  border-color: var(--tc-field-error, var(--bad, #b3261e));
+}
+
+:host([disabled]),
+:host([data-form-disabled]) {
+  opacity: .55;
+}
+
+:host([disabled]) .control,
+:host([data-form-disabled]) .control {
+  cursor: not-allowed;
+}
+
+[part='error'] {
+  color: var(--tc-field-error, var(--bad, #b3261e));
+  font-size: .78rem;
+  margin-top: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radio,
+  .radio::after {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .radio {
+    forced-color-adjust: none;
+  }
+
+  input:checked + .radio {
+    border-color: Highlight;
+  }
+
+  input:checked + .radio::after {
+    background: Highlight;
+  }
+}

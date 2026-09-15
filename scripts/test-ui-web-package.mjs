@@ -50,6 +50,7 @@ async function packageArtifact() {
   const output = await build({ stdin: { contents: "import '@thiscloud/ui-web';", resolveDir: consumer, sourcefile: 'consumer.js' }, bundle: true, format: 'esm', platform: 'browser', write: false });
   assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-switch/, 'A side-effect-only public import must retain switch registration.');
   assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-checkbox/, 'A side-effect-only public import must retain checkbox registration.');
+  assert.match(output.outputFiles[0].text, /customElements\.define\(['"]tc-radio/, 'A side-effect-only public import must retain radio registration.');
   return { packageRoot, bundle: output.outputFiles[0].text };
 }
 
@@ -61,7 +62,7 @@ function createHostServer({ packageRoot, bundle }) {
     };
     if (request.url === '/') {
       response.writeHead(200, { 'content-type': 'text/html' });
-      response.end(`<!doctype html><link rel="stylesheet" href="/sdk/tokens.css"><form id="form"><fieldset id="fieldset"><label id="external" for="control">External control</label><tc-switch id="control" name="notifications" label="Notifications" value="enabled"></tc-switch><label id="wrapping">Wrapping label <tc-switch id="wrapped" name="wrapped"></tc-switch></label><label id="accessible" for="associated">Associated accessible name</label><tc-switch id="associated" name="associated"></tc-switch></fieldset><button type="reset">Reset</button></form><form id="defaults"><tc-switch id="initial-true" checked label="Initial true"></tc-switch><tc-switch id="initial-false" label="Initial false"></tc-switch></form><form id="checkbox-form"><fieldset id="checkbox-fieldset"><label id="checkbox-external" for="checkbox-control">External checkbox</label><tc-checkbox id="checkbox-control" name="consent" value="accepted" required required-message="Consent is required."></tc-checkbox><label id="checkbox-wrapping">Wrapping checkbox <tc-checkbox id="checkbox-wrapped" name="wrapped-checkbox"></tc-checkbox></label><tc-checkbox id="checkbox-default" name="default-checkbox" label="Default checkbox" checked></tc-checkbox></fieldset><button type="reset">Reset checkbox</button></form><script type="module" src="/sdk/index.js"></script>`);
+      response.end(`<!doctype html><link rel="stylesheet" href="/sdk/tokens.css"><form id="form"><fieldset id="fieldset"><label id="external" for="control">External control</label><tc-switch id="control" name="notifications" label="Notifications" value="enabled"></tc-switch><label id="wrapping">Wrapping label <tc-switch id="wrapped" name="wrapped"></tc-switch></label><label id="accessible" for="associated">Associated accessible name</label><tc-switch id="associated" name="associated"></tc-switch></fieldset><button type="reset">Reset</button></form><form id="defaults"><tc-switch id="initial-true" checked label="Initial true"></tc-switch><tc-switch id="initial-false" label="Initial false"></tc-switch></form><form id="checkbox-form"><fieldset id="checkbox-fieldset"><label id="checkbox-external" for="checkbox-control">External checkbox</label><tc-checkbox id="checkbox-control" name="consent" value="accepted" required required-message="Consent is required."></tc-checkbox><label id="checkbox-wrapping">Wrapping checkbox <tc-checkbox id="checkbox-wrapped" name="wrapped-checkbox"></tc-checkbox></label><tc-checkbox id="checkbox-default" name="default-checkbox" label="Default checkbox" checked></tc-checkbox></fieldset><button type="reset">Reset checkbox</button></form><form id="radio-form"><fieldset id="radio-fieldset"><label id="radio-external" for="radio-production">Production</label><tc-radio id="radio-production" name="environment" value="production" required required-message="Choose an environment."></tc-radio><label id="radio-wrapping">Preview <tc-radio id="radio-preview" name="environment" value="preview"></tc-radio></label><tc-radio id="radio-disabled" name="environment" value="staging" label="Staging" disabled></tc-radio><tc-radio id="radio-default" name="default-radio" value="default" label="Default radio" checked></tc-radio><tc-radio id="radio-alternate" name="default-radio" value="alternate" label="Alternate radio"></tc-radio></fieldset><button type="reset">Reset radios</button></form><form id="other-radio-form"><tc-radio id="radio-other-form" name="environment" value="other" label="Other form" checked></tc-radio></form><script type="module" src="/sdk/index.js"></script>`);
       return;
     }
     if (request.url === '/side-effect.html') {
@@ -90,7 +91,7 @@ try {
   browser = await chromium.launch({ executablePath: chrome, headless: true });
   const page = await browser.newPage();
   await page.goto(`http://127.0.0.1:${address.port}`);
-  await page.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox') && customElements.get('tc-text-field'));
+  await page.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox') && customElements.get('tc-radio') && customElements.get('tc-text-field'));
   const control = page.locator('#control');
   const switchButton = control.getByRole('switch', { name: 'Notifications' });
   assert.equal(await page.locator('tc-switch').evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelectorAll('[role=switch]').length === 1)), true, 'Each host must expose one switch role.');
@@ -477,7 +478,7 @@ try {
 
   const sideEffectPage = await browser.newPage();
   await sideEffectPage.goto(`http://127.0.0.1:${address.port}/side-effect.html`);
-  await sideEffectPage.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox'));
+  await sideEffectPage.waitForFunction(() => customElements.get('tc-switch') && customElements.get('tc-checkbox') && customElements.get('tc-radio'));
 
   const behavior = await control.evaluate((element) => {
     const events = [];
@@ -710,6 +711,149 @@ try {
   assert.equal(checkboxStyles.background, 'rgb(4, 5, 6)');
   assert.equal(checkboxStyles.transitions.every((duration) => duration === '0s'), true, 'Reduced motion must remove checkbox transitions.');
 
+  const productionRadio = page.locator('#radio-production');
+  const previewRadio = page.locator('#radio-preview');
+  const productionInput = productionRadio.getByRole('radio', { name: 'Production' });
+  assert.equal(await page.locator('tc-radio').evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelectorAll('input[type="radio"]').length === 1)), true, 'Each radio host must expose exactly one native radio semantic.');
+  assert.equal(await previewRadio.getByRole('radio').getAttribute('aria-label'), 'Preview', 'A wrapping label must name the native radio.');
+  const programmaticRadio = await productionRadio.evaluate((element) => {
+    const preview = document.querySelector('#radio-preview');
+    const other = document.querySelector('#radio-other-form');
+    const events = [];
+    for (const radio of [element, preview]) for (const type of ['input', 'change']) radio.addEventListener(type, () => events.push(`${radio.id}:${type}`));
+    element.checked = true;
+    preview.checked = true;
+    return {
+      events,
+      production: element.checked,
+      preview: preview.checked,
+      other: other.checked,
+      value: new FormData(document.querySelector('#radio-form')).get('environment'),
+      constructorRegistered: customElements.get('tc-radio') === element.constructor,
+    };
+  });
+  assert.deepEqual(programmaticRadio, { events: [], production: false, preview: true, other: true, value: 'preview', constructorRegistered: true }, 'Programmatic radio selection must quietly update only its same-form group.');
+  await productionRadio.evaluate((element) => {
+    const preview = document.querySelector('#radio-preview');
+    element.checked = false;
+    preview.checked = false;
+    element.events = [];
+    preview.events = [];
+    for (const radio of [element, preview]) for (const type of ['input', 'change']) radio.addEventListener(type, (event) => radio.events.push([type, event.composed]));
+  });
+  await page.locator('#radio-external').click();
+  assert.deepEqual(await productionRadio.evaluate((element) => ({
+    checked: element.checked,
+    preview: document.querySelector('#radio-preview').checked,
+    other: document.querySelector('#radio-other-form').checked,
+    focused: element.shadowRoot.activeElement === element.input,
+    events: element.events,
+    peerEvents: document.querySelector('#radio-preview').events,
+    value: new FormData(document.querySelector('#radio-form')).get('environment'),
+  })), { checked: true, preview: false, other: true, focused: true, events: [['input', true], ['change', true]], peerEvents: [], value: 'production' }, 'An external label must select and focus one radio without emitting events from the unchecked peer.');
+  await productionInput.press('ArrowDown');
+  assert.deepEqual(await previewRadio.evaluate((element) => ({
+    checked: element.checked,
+    production: document.querySelector('#radio-production').checked,
+    focused: element.shadowRoot.activeElement === element.input,
+    ownTabIndex: element.input.tabIndex,
+    peerTabIndex: document.querySelector('#radio-production').input.tabIndex,
+    events: element.events,
+  })), { checked: true, production: false, focused: true, ownTabIndex: 0, peerTabIndex: -1, events: [['input', true], ['change', true]] }, 'Arrow navigation must skip disabled peers, select the next radio, and move the group tab stop.');
+  const radioValidation = await productionRadio.evaluate((element) => {
+    const form = document.querySelector('#radio-form');
+    const preview = document.querySelector('#radio-preview');
+    element.checked = false;
+    preview.checked = false;
+    const check = form.checkValidity();
+    const report = form.reportValidity();
+    return {
+      check,
+      report,
+      ownMissing: element.validity.valueMissing,
+      peerMissing: preview.validity.valueMissing,
+      message: element.validationMessage,
+      error: element.shadowRoot.querySelector('[part=error]').textContent,
+      focused: element.shadowRoot.activeElement === element.input,
+    };
+  });
+  assert.deepEqual(radioValidation, { check: false, report: false, ownMissing: true, peerMissing: true, message: 'Choose an environment.', error: 'Choose an environment.', focused: true }, 'Required validation must apply to the whole radio group and focus its first invalid member.');
+  const radioReset = await productionRadio.evaluate((element) => {
+    const form = document.querySelector('#radio-form');
+    const defaultRadio = document.querySelector('#radio-default');
+    const alternate = document.querySelector('#radio-alternate');
+    alternate.checked = true;
+    form.reset();
+    return {
+      selected: new FormData(form).get('default-radio'),
+      production: element.checked,
+      defaultRadio: defaultRadio.checked,
+      alternate: alternate.checked,
+      errorHidden: element.shadowRoot.querySelector('[part=error]').hidden,
+      dataInvalid: element.hasAttribute('data-invalid'),
+    };
+  });
+  assert.deepEqual(radioReset, { selected: 'default', production: false, defaultRadio: true, alternate: false, errorHidden: true, dataInvalid: false }, 'Reset must restore radio defaults and clear stale validation presentation.');
+  const radioPeerDirtyState = await page.locator('#radio-default').evaluate((element) => {
+    const form = document.querySelector('#radio-form');
+    const alternate = document.querySelector('#radio-alternate');
+    alternate.checked = true;
+    element.defaultChecked = false;
+    element.defaultChecked = true;
+    const afterDefaultChange = { selected: element.checked, peer: alternate.checked, defaultChecked: element.defaultChecked };
+    form.reset();
+    const afterReset = { selected: element.checked, peer: alternate.checked };
+    return { afterDefaultChange, afterReset };
+  });
+  assert.deepEqual(radioPeerDirtyState, {
+    afterDefaultChange: { selected: false, peer: true, defaultChecked: true },
+    afterReset: { selected: true, peer: false },
+  }, 'Group deselection must dirty the unchecked peer so later default changes stay quiet until reset.');
+  const radioDirtyState = await productionRadio.evaluate((element) => {
+    const form = document.querySelector('#radio-form');
+    element.checked = true;
+    element.defaultChecked = true;
+    element.defaultChecked = false;
+    const dirty = { checked: element.checked, defaultChecked: element.defaultChecked };
+    form.reset();
+    const reset = { checked: element.checked, defaultChecked: element.defaultChecked };
+    element.defaultChecked = true;
+    const clean = { checked: element.checked, defaultChecked: element.defaultChecked };
+    element.defaultChecked = false;
+    form.reset();
+    return { dirty, reset, clean };
+  });
+  assert.deepEqual(radioDirtyState, {
+    dirty: { checked: true, defaultChecked: false },
+    reset: { checked: false, defaultChecked: false },
+    clean: { checked: true, defaultChecked: true },
+  }, 'Radio default changes must preserve dirty checkedness, while reset restores native clean checkedness behavior.');
+  const radioDisabled = await productionRadio.evaluate(async (element) => {
+    const form = document.querySelector('#radio-form');
+    const fieldset = document.querySelector('#radio-fieldset');
+    element.checked = true;
+    element.disabled = true;
+    element.events = [];
+    element.input.click();
+    const ownDisabled = !new FormData(form).has('environment');
+    element.disabled = false;
+    fieldset.disabled = true;
+    await new Promise((resolve) => setTimeout(resolve));
+    const fieldsetDisabled = !new FormData(form).has('environment') && form.checkValidity();
+    fieldset.disabled = false;
+    return { ownDisabled, fieldsetDisabled, checked: element.checked, events: element.events };
+  });
+  assert.deepEqual(radioDisabled, { ownDisabled: true, fieldsetDisabled: true, checked: true, events: [] }, 'Own and fieldset disabled states must exclude radio data, validation, and interactions.');
+  const radioStyles = await productionRadio.evaluate((element) => {
+    element.disabled = false;
+    element.checked = true;
+    element.style.setProperty('--tc-radio-checked', 'rgb(7, 8, 9)');
+    const radio = element.shadowRoot.querySelector('[part=radio]');
+    return { border: getComputedStyle(radio).borderColor, transitions: getComputedStyle(radio).transitionDuration.split(',').map((value) => value.trim()) };
+  });
+  assert.equal(radioStyles.border, 'rgb(7, 8, 9)');
+  assert.equal(radioStyles.transitions.every((duration) => duration === '0s'), true, 'Reduced motion must remove radio transitions.');
+
   catalogServer = spawn(process.execPath, ['scripts/serve-ui-catalog.mjs'], {
     cwd: root, env: { ...process.env, UI_CATALOG_PORT: '0' }, stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -766,6 +910,27 @@ try {
   assert.equal(await catalogPage.locator('tc-checkbox').count(), 6, 'English Checkbox documentation must retain the SDK examples.');
   await catalogPage.setViewportSize({ width: 390, height: 844 });
   assert.equal(await catalogCheckboxes.evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelector('[part=box]').getBoundingClientRect().width >= 20)), true, 'Mobile Checkbox examples must retain usable visible boxes.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'es');
+  await catalogPage.setViewportSize({ width: 1280, height: 900 });
+  await catalogPage.goto(`http://127.0.0.1:${catalogPort}/framework-preview.html#component/radio`);
+  const catalogRadios = catalogPage.locator('tc-radio');
+  assert.equal(await catalogRadios.count(), 9, 'The Radio route must render its nine SDK-backed overview, variant, and state examples.');
+  assert.equal(await catalogRadios.evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelectorAll('input[type="radio"]').length === 1)), true, 'Catalog Radio examples must retain one native semantic each.');
+  const radioStatus = catalogPage.locator('[data-radio-demo] [data-radio-status]').first();
+  const radioStatusBefore = await radioStatus.textContent();
+  await catalogRadios.nth(1).getByRole('radio').click();
+  assert.equal(await catalogRadios.nth(1).evaluate((element) => element.checked), true, 'The obfuscated catalog adapter must load and operate tc-radio.');
+  assert.notEqual(await radioStatus.textContent(), radioStatusBefore, 'Catalog radio selection must update its local status.');
+  assert.deepEqual(await catalogRadios.nth(6).evaluate((element) => ({
+    valid: element.reportValidity(),
+    error: element.shadowRoot.querySelector('[part=error]').textContent,
+  })), { valid: false, error: 'Elija un entorno antes de continuar.' }, 'The Radio state example must expose localized required validation through the public API.');
+  await catalogPage.locator('#language').click();
+  await catalogPage.waitForFunction(() => document.documentElement.lang === 'en');
+  assert.equal(await catalogPage.locator('tc-radio').count(), 9, 'English Radio documentation must retain the SDK examples.');
+  await catalogPage.setViewportSize({ width: 390, height: 844 });
+  assert.equal(await catalogRadios.evaluateAll((elements) => elements.every((element) => element.shadowRoot.querySelector('[part=radio]').getBoundingClientRect().width >= 20)), true, 'Mobile Radio examples must retain usable visible indicators.');
   await catalogPage.locator('#language').click();
   await catalogPage.waitForFunction(() => document.documentElement.lang === 'es');
   await catalogPage.setViewportSize({ width: 1280, height: 900 });

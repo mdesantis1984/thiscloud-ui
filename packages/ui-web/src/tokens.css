@@ -12,6 +12,10 @@
   --tc-checkbox-surface: transparent;
   --tc-checkbox-checked: #5946b2;
   --tc-checkbox-mark: #fff;
+  --tc-radio-size: 20px;
+  --tc-radio-border: var(--tc-field-line);
+  --tc-radio-surface: transparent;
+  --tc-radio-checked: #5946b2;
   --tc-focus: #bb86fc;
   --tc-text: var(--text, currentColor);
   --tc-text-muted: var(--muted, #666);
