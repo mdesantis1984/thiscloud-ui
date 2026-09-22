@@ -1,7 +1,8 @@
-name: CI
+name: CI push
 
 on:
-  pull_request:
+  push:
+    branches: [main, develop]
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -13,7 +14,7 @@ permissions:
 jobs:
   web:
     name: Web and release contracts
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, private-thiscloud-ui]
     timeout-minutes: 20
     steps:
       - name: Check out repository
@@ -36,7 +37,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verify web and catalog
         env:
-          UI_WEB_CHROME: /usr/bin/google-chrome
+          UI_WEB_CHROME: /usr/bin/chromium
         run: pnpm check:web
       - name: Verify release and deployment
         env:
@@ -47,7 +48,7 @@ jobs:
 
   flutter:
     name: Flutter package boundaries
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, private-thiscloud-ui]
     timeout-minutes: 20
     defaults:
       run:
@@ -60,7 +61,7 @@ jobs:
         with:
           flutter-version: 3.47.1
           channel: stable
-          cache: true
+          cache: false
       - name: Resolve dependencies
         run: flutter pub get
       - name: Verify pinned toolchain
