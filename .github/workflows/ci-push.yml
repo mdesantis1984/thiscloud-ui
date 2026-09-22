@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verify web and catalog
         env:
-          UI_WEB_CHROME: /usr/bin/google-chrome
+          UI_WEB_CHROME: /usr/bin/chromium
         run: pnpm check:web
       - name: Verify release and deployment
         env:
@@ -61,7 +61,7 @@ jobs:
         with:
           flutter-version: 3.47.1
           channel: stable
-          cache: true
+          cache: false
       - name: Resolve dependencies
         run: flutter pub get
       - name: Verify pinned toolchain
