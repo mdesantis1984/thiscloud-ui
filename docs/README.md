@@ -12,6 +12,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Explorar componentes y demostraciones | [Catálogo](https://ui.thiscloud.com.ar) | Español e inglés |
 | Personalizar los tokens CSS exportados | [Referencia de tokens CSS](reference/css-tokens.md) | Español e inglés |
 | Coordinar la validación de formularios nativos | [Validación de formularios nativos](guides/native-form-validation.md) | Español e inglés |
+| Revisar semántica, teclado y límites de accesibilidad de los cuatro controles RC | [Accesibilidad de los controles web](guides/accessibility.md) | Español e inglés; guía del repositorio, no certificación |
 | Probar el catálogo local o integrar `@thiscloud/ui-web` | [Empezar con la biblioteca web](getting-started/web.md) | Español e inglés; documentación del repositorio |
 | Consultar cuatro contratos de la API web | [Referencia de API web](reference/web-api.md) | Español e inglés; documentación del repositorio |
 | Verificar la incubación Flutter | [Inicio con Flutter](getting-started/flutter.md) | Español e inglés; paquete privado |
@@ -35,6 +36,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | --- | --- |
 | Entrada de producto con español como idioma principal y espejo inglés | Disponible |
 | Guías bilingües de tokens CSS y validación de formularios nativos | Disponible |
+| Guía bilingüe de accesibilidad de controles RC | Disponible en el repositorio; comprobaciones manuales y navegadores objetivo a cargo del consumidor |
 | Referencia bilingüe de cuatro contratos de la API web | Disponible en el repositorio; no es una publicación del paquete |
 | Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
 | Inicio web bilingüe (catálogo local y tarball consumidor) | Disponible en el repositorio; no es una publicación del paquete |
