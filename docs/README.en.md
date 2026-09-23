@@ -2,7 +2,7 @@
 
 [Español](README.md) · [English home](../README.en.md) · [Live catalog](https://ui.thiscloud.com.ar)
 
-This page organizes documentation by audience and makes translation status visible. Spanish is the repository's default entrance; verified public consumer guides provide an English counterpart one click away.
+This page organizes documentation by audience and makes translation status visible. Spanish is the repository's default entrance; repository consumer guides provide an English counterpart one click away.
 
 ## Choose a path
 
@@ -12,8 +12,9 @@ This page organizes documentation by audience and makes translation status visib
 | Explore components and demonstrations | [Catalog](https://ui.thiscloud.com.ar) | Spanish and English |
 | Customize the exported CSS tokens | [CSS token reference](reference/css-tokens.en.md) | Spanish and English |
 | Coordinate native form validation | [Native form validation](guides/native-form-validation.en.md) | Spanish and English |
-| Integrate `@thiscloud/ui-web` | [Web package guide](../packages/ui-web/README.md) | English; Spanish pending |
-| Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English |
+| Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; repository documentation |
+| Look up four web API contracts | [Web API reference](reference/web-api.en.md) | Spanish and English; repository documentation |
+| Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English; private package |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
@@ -33,9 +34,10 @@ This page organizes documentation by audience and makes translation status visib
 | --- | --- |
 | Spanish-first product entrance with an English pair | Available |
 | Bilingual CSS token and native form validation guides | Available |
+| Bilingual reference for four web API contracts | Available in the repository; not a package publication |
 | Spanish architecture, deployment, security, and governance | Pending |
-| Bilingual Flutter boundary guide (`publish_to: none`) | Available in this repository; package has no runtime widgets |
-| Bilingual web consumer guide | Pending |
+| Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
+| Bilingual Flutter boundary guide (`publish_to: none`) | Available in the repository; package has no runtime widgets |
 | Generated public reference and automated link validation | Pending |
 
 Tracker [#27](https://github.com/mdesantis1984/thiscloud-ui/issues/27) remains open until the program is complete. Each phase uses an approved child issue so that the tracker cannot close early.
