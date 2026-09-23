@@ -18,6 +18,7 @@ This page organizes documentation by audience and makes translation status visib
 | Validate web package compatibility in the target browser or WebView | [Compatibility reference](reference/compatibility.en.md) | Spanish and English; local Chromium evidence, no universal matrix |
 | Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English; private package |
 | Localize web control labels and messages | [Control localization](guides/localization.en.md) | Spanish and English; repository guide, not a locale API |
+| Distinguish historical separation from Center from a consumer migration | [Migration from Center](migration-from-center.md) | Spanish and English; repository guide, no verified Center migration |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
@@ -40,6 +41,7 @@ This page organizes documentation by audience and makes translation status visib
 | Bilingual RC control accessibility guide | Available in the repository; consumer must check manually and in target browsers |
 | Bilingual reference for four web API contracts | Available in the repository; not a package publication |
 | Spanish architecture, deployment, security, and governance | Pending |
+| Bilingual Center separation guide | Available in the repository; does not verify a Center migration |
 | Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
 | Bilingual Flutter boundary guide (`publish_to: none`) | Available in the repository; package has no runtime widgets |
 | Generated public reference and automated link validation | Pending |
