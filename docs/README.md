@@ -21,7 +21,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
 | Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.md) y [gobierno](governance.md) | Inglés, traducción pendiente |
-| Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.md) | Inglés, traducción pendiente |
+| Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.es.md) | Español e inglés; guía del repositorio |
 
 ## Contrato documental
 
@@ -39,7 +39,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Guías bilingües de tokens CSS y validación de formularios nativos | Disponible |
 | Guía bilingüe de accesibilidad de controles RC | Disponible en el repositorio; comprobaciones manuales y navegadores objetivo a cargo del consumidor |
 | Referencia bilingüe de cuatro contratos de la API web | Disponible en el repositorio; no es una publicación del paquete |
-| Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
+| Arquitectura, despliegue y gobierno en español | Pendiente |
+| Política de seguridad bilingüe | Disponible en el repositorio; no modifica la compatibilidad ni la publicación de versiones |
 | Inicio web bilingüe (catálogo local y tarball consumidor) | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de la frontera Flutter (`publish_to: none`) | Disponible en el repositorio; paquete sin widgets de ejecución |
 | Referencia pública generada y validación automática de enlaces | Pendiente |

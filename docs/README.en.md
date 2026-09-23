@@ -21,7 +21,7 @@ This page organizes documentation by audience and makes translation status visib
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
-| Report a vulnerability | [Security policy](../SECURITY.md) | English; Spanish pending |
+| Report a vulnerability | [Security policy](../SECURITY.md) | Spanish and English; repository guide |
 
 ## Documentation contract
 
@@ -39,7 +39,8 @@ This page organizes documentation by audience and makes translation status visib
 | Bilingual CSS token and native form validation guides | Available |
 | Bilingual RC control accessibility guide | Available in the repository; consumer must check manually and in target browsers |
 | Bilingual reference for four web API contracts | Available in the repository; not a package publication |
-| Spanish architecture, deployment, security, and governance | Pending |
+| Spanish architecture, deployment, and governance | Pending |
+| Bilingual security policy | Available in the repository; does not change version support or publication |
 | Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
 | Bilingual Flutter boundary guide (`publish_to: none`) | Available in the repository; package has no runtime widgets |
 | Generated public reference and automated link validation | Pending |
