@@ -12,6 +12,7 @@ This page organizes documentation by audience and makes translation status visib
 | Explore components and demonstrations | [Catalog](https://ui.thiscloud.com.ar) | Spanish and English |
 | Customize the exported CSS tokens | [CSS token reference](reference/css-tokens.en.md) | Spanish and English |
 | Coordinate native form validation | [Native form validation](guides/native-form-validation.en.md) | Spanish and English |
+| Review semantics, keyboard behavior, and accessibility limits of the four RC controls | [Accessibility of web controls](guides/accessibility.en.md) | Spanish and English; repository guide, not certification |
 | Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; repository documentation |
 | Look up four web API contracts | [Web API reference](reference/web-api.en.md) | Spanish and English; repository documentation |
 | Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English; private package |
@@ -34,6 +35,7 @@ This page organizes documentation by audience and makes translation status visib
 | --- | --- |
 | Spanish-first product entrance with an English pair | Available |
 | Bilingual CSS token and native form validation guides | Available |
+| Bilingual RC control accessibility guide | Available in the repository; consumer must check manually and in target browsers |
 | Bilingual reference for four web API contracts | Available in the repository; not a package publication |
 | Spanish architecture, deployment, security, and governance | Pending |
 | Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
