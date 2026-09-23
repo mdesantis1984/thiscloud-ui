@@ -15,6 +15,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Probar el catálogo local o integrar `@thiscloud/ui-web` | [Empezar con la biblioteca web](getting-started/web.md) | Español e inglés; documentación del repositorio |
 | Consultar cuatro contratos de la API web | [Referencia de API web](reference/web-api.md) | Español e inglés; documentación del repositorio |
 | Verificar la incubación Flutter | [Inicio con Flutter](getting-started/flutter.md) | Español e inglés; paquete privado |
+| Localizar etiquetas y mensajes de controles web | [Localización de controles](guides/localization.md) | Español e inglés; guía del repositorio, no API de locale |
 | Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
 | Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.md) y [gobierno](governance.md) | Inglés, traducción pendiente |

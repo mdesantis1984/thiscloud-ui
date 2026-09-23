@@ -15,6 +15,7 @@ This page organizes documentation by audience and makes translation status visib
 | Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; repository documentation |
 | Look up four web API contracts | [Web API reference](reference/web-api.en.md) | Spanish and English; repository documentation |
 | Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English; private package |
+| Localize web control labels and messages | [Control localization](guides/localization.en.md) | Spanish and English; repository guide, not a locale API |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
