@@ -20,7 +20,7 @@ This page organizes documentation by audience and makes translation status visib
 | Localize web control labels and messages | [Control localization](guides/localization.en.md) | Spanish and English; repository guide, not a locale API |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
-| Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
+| Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | Contributing in Spanish and English; governance in English only |
 | Report a vulnerability | [Security policy](../SECURITY.md) | English; Spanish pending |
 
 ## Documentation contract
@@ -39,6 +39,7 @@ This page organizes documentation by audience and makes translation status visib
 | Bilingual CSS token and native form validation guides | Available |
 | Bilingual RC control accessibility guide | Available in the repository; consumer must check manually and in target browsers |
 | Bilingual reference for four web API contracts | Available in the repository; not a package publication |
+| Bilingual contribution guide | Available in the repository; does not certify GitHub settings |
 | Spanish architecture, deployment, security, and governance | Pending |
 | Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
 | Bilingual Flutter boundary guide (`publish_to: none`) | Available in the repository; package has no runtime widgets |
