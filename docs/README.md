@@ -12,7 +12,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Explorar componentes y demostraciones | [Catálogo](https://ui.thiscloud.com.ar) | Español e inglés |
 | Personalizar los tokens CSS exportados | [Referencia de tokens CSS](reference/css-tokens.md) | Español e inglés |
 | Coordinar la validación de formularios nativos | [Validación de formularios nativos](guides/native-form-validation.md) | Español e inglés |
-| Probar el catálogo local o integrar `@thiscloud/ui-web` | [Empezar con la biblioteca web](getting-started/web.md) | Español e inglés; revisión del propietario pendiente |
+| Probar el catálogo local o integrar `@thiscloud/ui-web` | [Empezar con la biblioteca web](getting-started/web.md) | Español e inglés; guía aceptada en el repositorio |
 | Entender la frontera Flutter | [Guía de `thiscloud_ui`](../packages/ui_kit/README.md) | Inglés, traducción pendiente |
 | Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
@@ -34,7 +34,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Entrada de producto con español como idioma principal y espejo inglés | Disponible |
 | Guías bilingües de tokens CSS y validación de formularios nativos | Disponible |
 | Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
-| Inicio web bilingüe (catálogo local y tarball consumidor) | Redactado en el repositorio; pendiente de revisión del propietario |
+| Inicio web bilingüe (catálogo local y tarball consumidor) | Aceptado en el repositorio; no es una publicación del paquete |
 | Referencia web y guía bilingüe de Flutter | Pendiente |
 | Referencia pública generada y validación automática de enlaces | Pendiente |
 

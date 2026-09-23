@@ -12,7 +12,7 @@ This page organizes documentation by audience and makes translation status visib
 | Explore components and demonstrations | [Catalog](https://ui.thiscloud.com.ar) | Spanish and English |
 | Customize the exported CSS tokens | [CSS token reference](reference/css-tokens.en.md) | Spanish and English |
 | Coordinate native form validation | [Native form validation](guides/native-form-validation.en.md) | Spanish and English |
-| Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; owner review pending |
+| Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; guide accepted in the repository |
 | Understand the Flutter boundary | [`thiscloud_ui` guide](../packages/ui_kit/README.md) | English; Spanish pending |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
@@ -34,7 +34,7 @@ This page organizes documentation by audience and makes translation status visib
 | Spanish-first product entrance with an English pair | Available |
 | Bilingual CSS token and native form validation guides | Available |
 | Spanish architecture, deployment, security, and governance | Pending |
-| Bilingual web getting started (local catalog and consumer tarball) | Drafted in the repository; owner review pending |
+| Bilingual web getting started (local catalog and consumer tarball) | Accepted in the repository; not a package publication |
 | Web reference and bilingual Flutter guide | Pending |
 | Generated public reference and automated link validation | Pending |
 
