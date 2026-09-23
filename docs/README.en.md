@@ -14,6 +14,7 @@ This page organizes documentation by audience and makes translation status visib
 | Coordinate native form validation | [Native form validation](guides/native-form-validation.en.md) | Spanish and English |
 | Try the local catalog or integrate `@thiscloud/ui-web` | [Get started with the web library](getting-started/web.en.md) | Spanish and English; repository documentation |
 | Look up four web API contracts | [Web API reference](reference/web-api.en.md) | Spanish and English; repository documentation |
+| Validate web package compatibility in the target browser or WebView | [Compatibility reference](reference/compatibility.en.md) | Spanish and English; local Chromium evidence, no universal matrix |
 | Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English; private package |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
