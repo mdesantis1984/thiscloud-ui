@@ -13,7 +13,7 @@ This page organizes documentation by audience and makes translation status visib
 | Customize the exported CSS tokens | [CSS token reference](reference/css-tokens.en.md) | Spanish and English |
 | Coordinate native form validation | [Native form validation](guides/native-form-validation.en.md) | Spanish and English |
 | Integrate `@thiscloud/ui-web` | [Web package guide](../packages/ui-web/README.md) | English; Spanish pending |
-| Understand the Flutter boundary | [`thiscloud_ui` guide](../packages/ui_kit/README.md) | English; Spanish pending |
+| Verify Flutter incubation | [Flutter getting started](getting-started/flutter.en.md) | Spanish and English |
 | Understand decisions and dependencies | [Architecture](architecture.md) | English; Spanish pending |
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | English; Spanish pending |
@@ -34,7 +34,8 @@ This page organizes documentation by audience and makes translation status visib
 | Spanish-first product entrance with an English pair | Available |
 | Bilingual CSS token and native form validation guides | Available |
 | Spanish architecture, deployment, security, and governance | Pending |
-| Bilingual web and Flutter package guides | Pending |
+| Bilingual Flutter boundary guide (`publish_to: none`) | Available in this repository; package has no runtime widgets |
+| Bilingual web consumer guide | Pending |
 | Generated public reference and automated link validation | Pending |
 
 Tracker [#27](https://github.com/mdesantis1984/thiscloud-ui/issues/27) remains open until the program is complete. Each phase uses an approved child issue so that the tracker cannot close early.
