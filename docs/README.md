@@ -18,10 +18,11 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Validar compatibilidad del paquete web en el navegador o WebView objetivo | [Referencia de compatibilidad](reference/compatibility.md) | Español e inglés; evidencia local en Chromium, sin matriz universal |
 | Verificar la incubación Flutter | [Inicio con Flutter](getting-started/flutter.md) | Español e inglés; paquete privado |
 | Localizar etiquetas y mensajes de controles web | [Localización de controles](guides/localization.md) | Español e inglés; guía del repositorio, no API de locale |
-| Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
+| Distinguir la separación histórica de Center de una migración del consumidor | [Migración desde Center](migration-from-center.es.md) | Español e inglés; guía del repositorio, sin migración de Center verificada |
+| Comprender decisiones y dependencias | [Arquitectura](architecture.es.md) | Español e inglés; documentación del repositorio |
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
-| Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.md) y [gobierno](governance.md) | Inglés, traducción pendiente |
-| Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.md) | Inglés, traducción pendiente |
+| Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.es.md) y [gobierno](governance.es.md) | Español e inglés; guías del repositorio |
+| Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.es.md) | Español e inglés; guía del repositorio |
 | Revisar normas de colaboración y el contacto por conducta | [Código de conducta](../CODE_OF_CONDUCT.es.md) | Español e inglés; solicitud pública solo si aparece el formulario |
 
 ## Contrato documental
@@ -40,7 +41,11 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Guías bilingües de tokens CSS y validación de formularios nativos | Disponible |
 | Guía bilingüe de accesibilidad de controles RC | Disponible en el repositorio; comprobaciones manuales y navegadores objetivo a cargo del consumidor |
 | Referencia bilingüe de cuatro contratos de la API web | Disponible en el repositorio; no es una publicación del paquete |
-| Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
+| Guía bilingüe de contribución | Disponible en el repositorio; no certifica la configuración de GitHub |
+| Arquitectura y gobierno bilingües | Disponibles en el repositorio; no certifican la configuración de GitHub ni publican un paquete |
+| Despliegue en español | Pendiente |
+| Política de seguridad bilingüe | Disponible en el repositorio; no modifica la compatibilidad ni la publicación de versiones |
+| Guía bilingüe de separación de Center | Disponible en el repositorio; no acredita una migración de Center |
 | Inicio web bilingüe (catálogo local y tarball consumidor) | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de la frontera Flutter (`publish_to: none`) | Disponible en el repositorio; paquete sin widgets de ejecución |
 | Referencia pública generada y validación automática de enlaces | Pendiente |
