@@ -69,7 +69,7 @@ The **checked-in** service sets half a CPU, 128 MiB hard memory, 32 MiB reservat
 
 ## Health and selective stop
 
-The image defines `/healthz`; Nginx serves `/`, `/downloads` and `/downloads/` as the catalog shell without a redirect, and `/downloads/<artifact>` as a static release asset. Missing files return `404`. An authorized operator should verify bounded readiness, health, catalog and expected artifact checksum against the approved release record before declaring success. The local loopback check above retries health at most 15 times; it is **not** evidence of live service health or a published artifact. Rollback instructions and verification of the previous digest are a separate pending runbook.
+The image defines `/healthz`; Nginx serves `/`, `/downloads` and `/downloads/` as the catalog shell without a redirect, and `/downloads/<artifact>` as a static release asset. Missing files return `404`. An authorized operator should verify bounded readiness, health, catalog and expected artifact checksum against the approved release record before declaring success. The local loopback check above retries health at most 15 times; it is **not** evidence of live service health or a published artifact. The [rollback runbook](rollback.md) describes previous-digest verification and recovery; it does not establish that a rollback was executed.
 
 Only after confirming project ownership and that it is not serving traffic may an authorized operator stop this Compose project. `down --remove-orphans` affects project containers, not unrelated host services; do not use host-wide prune or remove persistent volumes without separate approval.
 
