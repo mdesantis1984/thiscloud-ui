@@ -1,0 +1,23 @@
+# Versión del paquete web e identidad de los artefactos
+
+[English](versioning.md) · [Índice de documentación](../README.md) · [Lista de publicación](checklist.es.md)
+
+Guía de mantenimiento disponible solo en el repositorio. Lea la versión de `packages/ui-web/package.json`; ni la versión del `package.json` raíz ni una demostración del catálogo identifican un paquete web publicado. Un archivo preparado no equivale a una publicación en GitHub, una publicación en un registro, una imagen desplegada ni un entorno de ejecución compatible.
+
+## Elegir y documentar una versión
+
+1. Parta de un issue aprobado y un cambio revisado para `develop`. Clasifique el impacto en la API pública, compatibilidad, migración y notas de publicación; actualice `packages/ui-web/CHANGELOG.md`, `MIGRATION.md`, `SUPPORT.md` y la documentación pertinente junto con el comportamiento. El valor `private: true` del paquete no acredita una publicación en npm.
+2. Respete el límite actual de `SUPPORT.md`: después de 1.0, los cambios incompatibles de la API pública requieren una versión mayor; antes de 1.0, documente los cambios incompatibles de las RC en `MIGRATION.md`. Documente el reemplazo de una API pública obsoleta y su versión de eliminación cuando exista. SemVer expresa la intención de compatibilidad; no selecciona automáticamente un incremento ni garantiza compatibilidad con navegadores. Solicite una decisión explícita del propietario si la siguiente versión o promesa de soporte no está clara.
+3. Establezca la versión aprobada en `packages/ui-web/package.json`. La etiqueta de publicación es `ui-web-v<version>`; el archivo es `thiscloud-ui-web-<version>.tgz` y tiene un par `.tgz.sha256`. No sustituya la versión del paquete por la del manifiesto raíz ni por una etiqueta de GHCR. Documente los bytes antes de proponer su publicación.
+
+## Vincular los bytes reales
+
+`scripts/prepare-release.mjs` empaqueta `@thiscloud/ui-web`, normaliza gzip de manera determinista y compara SHA-256 con `packages/ui-web/release-checksums.json`. Escribe ambos archivos en `tmp/release/` y copia los mismos bytes en `apps/catalog/dist/downloads/`; `scripts/test-release-assets.mjs` comprueba las copias y el registro. Un tarball modificado para una versión ya registrada falla; use una nueva versión aprobada y agregue su suma **verificada** sin modificar ni quitar una entrada histórica. Si `RELEASE_REGISTRY_BASE` indica un commit base válido, la preparación comprueba además que las entradas anteriores no cambien ni desaparezcan; sin él, no atribuya a un único comando local el control de todas las entradas históricas.
+
+La lista `files` del manifiesto del paquete incluye `README.md`, `CHANGELOG.md`, `MIGRATION.md` y `SUPPORT.md` del propio paquete, pero **no** `docs/releases/` de la raíz. Un cambio aislado en estas guías no modifica un archivo ya empaquetado. Antes de publicar documentación de consumo modificada, actualice la documentación adecuada del paquete en una unidad aprobada y compruebe los *nuevos* bytes y la versión; nunca reemplace silenciosamente los recursos publicados. El SHA-256 del registro describe el **tarball**, no su archivo `.sha256` ni un manifiesto OCI. El digest de metadatos de un recurso de GitHub, si está disponible, corresponde a ese recurso individual; compruebe los bytes descargados por separado en una auditoría autorizada. Fije los despliegues mediante una referencia completa y verificada `ghcr.io/mdesantis1984/thiscloud-ui@sha256:<64 hex digits>`, no mediante el checksum del tarball ni una etiqueta de imagen mutable.
+
+## Distinguir los estados
+
+El manifiesto privado del paquete en el repositorio indica `0.1.0-rc.5`; las entradas locales del registro no lo publican. Los metadatos de publicación y etiqueta de GitHub leídos el 2026-09-24 registraban `ui-web-v0.1.0-rc.1` como versión preliminar publicada con dos recursos cargados. Es un **registro de publicación en GitHub**, no una prueba de descargas actualmente servidas, disponibilidad en npm, digest actual de GHCR ni despliegue activo. `SUPPORT.md` y `MIGRATION.md` todavía afirman que no existe una publicación pública anterior; esas afirmaciones contradicen ese registro acotado de GitHub y requieren una corrección aprobada antes de reutilizarlas como descripción vigente. Vuelva a consultar la evidencia de publicación al efectuar una publicación real; esta observación fechada no garantiza disponibilidad permanente.
+
+Continúe con la [lista de publicación](checklist.es.md). No mueva, elimine ni sobrescriba una versión, etiqueta o recurso publicado ni la identidad de un tarball registrado para reparar una discrepancia; deténgase y planifique una nueva versión aprobada o una recuperación revisada por separado.
