@@ -20,7 +20,7 @@ This page organizes documentation by audience and makes translation status visib
 | Localize web control labels and messages | [Control localization](guides/localization.en.md) | Spanish and English; repository guide, not a locale API |
 | Distinguish historical separation from Center from a consumer migration | [Migration from Center](migration-from-center.md) | Spanish and English; repository guide, no verified Center migration |
 | Understand decisions and dependencies | [Architecture](architecture.md) | Spanish and English; repository documentation |
-| Consult catalog deployment | [Deployment](deployment.md) | English in this base; not a verified deployment or rollback |
+| Prepare and verify catalog deployment | [Deployment](deployment.md) | Spanish and English; repository guide, not a verified deployment or rollback |
 | Prepare reversal to a verified image | [Rollback](rollback.md) | Spanish and English; repository procedure, not an executed rollback |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | Spanish and English; repository guides |
 | Report a vulnerability | [Security policy](../SECURITY.md) | Spanish and English; repository guide |
@@ -44,7 +44,7 @@ This page organizes documentation by audience and makes translation status visib
 | Bilingual reference for four web API contracts | Available in the repository; not a package publication |
 | Bilingual contribution guide | Available in the repository; does not certify GitHub settings |
 | Bilingual architecture and governance | Available in the repository; does not certify GitHub settings or publish a package |
-| Spanish deployment | Pending |
+| Bilingual deployment guide | Available in the repository; does not establish publication or live service state |
 | Bilingual rollback runbook | Available in the repository; does not establish an executed rollback |
 | Bilingual security policy | Available in the repository; does not change version support or publication |
 | Bilingual Center separation guide | Available in the repository; does not verify a Center migration |
