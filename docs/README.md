@@ -20,7 +20,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Localizar etiquetas y mensajes de controles web | [Localización de controles](guides/localization.md) | Español e inglés; guía del repositorio, no API de locale |
 | Distinguir la separación histórica de Center de una migración del consumidor | [Migración desde Center](migration-from-center.es.md) | Español e inglés; guía del repositorio, sin migración de Center verificada |
 | Comprender decisiones y dependencias | [Arquitectura](architecture.es.md) | Español e inglés; documentación del repositorio |
-| Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
+| Preparar y verificar el despliegue del catálogo | [Despliegue](deployment.es.md) | Español e inglés; guía del repositorio, no acredita un despliegue ni una reversión |
+| Preparar la reversión de una imagen verificada | [Reversión](rollback.es.md) | Español e inglés; procedimiento del repositorio, no acredita una reversión ejecutada |
 | Determinar versión e identidad del paquete web | [Versiones y artefactos](releases/versioning.es.md) | Español e inglés; guía del repositorio, no publicación |
 | Preparar una publicación web autorizada | [Lista de publicación](releases/checklist.es.md) | Español e inglés; no autoriza publicar ni desplegar |
 | Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.es.md) y [gobierno](governance.es.md) | Español e inglés; guías del repositorio |
@@ -45,7 +46,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Referencia bilingüe de cuatro contratos de la API web | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de contribución | Disponible en el repositorio; no certifica la configuración de GitHub |
 | Arquitectura y gobierno bilingües | Disponibles en el repositorio; no certifican la configuración de GitHub ni publican un paquete |
-| Despliegue en español | Pendiente |
+| Guía bilingüe de despliegue | Disponible en el repositorio; no acredita publicación ni estado en servicio |
+| Guía bilingüe de reversión | Disponible en el repositorio; no acredita una reversión ejecutada |
 | Versiones y lista de publicación bilingües | Disponibles en el repositorio; no acreditan publicación ni despliegue |
 | Política de seguridad bilingüe | Disponible en el repositorio; no modifica la compatibilidad ni la publicación de versiones |
 | Guía bilingüe de separación de Center | Disponible en el repositorio; no acredita una migración de Center |
