@@ -1,50 +1,45 @@
 # Contributing
 
-Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Read this guide, the relevant package documentation, and the approved issue before editing the repository.
+[Español](CONTRIBUTING.es.md) · [Documentation](docs/README.en.md)
+
+Changes to Thiscloud UI Aurora use an issue-first, reviewable workflow. Start with the approved issue and the relevant package documentation. This guide describes the repository workflow, not a live audit of GitHub branch-protection settings.
 
 ## Workflow
 
-1. Create or select an issue that describes one observable outcome.
-2. Wait for the owner to apply `status:approved`.
-3. Create a branch named `type/description` from `develop`.
-4. Implement one cohesive work unit with its tests and documentation.
-5. Run the focused verification locally and `git diff --check` before pushing.
-6. Commit using Conventional Commits.
-7. Open a PR linking the approved issue and apply exactly one `type:*` label.
-8. Merge only after required checks and owner approval.
+1. Propose or select an issue with one observable outcome, scope, acceptance evidence and [Delivery impact](.github/ISSUE_TEMPLATE/documentation.yml). Wait for the authorized owner to apply `status:approved` before implementation.
+2. Branch from `develop` using `type/description` (for example, `docs/contribution-guide`). Implement one cohesive work unit with its applicable tests and documentation.
+3. Run focused verification and `git diff --check`; record actual results, limitations, risk and a rollback boundary. Commit with a Conventional Commit message.
+4. Open a PR to `develop` using the [PR template](.github/PULL_REQUEST_TEMPLATE.md). Include `Closes #<approved-issue-number>`, select one change type, apply exactly one matching `type:*` label and fill in chain context, verification and Delivery Impact with concrete evidence. The five impact classifications must match the linked issue's selections, not just the PR author's expectations.
+5. Obtain current-base checks and explicit owner review before a merge; a passing check alone is not acceptance. Do not claim a release or publication from a repository-only change.
 
-Use chained PRs when one cohesive change exceeds 1000 changed lines and can be divided into independently reviewable outcomes. Never combine unrelated concerns to fill the budget. Merge each child into `develop` in dependency order before promotion.
+For ordinary work-unit PRs, the [validator](scripts/validate-pr-policy.mjs) counts additions plus deletions and rejects more than **1000** changed lines unless a repository administrator applies `size:exception` and the PR contains a concrete Size Exception Rationale. Smaller review slices (around 400 lines) can help reviewers but are optional guidance, not a gate. Split independently reviewable outcomes into ordered PRs; do not combine unrelated work to fill a budget.
 
 ## Branch model
 
-- `develop` is the protected integration branch and target for normal work-unit PRs.
-- `main` is the protected production branch and accepts reviewed promotions from `develop` or bounded emergency fixes.
-- A `develop` to `main` promotion may aggregate work units that were already reviewed individually; do not add new implementation changes to that PR.
-- Squash work-unit PRs into `develop`, but merge promotion PRs into `main` with a merge commit so future promotions retain a clean common ancestor.
-- Emergency fixes branch from `main`, use `fix/description`, and must be applied back to `develop` after release.
-- Only `mdesantis1984` has repository write and merge authority. External contributors work through forks and PRs.
+- The [PR policy](scripts/validate-pr-policy.mjs) accepts typed work-unit branches into `develop`, `develop` into `main` for promotion, and `fix/description` into `main` for emergency fixes.
+- The documented workflow reviews work units on `develop` before promotion to `main`. Promotion PRs may aggregate previously reviewed units and are exempt from the 1000-line gate; do not introduce new implementation there. Carry emergency fixes back to `develop` after release.
+- [CODEOWNERS](.github/CODEOWNERS) identifies review ownership; it does not prove current GitHub permissions, merge methods or protection settings. Follow the current repository controls and obtain owner authorization for merges.
 
 ## Verification
 
-Web and catalog changes require:
+From the repository root, run focused checks for the surface you changed. For web and catalog work, the current [package scripts](package.json) expose:
 
 ```bash
-pnpm install --frozen-lockfile
 pnpm check:web
+pnpm check:release
 git diff --check
 ```
 
-Flutter changes additionally require the pinned SDK and package checks documented in [`packages/ui_kit/README.md`](packages/ui_kit/README.md).
+Run `check:web` and `check:release` sequentially; both build or consume catalog output. They do not verify Markdown links or translation parity. Flutter changes additionally require the pinned SDK and package checks in [`packages/ui_kit/README.md`](packages/ui_kit/README.md). For docs-only changes, inspect local links and matching Spanish/English claims; report which executable checks ran and which were not applicable. Do not add generated artifacts or secrets.
 
 ## Commits
 
-Use `type(scope): outcome`, for example `feat(web): add select control contract` or `ci(release): publish verified package assets`.
+Use `type(scope): outcome`, for example `docs(maintainers): clarify contribution steps`. Keep tests and documentation with the work unit and identify the files or behavior that can be reverted without undoing unrelated work.
 
 ## Review checklist
 
-- [ ] The PR links an approved issue.
-- [ ] The PR has exactly one `type:*` label.
-- [ ] The branch and commit names follow repository conventions.
-- [ ] The change stays within the 1000-line review budget.
-- [ ] Verification evidence and runtime limitations are explicit.
-- [ ] No secrets, generated outputs, or unrelated product code are included.
+- [ ] The PR links an approved issue; Delivery Impact matches its selections and cites concrete evidence.
+- [ ] The PR has exactly one `type:*` label and a valid branch, target and Conventional Commit.
+- [ ] The PR meets the 1000-line gate or documents an administrator-approved exception.
+- [ ] Actual checks, limitations, risk and rollback boundary are explicit; new base changes receive fresh checks.
+- [ ] No secrets, generated outputs or unrelated product code are included; owner review remains pending until explicitly given.
