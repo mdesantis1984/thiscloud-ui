@@ -18,9 +18,9 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Validar compatibilidad del paquete web en el navegador o WebView objetivo | [Referencia de compatibilidad](reference/compatibility.md) | Español e inglés; evidencia local en Chromium, sin matriz universal |
 | Verificar la incubación Flutter | [Inicio con Flutter](getting-started/flutter.md) | Español e inglés; paquete privado |
 | Localizar etiquetas y mensajes de controles web | [Localización de controles](guides/localization.md) | Español e inglés; guía del repositorio, no API de locale |
-| Comprender decisiones y dependencias | [Arquitectura](architecture.md) | Inglés, traducción pendiente |
+| Comprender decisiones y dependencias | [Arquitectura](architecture.es.md) | Español e inglés; documentación del repositorio |
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
-| Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.es.md) y [gobierno](governance.md) (inglés) | Contribución en español e inglés; gobierno solo en inglés |
+| Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.es.md) y [gobierno](governance.es.md) | Español e inglés; guías del repositorio |
 | Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.md) | Inglés, traducción pendiente |
 
 ## Contrato documental
@@ -40,7 +40,8 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Guía bilingüe de accesibilidad de controles RC | Disponible en el repositorio; comprobaciones manuales y navegadores objetivo a cargo del consumidor |
 | Referencia bilingüe de cuatro contratos de la API web | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de contribución | Disponible en el repositorio; no certifica la configuración de GitHub |
-| Arquitectura, despliegue, seguridad y gobierno en español | Pendiente |
+| Arquitectura y gobierno bilingües | Disponibles en el repositorio; no certifican la configuración de GitHub ni publican un paquete |
+| Despliegue y seguridad en español | Pendiente |
 | Inicio web bilingüe (catálogo local y tarball consumidor) | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de la frontera Flutter (`publish_to: none`) | Disponible en el repositorio; paquete sin widgets de ejecución |
 | Referencia pública generada y validación automática de enlaces | Pendiente |
