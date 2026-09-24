@@ -1,39 +1,30 @@
-# Repository governance
+# Repository governance and review evidence
 
-Thiscloud UI Aurora is public for transparent consumption and review. Repository write and merge authority remains limited to `mdesantis1984`.
+[Español](governance.es.md) · [Documentation index](README.en.md)
 
-## Protected branches
+The [contribution guide](../CONTRIBUTING.md) documents an issue-first workflow: an approved issue, a cohesive work unit on a typed branch from `develop`, focused verification and a PR for review. This page describes the repository's documented and executable rules, **not** a live audit of GitHub settings or an additional approval policy.
 
-| Branch | Purpose | Accepted changes |
+## Branch and ownership path
+
+| Change | Documented route | Evidence |
 | --- | --- | --- |
-| `develop` | Integration | Approved, verified work-unit PRs |
-| `main` | Production | Promotion from `develop` or bounded emergency fixes |
+| Normal work, including docs | `docs/*` or another permitted typed branch into `develop` | [Contribution guide](../CONTRIBUTING.md), [PR validator](../scripts/validate-pr-policy.mjs) |
+| Promotion | `develop` into `main`, without new implementation | [Contribution guide](../CONTRIBUTING.md), [PR validator](../scripts/validate-pr-policy.mjs) |
+| Emergency fix | `fix/*` from `main` into `main`, then reconcile with `develop` | [Contribution guide](../CONTRIBUTING.md), [PR validator](../scripts/validate-pr-policy.mjs) |
 
-Both branches require pull requests, passing status checks, resolved conversations, and protection from force pushes or deletion. Direct pushes are prohibited.
+[`CODEOWNERS`](../.github/CODEOWNERS) assigns the repository paths to `mdesantis1984`. It does not prove current permissions, required-review counts, merge settings or branch protection. Those settings require separate GitHub readback; follow the [contribution guide](../CONTRIBUTING.md) for the documented route rather than treating this page as proof of platform enforcement.
 
-## Review authority
+## Executable PR policy
 
-`CODEOWNERS` assigns the entire repository to `mdesantis1984`, and no other account receives write access. GitHub does not allow a PR author to approve their own PR. Because this is currently a single-maintainer repository, branch protection requires green checks but does not require a numeric approval that would deadlock maintainer-authored changes.
+The [PR policy workflow](../.github/workflows/pr-policy.yml) runs trusted policy code from the PR base on `pull_request_target`, with read-only token permissions. The [validator](../scripts/validate-pr-policy.mjs) checks the branch flow, exactly one `type:*` label, an approved linked issue for non-Dependabot PRs, and a `Delivery Impact` section consistent with the linked issue's classifications and concrete evidence. Check the actual issue body before opening a PR; approval metadata alone does not establish matching impact choices.
 
-For an external contribution, only the maintainer can merge it or provide a review with repository authority. If another maintainer is added later, enable one required CODEOWNER approval and retain stale-review dismissal.
+| Budget | Meaning |
+| --- | --- |
+| 1000 changed lines (additions + deletions) | Executable [PR validator](../scripts/validate-pr-policy.mjs) threshold for non-promotion PRs; over-budget PRs require `size:exception`, a rationale and administrator provenance. |
+| Approximately 400 authored lines | Optional review-size guidance for planning cohesive slices; not a repository requirement or automated gate, and does not alter the enforced 1000-line threshold. |
 
-## Automated dependency PRs
+The validator recognizes `dependabot[bot]` targeting `develop` from a `dependabot/*` branch as the issue-link exception; the label and size checks still apply. It also exempts `develop` → `main` promotions from the size threshold, not from their other metadata checks. The [contribution guide](../CONTRIBUTING.md) describes human review and merge intent; this workflow alone does not establish who can merge on GitHub.
 
-Dependabot is the only issue-link exception. The PR author must be `dependabot[bot]`, target `develop`, use `type:chore`, and pass every required check. A change above 1000 lines also needs an administrator-applied `size:exception` label and a concrete rationale showing why no valid split exists. Npm dependencies are updated separately to keep lockfile churn reviewable; related GitHub Actions may remain grouped. Dependabot has no merge authority; the maintainer reviews and merges or rejects every update.
+## Scope and limits
 
-## Delivery evidence
-
-Issue Forms classify documentation, public API, migration, compatibility, and release-note impact before implementation. Human and promotion PRs repeat those classifications in the `Delivery Impact` section and name concrete evidence. The policy check rejects placeholders or missing dimensions; Dependabot remains exempt because GitHub generates its PR body.
-
-## Promotion rule
-
-A promotion PR from `develop` to `main` contains only commits already reviewed as bounded work units. It may exceed the 1000-line aggregate budget, but it must not introduce new implementation changes. Promotions use merge commits to preserve ancestry between the long-lived branches; work-unit PRs into `develop` use squash merges. Release tags are accepted only when their commit is contained in `main`.
-
-## Repository settings
-
-- Visibility: public.
-- Merge strategy: squash for work-unit PRs and merge commits for `develop` promotions; no direct pushes or rebase merges.
-- Issues: enabled and required before PR creation.
-- Wiki: disabled; versioned documentation lives in this repository.
-- Dependabot alerts, security updates, and private vulnerability reporting: enabled.
-- Actions: read-only token permissions by default; release publication elevates only the required job.
+Documentation and PR metadata do not grant write, merge, publication or deployment authority. Check the current [contribution guide](../CONTRIBUTING.md), [PR policy source](../scripts/validate-pr-policy.mjs) and [workflow](../.github/workflows/pr-policy.yml) before proposing a change; request platform-settings evidence separately when needed. Security reporting remains in the existing [security policy](../SECURITY.md); no new reporting channel or service commitment is declared here.
