@@ -23,6 +23,7 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Desplegar o revertir el catálogo | [Despliegue](deployment.md) | Inglés, traducción pendiente |
 | Contribuir y revisar cambios | [Contribución](../CONTRIBUTING.es.md) y [gobierno](governance.es.md) | Español e inglés; guías del repositorio |
 | Reportar una vulnerabilidad | [Política de seguridad](../SECURITY.es.md) | Español e inglés; guía del repositorio |
+| Revisar normas de colaboración y el contacto por conducta | [Código de conducta](../CODE_OF_CONDUCT.es.md) | Español e inglés; solicitud pública solo si aparece el formulario |
 
 ## Contrato documental
 
@@ -48,5 +49,6 @@ Esta página organiza la documentación por audiencia y hace visible el estado d
 | Inicio web bilingüe (catálogo local y tarball consumidor) | Disponible en el repositorio; no es una publicación del paquete |
 | Guía bilingüe de la frontera Flutter (`publish_to: none`) | Disponible en el repositorio; paquete sin widgets de ejecución |
 | Referencia pública generada y validación automática de enlaces | Pendiente |
+| Código de conducta bilingüe y formulario de solicitud pública de contacto privado | Texto del repositorio; no acredita un canal privado ni la disponibilidad del formulario |
 
 El tracker [#27](https://github.com/mdesantis1984/thiscloud-ui/issues/27) permanece abierto hasta completar el programa. Cada fase usa un issue hijo aprobado para evitar cerrar el tracker antes de tiempo.

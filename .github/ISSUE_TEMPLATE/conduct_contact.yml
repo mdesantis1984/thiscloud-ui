@@ -1,0 +1,19 @@
+name: Request for private contact / Solicitud de contacto privado
+description: Public request for a private conduct contact route; no incident details / Solicitud pública sin detalles del incidente
+title: "Request for private contact / Solicitud de contacto privado"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form only requests a private contact route. The issue is PUBLIC, and its title and comments remain editable. Do not add incident details, names, screenshots, evidence, private messages, contact information, or vulnerability details anywhere in this issue. The form does not prevent sensitive submissions or guarantee a private channel. If this form is unavailable, do not use another public form or post details.
+
+        Este formulario solo solicita un canal de contacto privado. El issue es PÚBLICO y su título y comentarios se pueden editar. No agregue detalles del incidente, nombres, capturas de pantalla, pruebas, mensajes privados, datos de contacto ni detalles de vulnerabilidades en ninguna parte del issue. El formulario no impide los envíos de información sensible ni garantiza un canal privado. Si no está disponible, no use otro formulario público ni publique detalles.
+  - type: checkboxes
+    id: contact-acknowledgments
+    attributes:
+      label: Public request / Solicitud pública
+      options:
+        - label: I understand this issue is public and its title and comments are editable; no incident details or personal information belong here. / Entiendo que este issue es público y que su título y comentarios se pueden editar; no se deben incluir detalles del incidente ni datos personales.
+          required: true
+        - label: I request a private contact route if available, without posting incident details or personal information. / Solicito un canal de contacto privado si está disponible, sin publicar detalles del incidente ni datos personales.
+          required: true

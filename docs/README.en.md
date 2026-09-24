@@ -23,6 +23,7 @@ This page organizes documentation by audience and makes translation status visib
 | Deploy or roll back the catalog | [Deployment](deployment.md) | English; Spanish pending |
 | Contribute and review changes | [Contributing](../CONTRIBUTING.md) and [governance](governance.md) | Spanish and English; repository guides |
 | Report a vulnerability | [Security policy](../SECURITY.md) | Spanish and English; repository guide |
+| Review collaboration standards and conduct contact | [Code of Conduct](../CODE_OF_CONDUCT.md) | Spanish and English; public request only if the form is visible |
 
 ## Documentation contract
 
@@ -48,5 +49,6 @@ This page organizes documentation by audience and makes translation status visib
 | Bilingual web getting started (local catalog and consumer tarball) | Available in the repository; not a package publication |
 | Bilingual Flutter boundary guide (`publish_to: none`) | Available in the repository; package has no runtime widgets |
 | Generated public reference and automated link validation | Pending |
+| Bilingual Code of Conduct and public private-contact request form | Repository text; does not verify a private channel or form availability |
 
 Tracker [#27](https://github.com/mdesantis1984/thiscloud-ui/issues/27) remains open until the program is complete. Each phase uses an approved child issue so that the tracker cannot close early.
